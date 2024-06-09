@@ -1,8 +1,10 @@
-import { SanityImage } from "@/lib/sanity.types";
-import NextImage from "next/image";
-import styles from "./Image.module.css";
-import clsx from "clsx";
 import { getImageDimensions } from "@sanity/asset-utils";
+import clsx from "clsx";
+import NextImage from "next/image";
+
+import { SanityImage } from "@/lib/sanity.types";
+
+import styles from "./Image.module.css";
 
 export interface ImagePreviewProps {
     src: SanityImage;
@@ -26,6 +28,7 @@ export interface ImageProps {
     sizes?: string;
     quality?: number;
     sharp?: number;
+    priority?: boolean;
 }
 
 export default function Image({
@@ -36,6 +39,7 @@ export default function Image({
     className,
     quality = 75,
     sharp = 1,
+    priority = false,
 }: ImageProps) {
     const size = getImageDimensions(src.asset.url);
 
@@ -51,6 +55,7 @@ export default function Image({
             loader={({ src, width }) => {
                 return `${src}?w=${width}&q=${quality}&sharp=${sharp}`;
             }}
+            priority
         />
     );
 }

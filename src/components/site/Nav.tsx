@@ -42,6 +42,8 @@ export default function Nav({ companyInfo, active = "" }: NavProps) {
                         src={companyInfo.logo}
                         alt={companyInfo.name}
                         mode={"cover"}
+                        priority
+                        blur={false}
                     />
                 </Link>
             </BaseNav.Logo>

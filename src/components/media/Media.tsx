@@ -1,12 +1,14 @@
 "use client";
 
-import { MuxVideo, SanityImage } from "@/lib/sanity.types";
-import clsx from "clsx";
-import styles from "./Media.module.css";
 import { getImageDimensions } from "@sanity/asset-utils";
-import Video, { VideoPreview } from "./Video";
-import Image, { ImagePreview } from "./Image";
+import clsx from "clsx";
 import { useState } from "react";
+
+import { MuxVideo, SanityImage } from "@/lib/sanity.types";
+
+import Image, { ImagePreview } from "./Image";
+import styles from "./Media.module.css";
+import Video, { VideoPreview } from "./Video";
 
 export type MediaAsset = MuxVideo | SanityImage;
 
@@ -31,6 +33,8 @@ export interface MediaProps {
     sizes?: string;
     quality?: number;
     sharp?: number;
+    priority?: boolean;
+    blur?: boolean;
 }
 
 export default function Media({
@@ -43,6 +47,8 @@ export default function Media({
     sizes,
     quality,
     sharp,
+    priority = false,
+    blur = true,
 }: MediaProps) {
     const [isReady, setIsReady] = useState(false);
 
@@ -73,13 +79,15 @@ export default function Media({
                 <>
                     <Video src={src} onReady={handleReady} />
 
-                    <VideoPreview
-                        src={src}
-                        className={clsx(
-                            styles.Preview,
-                            isReady && styles.Preview__hidden
-                        )}
-                    />
+                    {blur && (
+                        <VideoPreview
+                            src={src}
+                            className={clsx(
+                                styles.Preview,
+                                isReady && styles.Preview__hidden,
+                            )}
+                        />
+                    )}
                 </>
             )}
 
@@ -92,15 +100,18 @@ export default function Media({
                         sizes={sizes}
                         quality={quality}
                         sharp={sharp}
+                        priority={priority}
                     />
 
-                    <ImagePreview
-                        src={src}
-                        className={clsx(
-                            styles.Preview,
-                            isReady && styles.Preview__hidden
-                        )}
-                    />
+                    {blur && (
+                        <ImagePreview
+                            src={src}
+                            className={clsx(
+                                styles.Preview,
+                                isReady && styles.Preview__hidden,
+                            )}
+                        />
+                    )}
                 </>
             )}
         </div>

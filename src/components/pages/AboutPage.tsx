@@ -5,21 +5,10 @@ import clsx from "clsx";
 import Media from "@/components/media/Media";
 import Button from "@/components/site/Button";
 import Nav from "@/components/site/Nav";
-import Gallery from "@/components/util/Gallery";
-import Lightbox, {
-    mapToSlides,
-    useLightboxState,
-} from "@/components/util/Lightbox";
+import { useLightboxState } from "@/components/util/Lightbox";
 
-import {
-    CompanyInfo,
-    MultiMedia,
-    PortfolioItem,
-    SanityImage,
-    TeamMember,
-} from "@/lib/sanity.types";
+import { CompanyInfo, PortfolioItem, TeamMember } from "@/lib/sanity.types";
 
-import { getAspectRatio } from "../media/Media";
 import styles from "./AboutPage.module.css";
 
 export default function AboutPage({
@@ -66,7 +55,7 @@ export default function AboutPage({
             </div>
 
             <div className="flex w-full flex-col-reverse items-center gap-12 overflow-x-clip py-32 sm:gap-32 xl:flex-row-reverse xl:gap-0">
-                <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row xl:w-[450px] xl:flex-col 2xl:w-[830px]">
+                <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row xl:w-[450px] xl:flex-col 2xl:w-[750px]">
                     <div className="flex shrink grow-0 flex-col gap-4 xl:flex-row">
                         <div className="aspect-video w-full sm:w-[40vw] lg:w-full">
                             <Media
@@ -168,7 +157,7 @@ export default function AboutPage({
             </div>
 
             <div className="flex w-full flex-col-reverse items-center gap-12 overflow-x-clip py-32 sm:gap-32 xl:flex-row xl:gap-0">
-                <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row-reverse xl:w-[450px] xl:flex-col 2xl:w-[830px]">
+                <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row-reverse xl:w-[450px] xl:flex-col 2xl:w-[750px]">
                     <div className="flex shrink grow-0 flex-col gap-4 xl:flex-row">
                         <div className="aspect-video w-full sm:w-[40vw] lg:w-full">
                             <Media
@@ -275,7 +264,7 @@ export default function AboutPage({
             </div>
 
             <div className="flex w-full flex-col-reverse items-center gap-12 overflow-x-clip py-32 sm:gap-32 xl:flex-row-reverse xl:gap-0">
-                <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row xl:w-[450px] xl:flex-col 2xl:w-[830px]">
+                <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row xl:w-[450px] xl:flex-col 2xl:w-[750px]">
                     <div className="flex shrink grow-0 flex-col gap-4 xl:flex-row">
                         <div className="aspect-video w-full sm:w-[40vw] lg:w-full">
                             <Media
@@ -385,32 +374,6 @@ export default function AboutPage({
                     </div>
                 </div>
             </div>
-
-            <Gallery.Vertical
-                className="gap-1 p-32"
-                items={(portfolioItem.gallery || []).map(
-                    (item: MultiMedia) => ({
-                        component: (
-                            <Media
-                                src={item as SanityImage}
-                                alt={portfolioItem.title}
-                                mode="cover"
-                                onClick={(key) => setLightbox(true, key)}
-                                sizes="30vw"
-                            />
-                        ),
-                        aspectRatio: getAspectRatio(item),
-                    }),
-                )}
-                columns={3}
-            />
-
-            <Lightbox
-                open={open}
-                setLightbox={setLightbox}
-                currentSlide={currentSlide}
-                slides={mapToSlides(portfolioItem.gallery)}
-            />
         </div>
     );
 }
