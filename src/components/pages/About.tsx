@@ -7,24 +7,34 @@ import Button from "@/components/site/Button";
 import Nav from "@/components/site/Nav";
 import { useLightboxState } from "@/components/util/Lightbox";
 
-import { CompanyInfo, PortfolioItem, TeamMember } from "@/lib/sanity.types";
+import {
+    AboutPage,
+    CompanyInfo,
+    PortfolioItem,
+    TeamMember,
+} from "@/lib/sanity.types";
 
-import styles from "./AboutPage.module.css";
+import Slideshow, { filterMedia } from "../util/Slideshow";
+import styles from "./About.module.css";
 
-export default function AboutPage({
+export default function About({
     portfolioItem,
     companyInfo,
     henry,
     luke,
     william,
+    aboutPage,
 }: {
     portfolioItem: PortfolioItem;
     companyInfo: CompanyInfo;
     henry: TeamMember;
     luke: TeamMember;
     william: TeamMember;
+    aboutPage: AboutPage;
 }) {
     const [open, currentSlide, setLightbox] = useLightboxState();
+
+    console.log(aboutPage);
 
     return (
         <div className="bg-black">
@@ -55,7 +65,7 @@ export default function AboutPage({
                     <div className="flex shrink grow-0 flex-col gap-4 xl:flex-row">
                         <div className="aspect-video w-full sm:w-[40vw] lg:w-full">
                             <Media
-                                src={portfolioItem.gallery[0]}
+                                src={portfolioItem.gallery[1]}
                                 mode="cover"
                                 imageOptions={{
                                     sizes: "400px",
@@ -122,22 +132,14 @@ export default function AboutPage({
 
                     <div className="flex w-[50vw] flex-col gap-[2vw] md:w-[600px] md:flex-row md:gap-2">
                         <div className="aspect-video w-full">
-                            <Media
-                                src={portfolioItem.gallery[8]}
-                                imageOptions={{
-                                    sizes: "300px",
-                                }}
-                                mode="cover"
+                            <Slideshow
+                                items={filterMedia(aboutPage.lukeSlideshow1)}
                             />
                         </div>
 
                         <div className="aspect-video w-full">
-                            <Media
-                                src={portfolioItem.gallery[6]}
-                                imageOptions={{
-                                    sizes: "300px",
-                                }}
-                                mode="cover"
+                            <Slideshow
+                                items={filterMedia(aboutPage.lukeSlideshow2)}
                             />
                         </div>
                     </div>
@@ -214,25 +216,18 @@ export default function AboutPage({
                         <div
                             className={clsx(
                                 styles.henryImageMobile,
-                                "absolute bottom-4 right-4 aspect-[3/4] md:relative",
+                                "absolute bottom-4 right-4 aspect-[3/4] md:relative md:bottom-0 md:right-0",
                             )}
                         >
-                            <Media
-                                src={portfolioItem.gallery[8]}
-                                imageOptions={{
-                                    sizes: "300px",
-                                }}
-                                mode="cover"
+                            <Slideshow
+                                items={filterMedia(aboutPage.henrySlideshow2)}
+                                offset={2500}
                             />
                         </div>
 
                         <div className="aspect-video w-full">
-                            <Media
-                                src={portfolioItem.gallery[6]}
-                                imageOptions={{
-                                    sizes: "300px",
-                                }}
-                                mode="cover"
+                            <Slideshow
+                                items={filterMedia(aboutPage.henrySlideshow1)}
                             />
                         </div>
                     </div>
@@ -357,22 +352,14 @@ export default function AboutPage({
 
                     <div className="flex w-full flex-row gap-[2vw] md:w-[636px] md:gap-2">
                         <div className="aspect-video w-full">
-                            <Media
-                                src={portfolioItem.gallery[12]}
-                                imageOptions={{
-                                    sizes: "300px",
-                                }}
-                                mode="cover"
+                            <Slideshow
+                                items={filterMedia(aboutPage.williamSlideshow1)}
                             />
                         </div>
 
                         <div className="aspect-video w-full">
-                            <Media
-                                src={portfolioItem.gallery[13]}
-                                imageOptions={{
-                                    sizes: "300px",
-                                }}
-                                mode="cover"
+                            <Slideshow
+                                items={filterMedia(aboutPage.williamSlideshow2)}
                             />
                         </div>
                     </div>

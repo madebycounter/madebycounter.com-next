@@ -1,6 +1,7 @@
 import { createClient } from "next-sanity";
 
 import {
+    AboutPage,
     CompanyInfo,
     PortfolioItem,
     TeamMember,
@@ -92,4 +93,45 @@ export async function useTeamMember(slug: TeamMemberSlug): Promise<TeamMember> {
             slug,
         },
     );
+}
+
+export async function useAboutPage(): Promise<AboutPage> {
+    return await client.fetch(`*[_type == "aboutPage"][0] {
+        lukeSlideshow1[] {
+            ...,
+            asset-> {
+                ...
+            }
+        },
+        lukeSlideshow2[] {
+            ...,
+            asset-> {
+                ...
+            }
+        },
+        henrySlideshow1[] {
+            ...,
+            asset-> {
+                ...
+            }
+        },
+        henrySlideshow2[] {
+            ...,
+            asset-> {
+                ...
+            }
+        },
+        williamSlideshow1[] {
+            ...,
+            asset-> {
+                ...
+            }
+        },
+        williamSlideshow2[] {
+            ...,
+            asset-> {
+                ...
+            }
+        }
+    }`);
 }

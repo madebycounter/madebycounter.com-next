@@ -100,3 +100,14 @@ export interface TeamMember {
     signature: SanityImage;
     slug: TeamMemberSlug;
 }
+
+export interface AboutPage {
+    _id: string;
+    _type: "aboutPage";
+    lukeSlideshow1: MultiMedia[];
+    lukeSlideshow2: MultiMedia[];
+    henrySlideshow1: MultiMedia[];
+    henrySlideshow2: MultiMedia[];
+    williamSlideshow1: MultiMedia[];
+    williamSlideshow2: MultiMedia[];
+}

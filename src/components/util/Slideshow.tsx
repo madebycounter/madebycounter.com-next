@@ -5,8 +5,24 @@ import { useEffect, useRef, useState } from "react";
 
 import { MuxVideo, SanityImage } from "@/lib/sanity.types";
 
-import Media from "../media/Media";
+import Media, { MediaAsset } from "../media/Media";
 import styles from "./Slideshow.module.css";
+
+export function filterMedia(media: MediaAsset[]): MuxVideo[] | SanityImage[] {
+    if (media.length === 0) {
+        return [];
+    }
+
+    if (media[0]._type === "image") {
+        return media
+            .filter((item) => item._type === "image")
+            .map((item) => item as SanityImage);
+    }
+
+    return media
+        .filter((item) => item._type === "mux.video")
+        .map((item) => item as MuxVideo);
+}
 
 export interface SlideshowProps {
     items: SanityImage[] | MuxVideo[];
@@ -59,7 +75,7 @@ export default function Slideshow({
                             onEnded: () => {
                                 setIndex((index + 1) % items.length);
                             },
-                            loop: false,
+                            loop: items.length === 1,
                             playing: i === index,
                         }}
                         mode="cover"

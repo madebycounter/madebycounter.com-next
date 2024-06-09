@@ -1,9 +1,11 @@
-import IndexPage from "@/components/pages/AboutPage";
-import Button from "@/components/site/Button";
-import Slideshow from "@/components/util/Slideshow";
+import About from "@/components/pages/About";
 
-import { useCompanyInfo, usePortfolioItem, useTeamMember } from "@/lib/sanity";
-import { MuxVideo, SanityImage } from "@/lib/sanity.types";
+import {
+    useAboutPage,
+    useCompanyInfo,
+    usePortfolioItem,
+    useTeamMember,
+} from "@/lib/sanity";
 
 export default async function Home() {
     const portfolioItem = await usePortfolioItem("margaretfest-2023");
@@ -11,36 +13,16 @@ export default async function Home() {
     const henry = await useTeamMember("henry-buck");
     const luke = await useTeamMember("luke-a-makinson");
     const william = await useTeamMember("william-gardner");
+    const aboutPage = await useAboutPage();
 
     return (
-        <div className="p-32">
-            <Slideshow
-                className="aspect-video"
-                items={
-                    portfolioItem.gallery.filter(
-                        (item) => item._type === "mux.video",
-                    ) as MuxVideo[]
-                }
-                imageSpeed={1000}
-            />
-
-            {/* <Slideshow
-                className="aspect-video"
-                items={
-                    portfolioItem.gallery.filter(
-                        (item) => item._type === "image",
-                    ) as SanityImage[]
-                }
-                imageSpeed={1000}
-                offset={500}
-            /> */}
-        </div>
-        // <IndexPage
-        //     portfolioItem={portfolioItem}
-        //     companyInfo={companyInfo}
-        //     henry={henry}
-        //     luke={luke}
-        //     william={william}
-        // />
+        <About
+            portfolioItem={portfolioItem}
+            companyInfo={companyInfo}
+            aboutPage={aboutPage}
+            henry={henry}
+            luke={luke}
+            william={william}
+        />
     );
 }
