@@ -1,0 +1,19 @@
+.Nav {
+    position: fixed;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    z-index: 50;
+}
+
+.Logo {
+    height: 100%;
+}
+
+.Items {
+    display: flex;
+    list-style: none;
+}

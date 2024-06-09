@@ -1,0 +1,45 @@
+.group {
+    gap: inherit;
+}
+
+.group300 {
+    height: 300px;
+}
+
+.item {
+    aspect-ratio: var(--aspect-ratio);
+}
+
+.GalleryVertical {
+    display: flex;
+    flex-direction: row;
+}
+
+.GalleryVertical .group {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1;
+}
+
+.GalleryVertical .item {
+    flex: 1 1 auto;
+    width: 100%;
+    height: auto;
+}
+
+.GalleryHorizontal {
+    display: grid;
+    grid-auto-rows: minmax(0, 1fr);
+    max-width: fit-content;
+}
+
+.GalleryHorizontal .group {
+    display: flex;
+    flex-direction: row;
+}
+
+.GalleryHorizontal .item {
+    width: auto;
+    height: 100%;
+    flex: 1 1 auto;
+}
