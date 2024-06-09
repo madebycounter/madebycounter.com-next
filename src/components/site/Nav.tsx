@@ -15,9 +15,12 @@ export interface NavItemProps {
 export function NavItem({ children, href, active = false }: NavItemProps) {
     return (
         <li
-            className={clsx("text-xl lowercase text-white", {
-                underline: active,
-            })}
+            className={clsx(
+                "text-md font-counter uppercase tracking-wider text-white",
+                {
+                    // underline: active,
+                },
+            )}
         >
             <Link href={href}>{children}</Link>
         </li>
@@ -34,7 +37,7 @@ export default function Nav({ companyInfo, active = "" }: NavProps) {
         <BaseNav.Variable
             className="bg-gradient-to-b from-black/60 to-transparent px-8 transition-all duration-300"
             classNameTop="h-20 py-4"
-            classNameScrolled="bg-black h-16 py-2 invert"
+            classNameScrolled="bg-black h-16 py-2"
         >
             <BaseNav.Logo className="py-2">
                 <Link href="/" className="invert">

@@ -54,7 +54,7 @@ export default function About({
             <Nav companyInfo={companyInfo} active="about" />
 
             <div className="relative h-screen w-full">
-                <Media src={portfolioItem.gallery[4]} mode="cover" />
+                <Media src={portfolioItem.gallery[8]} mode="cover" />
 
                 <div className="absolute bottom-0 left-0 z-10 max-w-[900px] p-4 text-white">
                     <h1 className="font-counter text-9xl font-normal tracking-tighter">
