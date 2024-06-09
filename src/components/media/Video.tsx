@@ -1,5 +1,6 @@
 import MuxVideoPlayer from "@mux/mux-video-react";
 import clsx from "clsx";
+import { RefObject } from "react";
 
 import { MuxVideo } from "@/lib/sanity.types";
 
@@ -33,12 +34,14 @@ export interface VideoProps {
     onReady?: () => void;
     className?: string;
     videoOptions?: VideoOptions;
+    childRef?: RefObject<HTMLVideoElement>;
 }
 
 export type VideoOptions = {
-    autoPlay?: boolean;
+    playing?: boolean;
     muted?: boolean;
     loop?: boolean;
+    onEnded?: () => void;
 };
 
 export default function Video({
@@ -46,17 +49,25 @@ export default function Video({
     className,
     videoOptions = {},
     onReady,
+    childRef,
 }: VideoProps) {
-    const { autoPlay = true, muted = true, loop = true } = videoOptions;
+    const {
+        playing = true,
+        muted = true,
+        loop = true,
+        onEnded = () => null,
+    } = videoOptions;
 
     return (
         <MuxVideoPlayer
             className={clsx(className, styles.Video)}
             playbackId={src.asset.playbackId}
             onCanPlay={onReady}
-            autoPlay={autoPlay}
+            autoPlay={playing}
             muted={muted}
             loop={loop}
+            onEnded={onEnded}
+            ref={childRef}
         />
     );
 }
