@@ -1,4 +1,5 @@
 import IndexPage from "@/components/pages/AboutPage";
+import Button from "@/components/site/Button";
 
 import { useCompanyInfo, usePortfolioItem, useTeamMember } from "@/lib/sanity";
 

@@ -1,0 +1,9 @@
+.henryImageMobile {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .henryImageMobile {
+        width: calc(100vw - 54vw - 2rem);
+    }
+}

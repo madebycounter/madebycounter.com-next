@@ -1,5 +1,7 @@
 "use client";
 
+import clsx from "clsx";
+
 import Media from "@/components/media/Media";
 import Button from "@/components/site/Button";
 import Nav from "@/components/site/Nav";
@@ -18,6 +20,7 @@ import {
 } from "@/lib/sanity.types";
 
 import { getAspectRatio } from "../media/Media";
+import styles from "./AboutPage.module.css";
 
 export default function AboutPage({
     portfolioItem,
@@ -62,12 +65,8 @@ export default function AboutPage({
                 </div>
             </div>
 
-            <Button href="/contact" className="">
-                Learn More
-            </Button>
-
-            <div className="flex w-full flex-col-reverse items-center gap-32 overflow-x-clip py-32 xl:flex-row-reverse xl:gap-0">
-                <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row xl:w-[432px] xl:flex-col 2xl:w-[830px]">
+            <div className="flex w-full flex-col-reverse items-center gap-12 overflow-x-clip py-32 sm:gap-32 xl:flex-row-reverse xl:gap-0">
+                <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row xl:w-[450px] xl:flex-col 2xl:w-[830px]">
                     <div className="flex shrink grow-0 flex-col gap-4 xl:flex-row">
                         <div className="aspect-video w-full sm:w-[40vw] lg:w-full">
                             <Media
@@ -87,7 +86,7 @@ export default function AboutPage({
                     </div>
 
                     <div className="flex shrink grow flex-col justify-between">
-                        <p className="font-counter text-8xl !leading-[0.8em] tracking-tighter sm:text-[10vw] lg:text-9xl xl:text-8xl 2xl:text-9xl">
+                        <p className="font-counter text-[19vw] !leading-[0.8em] tracking-tighter sm:text-[12vw] lg:text-9xl xl:text-8xl 2xl:text-9xl">
                             We make
                             <br />
                             business
@@ -96,7 +95,7 @@ export default function AboutPage({
                         </p>
 
                         <div>
-                            <Button href="/contact" className="!pl-1 invert">
+                            <Button href="/contact" className="mt-8">
                                 Learn More
                             </Button>
                         </div>
@@ -110,7 +109,7 @@ export default function AboutPage({
                         makinson
                     </h2>
 
-                    <p className="my-[4vw] text-[5.2vw] font-light leading-[1.3em] text-white md:my-4 md:text-3xl">
+                    <p className="my-[4vw] text-[5.2vw] font-light leading-[1.3em] text-white md:my-4 md:text-4xl">
                         Hey, Luke here!&nbsp;
                         <br className="inline md:hidden" />
                         Look, I like&nbsp;
@@ -161,6 +160,225 @@ export default function AboutPage({
                     <div className="absolute left-[51vw] top-[28vw] w-[44vw] md:left-[540px] md:top-[-50px] md:w-[255px]">
                         <Media
                             src={luke.actionShot}
+                            sizes="300px"
+                            mode="width"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="flex w-full flex-col-reverse items-center gap-12 overflow-x-clip py-32 sm:gap-32 xl:flex-row xl:gap-0">
+                <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row-reverse xl:w-[450px] xl:flex-col 2xl:w-[830px]">
+                    <div className="flex shrink grow-0 flex-col gap-4 xl:flex-row">
+                        <div className="aspect-video w-full sm:w-[40vw] lg:w-full">
+                            <Media
+                                src={portfolioItem.gallery[9]}
+                                mode="cover"
+                                sizes="400px"
+                            />
+                        </div>
+
+                        <div className="hidden aspect-video w-[40vw] sm:block lg:w-full xl:hidden 2xl:block">
+                            <Media
+                                src={portfolioItem.gallery[7]}
+                                mode="cover"
+                                sizes="400px"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="flex shrink grow flex-col justify-between">
+                        <p className="text-right font-counter text-[19vw] !leading-[0.8em] tracking-tighter sm:text-[12vw] lg:text-9xl xl:text-8xl 2xl:text-9xl">
+                            Our pics
+                            <br />
+                            increase
+                            <br />
+                            sales.
+                        </p>
+
+                        <div>
+                            <Button
+                                href="/contact"
+                                className="mt-8"
+                                direction="left"
+                            >
+                                Learn More
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="relative flex w-full flex-col-reverse gap-4 p-4 md:w-[750px] md:flex-row md:items-end md:justify-end md:p-0 lg:w-[800px] xl:mr-4">
+                    <div className="flex w-[49vw] flex-col gap-[2vw] md:w-[250px] md:gap-2">
+                        <div
+                            className={clsx(
+                                styles.henryImageMobile,
+                                "absolute bottom-4 right-4 aspect-[3/4] md:relative",
+                            )}
+                        >
+                            <Media
+                                src={portfolioItem.gallery[8]}
+                                sizes="300px"
+                                mode="cover"
+                            />
+                        </div>
+
+                        <div className="aspect-video w-full">
+                            <Media
+                                src={portfolioItem.gallery[6]}
+                                sizes="300px"
+                                mode="cover"
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2 className="font-counter text-[19vw] font-normal !leading-[0.8em] tracking-tighter text-white md:text-9xl">
+                            henry
+                            <br />
+                            j. buck
+                        </h2>
+
+                        <p className="my-[4vw] text-[5.2vw] font-light leading-[1.3em] text-white md:my-8 md:text-4xl">
+                            Hi, I&apos;m Henry! Your
+                            <br />
+                            hard work deserves
+                            <br />
+                            a strong social media
+                            <br />
+                            presence. Let&apos;s build
+                            <br />
+                            your following with
+                            <br />
+                            quality photography
+                            <br />
+                            and graphic design.
+                        </p>
+
+                        <div className="w-[50vw] invert md:w-[335px]">
+                            <Media
+                                src={henry.signature}
+                                sizes="200px"
+                                mode="width"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="absolute left-[44vw] top-[-20vw] w-[51vw] md:left-[-20px] md:top-[-40px] md:w-[310px] md:-scale-x-100">
+                        <Media
+                            src={henry.actionShot}
+                            sizes="300px"
+                            mode="width"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="flex w-full flex-col-reverse items-center gap-12 overflow-x-clip py-32 sm:gap-32 xl:flex-row-reverse xl:gap-0">
+                <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row xl:w-[450px] xl:flex-col 2xl:w-[830px]">
+                    <div className="flex shrink grow-0 flex-col gap-4 xl:flex-row">
+                        <div className="aspect-video w-full sm:w-[40vw] lg:w-full">
+                            <Media
+                                src={portfolioItem.gallery[0]}
+                                mode="cover"
+                                sizes="400px"
+                            />
+                        </div>
+
+                        <div className="hidden aspect-video w-[40vw] sm:block lg:w-full xl:hidden 2xl:block">
+                            <Media
+                                src={portfolioItem.gallery[1]}
+                                mode="cover"
+                                sizes="400px"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="flex shrink grow flex-col justify-between">
+                        <p className="font-counter text-[19vw] !leading-[0.8em] tracking-tighter sm:text-[12vw] lg:text-9xl xl:text-8xl 2xl:text-9xl">
+                            Drones
+                            <br />
+                            make you
+                            <br />
+                            stand out.
+                        </p>
+
+                        <div>
+                            <Button href="/contact" className="mt-8">
+                                Learn More
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="relative w-full p-4 md:w-[750px] md:p-0 xl:ml-4">
+                    <h2 className="font-counter text-[19vw] font-normal !leading-[0.8em] tracking-tighter text-white md:text-9xl">
+                        william&nbsp;
+                        <br className="hidden md:inline" />
+                        d.&nbsp;
+                        <br className="inline md:hidden" />
+                        gardner
+                    </h2>
+
+                    <p className="my-[8vw] text-[5.2vw] font-light leading-[1.3em] text-white md:my-8 md:text-4xl">
+                        Hello, I&apos;m William.&nbsp;
+                        <br className="inline md:hidden" />
+                        Stunning aerial&nbsp;
+                        <br className="hidden md:inline" />
+                        footage&nbsp;
+                        <br className="inline md:hidden" />
+                        makes your business&nbsp;
+                        <br className="inline md:hidden" />
+                        stand&nbsp;
+                        <br className="hidden md:inline" />
+                        out. We remove&nbsp;
+                        <br className="inline md:hidden" />
+                        the hurdles and&nbsp;
+                        <br className="hidden md:inline" />
+                        put&nbsp;
+                        <br className="inline md:hidden" />
+                        drones to work
+                        <br />
+                        for you!
+                    </p>
+
+                    <div className="flex w-full flex-row gap-[2vw] md:w-[636px] md:gap-2">
+                        <div className="aspect-video w-full">
+                            <Media
+                                src={portfolioItem.gallery[12]}
+                                sizes="300px"
+                                mode="cover"
+                            />
+                        </div>
+
+                        <div className="aspect-video w-full">
+                            <Media
+                                src={portfolioItem.gallery[13]}
+                                sizes="300px"
+                                mode="cover"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="absolute left-[40vw] top-[77vw] w-[25vw] invert md:left-[394px] md:top-[362px] md:w-[146px]">
+                        <Media
+                            src={william.signature}
+                            sizes="200px"
+                            mode="width"
+                        />
+                    </div>
+
+                    <div className="absolute left-[53vw] top-[-3vw] w-[40vw] md:left-[520px] md:top-0 md:w-[250px]">
+                        <Media
+                            src={william.actionShot}
+                            sizes="300px"
+                            mode="width"
+                        />
+                    </div>
+
+                    <div className="absolute left-[55vw] top-[-31vw] w-[31vw] md:left-[467px] md:top-[-190px] md:w-[215px]">
+                        <Media
+                            src={william.actionShotExtra}
                             sizes="300px"
                             mode="width"
                         />
