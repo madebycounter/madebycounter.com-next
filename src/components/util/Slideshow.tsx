@@ -5,7 +5,9 @@ import { useEffect, useRef, useState } from "react";
 
 import { MuxVideo, SanityImage } from "@/lib/sanity.types";
 
+import { ImageOptions } from "../media/Image";
 import Media, { MediaAsset } from "../media/Media";
+import { VideoOptions } from "../media/Video";
 import styles from "./Slideshow.module.css";
 
 export function filterMedia(media: MediaAsset[]): MuxVideo[] | SanityImage[] {
@@ -29,6 +31,8 @@ export interface SlideshowProps {
     className?: string;
     imageSpeed?: number;
     offset?: number;
+    imageOptions?: ImageOptions;
+    videoOptions?: VideoOptions;
 }
 
 function notLessThanZero(value: number) {
@@ -40,6 +44,8 @@ export default function Slideshow({
     className,
     imageSpeed = 5000,
     offset = 0,
+    imageOptions = {},
+    videoOptions = {},
 }: SlideshowProps) {
     const firstTimeout = useRef(true);
     const [index, setIndex] = useState(0);
@@ -72,12 +78,14 @@ export default function Slideshow({
                     <Media
                         src={item}
                         videoOptions={{
+                            ...videoOptions,
                             onEnded: () => {
                                 setIndex((index + 1) % items.length);
                             },
                             loop: items.length === 1,
                             playing: i === index,
                         }}
+                        imageOptions={imageOptions}
                         mode="cover"
                     />
                 </div>

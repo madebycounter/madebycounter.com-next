@@ -14,6 +14,7 @@ import {
     TeamMember,
 } from "@/lib/sanity.types";
 
+import { ImageOptions } from "../media/Image";
 import Slideshow, { filterMedia } from "../util/Slideshow";
 import styles from "./About.module.css";
 
@@ -33,6 +34,18 @@ export default function About({
     aboutPage: AboutPage;
 }) {
     const [open, currentSlide, setLightbox] = useLightboxState();
+
+    const slideshowOptions: ImageOptions = {
+        sizes: "400px",
+    };
+
+    const actionShotOptions: ImageOptions = {
+        sizes: "300px",
+    };
+
+    const signatureOptions: ImageOptions = {
+        sizes: "200px",
+    };
 
     console.log(aboutPage);
 
@@ -134,12 +147,14 @@ export default function About({
                         <div className="aspect-video w-full">
                             <Slideshow
                                 items={filterMedia(aboutPage.lukeSlideshow1)}
+                                imageOptions={slideshowOptions}
                             />
                         </div>
 
                         <div className="aspect-video w-full">
                             <Slideshow
                                 items={filterMedia(aboutPage.lukeSlideshow2)}
+                                imageOptions={slideshowOptions}
                             />
                         </div>
                     </div>
@@ -147,9 +162,7 @@ export default function About({
                     <div className="absolute left-[32vw] top-[75vw] w-[24vw] invert md:left-[369px] md:top-[320px] md:w-[190px]">
                         <Media
                             src={luke.signature}
-                            imageOptions={{
-                                sizes: "200px",
-                            }}
+                            imageOptions={signatureOptions}
                             mode="width"
                         />
                     </div>
@@ -157,9 +170,7 @@ export default function About({
                     <div className="absolute left-[51vw] top-[28vw] w-[44vw] md:left-[540px] md:top-[-50px] md:w-[255px]">
                         <Media
                             src={luke.actionShot}
-                            imageOptions={{
-                                sizes: "200px",
-                            }}
+                            imageOptions={actionShotOptions}
                             mode="width"
                         />
                     </div>
@@ -222,12 +233,14 @@ export default function About({
                             <Slideshow
                                 items={filterMedia(aboutPage.henrySlideshow2)}
                                 offset={2500}
+                                imageOptions={slideshowOptions}
                             />
                         </div>
 
                         <div className="aspect-video w-full">
                             <Slideshow
                                 items={filterMedia(aboutPage.henrySlideshow1)}
+                                imageOptions={slideshowOptions}
                             />
                         </div>
                     </div>
@@ -258,9 +271,7 @@ export default function About({
                         <div className="w-[50vw] invert md:w-[335px]">
                             <Media
                                 src={henry.signature}
-                                imageOptions={{
-                                    sizes: "200px",
-                                }}
+                                imageOptions={signatureOptions}
                                 mode="width"
                             />
                         </div>
@@ -269,9 +280,7 @@ export default function About({
                     <div className="absolute left-[44vw] top-[-20vw] w-[51vw] md:left-[-20px] md:top-[-40px] md:w-[310px] md:-scale-x-100">
                         <Media
                             src={henry.actionShot}
-                            imageOptions={{
-                                sizes: "200px",
-                            }}
+                            imageOptions={actionShotOptions}
                             mode="width"
                         />
                     </div>
@@ -354,12 +363,14 @@ export default function About({
                         <div className="aspect-video w-full">
                             <Slideshow
                                 items={filterMedia(aboutPage.williamSlideshow1)}
+                                imageOptions={slideshowOptions}
                             />
                         </div>
 
                         <div className="aspect-video w-full">
                             <Slideshow
                                 items={filterMedia(aboutPage.williamSlideshow2)}
+                                imageOptions={slideshowOptions}
                             />
                         </div>
                     </div>
@@ -367,9 +378,7 @@ export default function About({
                     <div className="absolute left-[40vw] top-[77vw] w-[25vw] invert md:left-[394px] md:top-[362px] md:w-[146px]">
                         <Media
                             src={william.signature}
-                            imageOptions={{
-                                sizes: "200px",
-                            }}
+                            imageOptions={signatureOptions}
                             mode="width"
                         />
                     </div>
@@ -377,9 +386,7 @@ export default function About({
                     <div className="absolute left-[53vw] top-[-3vw] w-[40vw] md:left-[520px] md:top-0 md:w-[250px]">
                         <Media
                             src={william.actionShot}
-                            imageOptions={{
-                                sizes: "300px",
-                            }}
+                            imageOptions={actionShotOptions}
                             mode="width"
                         />
                     </div>
@@ -387,9 +394,7 @@ export default function About({
                     <div className="absolute left-[55vw] top-[-31vw] w-[31vw] md:left-[467px] md:top-[-190px] md:w-[215px]">
                         <Media
                             src={william.actionShotExtra}
-                            imageOptions={{
-                                sizes: "300px",
-                            }}
+                            imageOptions={actionShotOptions}
                             mode="width"
                         />
                     </div>
