@@ -25,23 +25,26 @@ export interface ImageProps {
     alt: string;
     onReady?: () => void;
     className?: string;
+    priority?: boolean;
+    imageOptions?: ImageOptions;
+}
+
+export type ImageOptions = {
     sizes?: string;
     quality?: number;
     sharp?: number;
-    priority?: boolean;
-}
+};
 
 export default function Image({
     src,
     alt,
     onReady,
-    sizes,
+    imageOptions = {},
     className,
-    quality = 75,
-    sharp = 1,
     priority = false,
 }: ImageProps) {
     const size = getImageDimensions(src.asset.url);
+    const { sizes = "100vw", quality = 75, sharp = 20 } = imageOptions;
 
     return (
         <NextImage

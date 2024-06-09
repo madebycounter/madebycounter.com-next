@@ -6,9 +6,9 @@ import { useState } from "react";
 
 import { MuxVideo, SanityImage } from "@/lib/sanity.types";
 
-import Image, { ImagePreview } from "./Image";
+import Image, { ImageOptions, ImagePreview } from "./Image";
 import styles from "./Media.module.css";
-import Video, { VideoPreview } from "./Video";
+import Video, { VideoOptions, VideoPreview } from "./Video";
 
 export type MediaAsset = MuxVideo | SanityImage;
 
@@ -26,13 +26,12 @@ export function getAspectRatio(src: MediaAsset) {
 export interface MediaProps {
     src: MediaAsset;
     alt?: string;
-    mode: "height" | "width" | "cover" | "contain";
+    mode?: "height" | "width" | "cover" | "contain";
     onReady?: () => void;
     onClick?: (key: string) => void;
     className?: string;
-    sizes?: string;
-    quality?: number;
-    sharp?: number;
+    imageOptions?: ImageOptions;
+    videoOptions?: VideoOptions;
     priority?: boolean;
     blur?: boolean;
 }
@@ -40,13 +39,12 @@ export interface MediaProps {
 export default function Media({
     src,
     alt = "",
-    mode,
+    mode = "cover",
     onReady,
     onClick,
     className,
-    sizes,
-    quality,
-    sharp,
+    imageOptions,
+    videoOptions,
     priority = false,
     blur = true,
 }: MediaProps) {
@@ -77,7 +75,11 @@ export default function Media({
         >
             {src._type === "mux.video" && (
                 <>
-                    <Video src={src} onReady={handleReady} />
+                    <Video
+                        src={src}
+                        onReady={handleReady}
+                        videoOptions={videoOptions}
+                    />
 
                     {blur && (
                         <VideoPreview
@@ -97,9 +99,7 @@ export default function Media({
                         src={src}
                         alt={alt}
                         onReady={handleReady}
-                        sizes={sizes}
-                        quality={quality}
-                        sharp={sharp}
+                        imageOptions={imageOptions}
                         priority={priority}
                     />
 

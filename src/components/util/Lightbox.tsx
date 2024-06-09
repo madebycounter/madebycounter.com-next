@@ -1,12 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import YALB, { MediaSlide, Slide } from "yet-another-react-lightbox";
 import Counter from "yet-another-react-lightbox/plugins/counter";
 import "yet-another-react-lightbox/plugins/counter.css";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/styles.css";
-import { useState } from "react";
+
 import Media, { MediaAsset } from "../media/Media";
 import { VideoPreview } from "../media/Video";
 
@@ -26,16 +27,26 @@ function renderSlide(slide: MediaSlide) {
         <Media
             src={slide.data}
             mode="contain"
-            sizes="75vw"
-            sharp={10}
-            quality={50}
+            imageOptions={{
+                sizes: "75vw",
+                sharp: 10,
+                quality: 50,
+            }}
         />
     );
 }
 
 function renderThumbnail(slide: MediaSlide) {
     if (slide.data._type === "image") {
-        return <Media src={slide.data} mode="contain" sizes="100vw" />;
+        return (
+            <Media
+                src={slide.data}
+                mode="contain"
+                imageOptions={{
+                    sizes: "200px",
+                }}
+            />
+        );
     }
 
     // TODO: refactor to not depend on tailwind
@@ -94,7 +105,7 @@ export default function Lightbox({
 export function useLightboxState(): [
     boolean,
     string | undefined,
-    (open: boolean, id?: string) => void
+    (open: boolean, id?: string) => void,
 ] {
     const [open, setOpen] = useState(false);
     const [current, setCurrent] = useState<string | undefined>(undefined);

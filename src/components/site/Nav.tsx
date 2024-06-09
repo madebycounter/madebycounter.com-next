@@ -41,7 +41,7 @@ export default function Nav({ companyInfo, active = "" }: NavProps) {
                     <Media
                         src={companyInfo.logo}
                         alt={companyInfo.name}
-                        mode={"cover"}
+                        mode="cover"
                         priority
                         blur={false}
                     />

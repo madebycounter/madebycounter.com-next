@@ -31,11 +31,7 @@ export default function AboutPage({
             <Nav companyInfo={companyInfo} active="about" />
 
             <div className="relative h-screen w-full">
-                <Media
-                    src={portfolioItem.gallery[4]}
-                    mode="cover"
-                    sizes="100vw"
-                />
+                <Media src={portfolioItem.gallery[4]} mode="cover" />
 
                 <div className="absolute bottom-0 left-0 z-10 max-w-[900px] p-4 text-white">
                     <h1 className="font-counter text-9xl font-normal tracking-tighter">
@@ -61,7 +57,9 @@ export default function AboutPage({
                             <Media
                                 src={portfolioItem.gallery[0]}
                                 mode="cover"
-                                sizes="400px"
+                                imageOptions={{
+                                    sizes: "400px",
+                                }}
                             />
                         </div>
 
@@ -69,7 +67,9 @@ export default function AboutPage({
                             <Media
                                 src={portfolioItem.gallery[1]}
                                 mode="cover"
-                                sizes="400px"
+                                imageOptions={{
+                                    sizes: "400px",
+                                }}
                             />
                         </div>
                     </div>
@@ -124,7 +124,9 @@ export default function AboutPage({
                         <div className="aspect-video w-full">
                             <Media
                                 src={portfolioItem.gallery[8]}
-                                sizes="300px"
+                                imageOptions={{
+                                    sizes: "300px",
+                                }}
                                 mode="cover"
                             />
                         </div>
@@ -132,7 +134,9 @@ export default function AboutPage({
                         <div className="aspect-video w-full">
                             <Media
                                 src={portfolioItem.gallery[6]}
-                                sizes="300px"
+                                imageOptions={{
+                                    sizes: "300px",
+                                }}
                                 mode="cover"
                             />
                         </div>
@@ -141,7 +145,9 @@ export default function AboutPage({
                     <div className="absolute left-[32vw] top-[75vw] w-[24vw] invert md:left-[369px] md:top-[320px] md:w-[190px]">
                         <Media
                             src={luke.signature}
-                            sizes="200px"
+                            imageOptions={{
+                                sizes: "200px",
+                            }}
                             mode="width"
                         />
                     </div>
@@ -149,7 +155,9 @@ export default function AboutPage({
                     <div className="absolute left-[51vw] top-[28vw] w-[44vw] md:left-[540px] md:top-[-50px] md:w-[255px]">
                         <Media
                             src={luke.actionShot}
-                            sizes="300px"
+                            imageOptions={{
+                                sizes: "200px",
+                            }}
                             mode="width"
                         />
                     </div>
@@ -163,7 +171,9 @@ export default function AboutPage({
                             <Media
                                 src={portfolioItem.gallery[9]}
                                 mode="cover"
-                                sizes="400px"
+                                imageOptions={{
+                                    sizes: "400px",
+                                }}
                             />
                         </div>
 
@@ -171,7 +181,9 @@ export default function AboutPage({
                             <Media
                                 src={portfolioItem.gallery[7]}
                                 mode="cover"
-                                sizes="400px"
+                                imageOptions={{
+                                    sizes: "400px",
+                                }}
                             />
                         </div>
                     </div>
@@ -207,7 +219,9 @@ export default function AboutPage({
                         >
                             <Media
                                 src={portfolioItem.gallery[8]}
-                                sizes="300px"
+                                imageOptions={{
+                                    sizes: "300px",
+                                }}
                                 mode="cover"
                             />
                         </div>
@@ -215,7 +229,9 @@ export default function AboutPage({
                         <div className="aspect-video w-full">
                             <Media
                                 src={portfolioItem.gallery[6]}
-                                sizes="300px"
+                                imageOptions={{
+                                    sizes: "300px",
+                                }}
                                 mode="cover"
                             />
                         </div>
@@ -247,7 +263,9 @@ export default function AboutPage({
                         <div className="w-[50vw] invert md:w-[335px]">
                             <Media
                                 src={henry.signature}
-                                sizes="200px"
+                                imageOptions={{
+                                    sizes: "200px",
+                                }}
                                 mode="width"
                             />
                         </div>
@@ -256,7 +274,9 @@ export default function AboutPage({
                     <div className="absolute left-[44vw] top-[-20vw] w-[51vw] md:left-[-20px] md:top-[-40px] md:w-[310px] md:-scale-x-100">
                         <Media
                             src={henry.actionShot}
-                            sizes="300px"
+                            imageOptions={{
+                                sizes: "200px",
+                            }}
                             mode="width"
                         />
                     </div>
@@ -270,7 +290,9 @@ export default function AboutPage({
                             <Media
                                 src={portfolioItem.gallery[0]}
                                 mode="cover"
-                                sizes="400px"
+                                imageOptions={{
+                                    sizes: "400px",
+                                }}
                             />
                         </div>
 
@@ -278,7 +300,9 @@ export default function AboutPage({
                             <Media
                                 src={portfolioItem.gallery[1]}
                                 mode="cover"
-                                sizes="400px"
+                                imageOptions={{
+                                    sizes: "400px",
+                                }}
                             />
                         </div>
                     </div>
@@ -335,7 +359,9 @@ export default function AboutPage({
                         <div className="aspect-video w-full">
                             <Media
                                 src={portfolioItem.gallery[12]}
-                                sizes="300px"
+                                imageOptions={{
+                                    sizes: "300px",
+                                }}
                                 mode="cover"
                             />
                         </div>
@@ -343,7 +369,9 @@ export default function AboutPage({
                         <div className="aspect-video w-full">
                             <Media
                                 src={portfolioItem.gallery[13]}
-                                sizes="300px"
+                                imageOptions={{
+                                    sizes: "300px",
+                                }}
                                 mode="cover"
                             />
                         </div>
@@ -352,7 +380,9 @@ export default function AboutPage({
                     <div className="absolute left-[40vw] top-[77vw] w-[25vw] invert md:left-[394px] md:top-[362px] md:w-[146px]">
                         <Media
                             src={william.signature}
-                            sizes="200px"
+                            imageOptions={{
+                                sizes: "200px",
+                            }}
                             mode="width"
                         />
                     </div>
@@ -360,7 +390,9 @@ export default function AboutPage({
                     <div className="absolute left-[53vw] top-[-3vw] w-[40vw] md:left-[520px] md:top-0 md:w-[250px]">
                         <Media
                             src={william.actionShot}
-                            sizes="300px"
+                            imageOptions={{
+                                sizes: "300px",
+                            }}
                             mode="width"
                         />
                     </div>
@@ -368,7 +400,9 @@ export default function AboutPage({
                     <div className="absolute left-[55vw] top-[-31vw] w-[31vw] md:left-[467px] md:top-[-190px] md:w-[215px]">
                         <Media
                             src={william.actionShotExtra}
-                            sizes="300px"
+                            imageOptions={{
+                                sizes: "300px",
+                            }}
                             mode="width"
                         />
                     </div>
