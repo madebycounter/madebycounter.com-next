@@ -17,7 +17,7 @@ type FormValue =
     | readonly string[]
     | undefined;
 
-type FormData = Record<string, FormValue>;
+export type FormData = Record<string, FormValue>;
 
 const FormContext = createContext<{
     formData: FormData;

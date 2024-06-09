@@ -15,6 +15,7 @@ import {
 } from "@/lib/sanity.types";
 
 import { ImageOptions } from "../media/Image";
+import Contact from "../site/Contact";
 import Slideshow, { filterMedia } from "../util/Slideshow";
 import styles from "./About.module.css";
 
@@ -399,6 +400,10 @@ export default function About({
                         />
                     </div>
                 </div>
+            </div>
+
+            <div className="m-auto max-w-screen-lg px-4 py-32 sm:px-8">
+                <Contact />
             </div>
         </div>
     );
