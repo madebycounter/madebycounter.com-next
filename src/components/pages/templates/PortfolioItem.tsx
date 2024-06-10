@@ -5,16 +5,32 @@ import { useEffect, useRef } from "react";
 
 import { useContainerSize } from "@/util/hooks";
 
-import Media, { getAspectRatio } from "@/components/media/Media";
+import Media, { MediaAsset, getAspectRatio } from "@/components/media/Media";
 import Contact from "@/components/site/Contact";
 import Footer from "@/components/site/Footer";
 import Nav from "@/components/site/Nav";
 import Gallery from "@/components/util/Gallery";
 import Parallax from "@/components/util/Parallax";
+import Scroller from "@/components/util/Scroller";
 import Slideshow, { filterMedia } from "@/components/util/Slideshow";
 import { VideoEmbed } from "@/components/util/VideoEmbed";
 
 import { CompanyInfo, PortfolioItem } from "@/lib/sanity.types";
+
+function arrangeImageScrollers(
+    media: MediaAsset[],
+    maxPerRow: number = 6,
+): MediaAsset[][] {
+    var rowsRequired = Math.ceil(media.length / maxPerRow);
+    var quantityPerRow = Math.ceil(media.length / rowsRequired);
+    var rows: MediaAsset[][] = [];
+
+    for (let i = 0; i < rowsRequired; i++) {
+        rows.push(media.slice(i * quantityPerRow, (i + 1) * quantityPerRow));
+    }
+
+    return rows;
+}
 
 export default function Page({
     portfolioItem,
@@ -25,9 +41,7 @@ export default function Page({
 }) {
     const parallaxRef = useRef<HTMLDivElement>(null);
     const mediaRef = useRef<HTMLDivElement>(null);
-    const mediaSize = useContainerSize(mediaRef);
-
-    console.log(portfolioItem.heroMedia);
+    const mediaSize = useContainerSize(mediaRef, 100);
 
     return (
         <div>
@@ -40,7 +54,7 @@ export default function Page({
 
             <div className="h-20" />
 
-            <div className="m-auto max-w-screen-2xl">
+            <div className="m-auto hidden max-w-screen-2xl lg:block">
                 <div className="relative flex gap-0">
                     <Parallax.Driver
                         className="shrink grow"
@@ -78,7 +92,7 @@ export default function Page({
                         <div
                             className="flex flex-col items-stretch justify-end gap-4"
                             style={{
-                                height: mediaSize.height,
+                                minHeight: mediaSize.height,
                             }}
                         >
                             <h1 className="font-counter text-7xl leading-[0.8em] tracking-tighter">
@@ -139,6 +153,82 @@ export default function Page({
                         </div>
                     </Parallax>
                 </div>
+            </div>
+
+            <div className="m-4 block lg:hidden">
+                {portfolioItem.heroEmbed && (
+                    <div className="aspect-[4096/2160]">
+                        <VideoEmbed url={portfolioItem.heroEmbed} />
+                    </div>
+                )}
+
+                {portfolioItem.heroMedia && (
+                    <Slideshow
+                        className="aspect-video"
+                        items={filterMedia(portfolioItem.heroMedia)}
+                    />
+                )}
+
+                <h1 className="py-4 font-counter text-5xl leading-[0.8em] tracking-tighter md:text-8xl">
+                    {portfolioItem.title}
+                </h1>
+
+                <div className="flex flex-col gap-1">
+                    <p className="m-0 text-xl font-light leading-[1.2em] md:text-3xl">
+                        <span className="font-counter tracking-tighter">
+                            /date&nbsp;
+                        </span>
+                        {portfolioItem.date}
+                    </p>
+
+                    <p className="m-0 text-xl font-light leading-[1.2em] md:text-3xl">
+                        <span className="font-counter tracking-tighter">
+                            /tags&nbsp;
+                        </span>
+                        {portfolioItem.tags.join(", ")}
+                    </p>
+
+                    <p className="m-0 text-xl font-light leading-[1.2em] md:text-3xl">
+                        <span className="font-counter tracking-tighter">
+                            /description&nbsp;
+                        </span>
+                        <PortableText
+                            value={portfolioItem.description}
+                            components={{
+                                block: {
+                                    normal: ({ children }) => <>{children}</>,
+                                },
+                            }}
+                        />
+                    </p>
+                </div>
+
+                <div className="my-4 flex flex-col gap-2">
+                    {arrangeImageScrollers(portfolioItem.gallery).map(
+                        (row, i) => (
+                            <Scroller
+                                key={i}
+                                className="h-[200px] gap-2 md:h-[400px]"
+                            >
+                                {row.map((item) => (
+                                    <Media
+                                        key={item._id}
+                                        src={item}
+                                        mode="width"
+                                        className="shrink-0"
+                                    />
+                                ))}
+                            </Scroller>
+                        ),
+                    )}
+                </div>
+
+                <p className="mb-4 mt-8 font-counter text-7xl leading-[1em] tracking-tighter">
+                    Pretty cool,
+                    <br />
+                    right?
+                </p>
+                <Contact inverted />
             </div>
 
             <Footer inverted />

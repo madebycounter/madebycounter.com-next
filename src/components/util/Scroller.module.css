@@ -1,0 +1,6 @@
+.Scroller {
+    display: flex;
+    scroll-behavior: smooth;
+    overflow-x: scroll;
+    justify-content: center;
+}

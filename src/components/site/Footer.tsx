@@ -16,7 +16,7 @@ export default function Footer({
                 "bg-white text-black": inverted,
             })}
         >
-            <div className="flex items-center justify-between px-8 py-8">
+            <div className="flex items-center justify-between p-4 pt-8 lg:p-8">
                 <div>
                     <p>Made by Counter LLC</p>
                     <p>Last updated idk when</p>
