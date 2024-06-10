@@ -27,6 +27,35 @@ export async function useCompanyInfo(): Promise<CompanyInfo> {
     }`);
 }
 
+export async function usePortfolioItems(): Promise<PortfolioItem[]> {
+    return await client.fetch(`
+        *[_type == "portfolioItem"] {
+            title,
+            description,
+            thumbnail {
+                ...,
+                asset-> {
+                    ...
+                }
+            },
+            cover {
+                ...,
+                asset-> {
+                    ...
+                }
+            },
+            gallery[] {
+                ...,
+                asset-> {
+                    ...
+                }
+            },
+            tags[],
+            slug,
+        }
+    `);
+}
+
 export async function usePortfolioItem(slug: string): Promise<PortfolioItem> {
     return await client.fetch(
         `
@@ -51,6 +80,7 @@ export async function usePortfolioItem(slug: string): Promise<PortfolioItem> {
                     ...
                 }
             },
+            tags[],
             slug,
         }
     `,

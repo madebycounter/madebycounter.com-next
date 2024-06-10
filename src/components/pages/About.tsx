@@ -2,10 +2,13 @@
 
 import clsx from "clsx";
 
+import { ImageOptions } from "@/components/media/Image";
 import Media from "@/components/media/Media";
 import Button from "@/components/site/Button";
+import Contact from "@/components/site/Contact";
 import Nav from "@/components/site/Nav";
 import { useLightboxState } from "@/components/util/Lightbox";
+import Slideshow, { filterMedia } from "@/components/util/Slideshow";
 
 import {
     AboutPage,
@@ -14,9 +17,6 @@ import {
     TeamMember,
 } from "@/lib/sanity.types";
 
-import { ImageOptions } from "../media/Image";
-import Contact from "../site/Contact";
-import Slideshow, { filterMedia } from "../util/Slideshow";
 import styles from "./About.module.css";
 
 export default function About({

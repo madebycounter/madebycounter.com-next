@@ -7,7 +7,7 @@ import {
     useTeamMember,
 } from "@/lib/sanity";
 
-export default async function Home() {
+export default async function Page() {
     const portfolioItem = await usePortfolioItem("margaretfest-2023");
     const companyInfo = await useCompanyInfo();
     const henry = await useTeamMember("henry-buck");

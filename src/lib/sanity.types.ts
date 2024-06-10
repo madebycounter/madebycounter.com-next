@@ -75,6 +75,7 @@ export interface PortfolioItem {
     cover: SanityImage;
     gallery: MultiMedia[];
     slug: { current: string };
+    tags: string[];
 }
 
 export interface CompanyInfo {
