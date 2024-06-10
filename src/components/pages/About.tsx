@@ -19,7 +19,7 @@ import {
 
 import styles from "./About.module.css";
 
-export default function About({
+export default function Page({
     portfolioItem,
     companyInfo,
     henry,

@@ -33,7 +33,7 @@ function PortfolioCard({ portfolioItem }: { portfolioItem: PortfolioItem }) {
     );
 }
 
-export default function Portfolio({
+export default function Page({
     companyInfo,
     portfolioItems,
 }: {
@@ -44,15 +44,18 @@ export default function Portfolio({
         <div className="min-h-screen bg-black">
             <Nav companyInfo={companyInfo} active="portfolio" />
 
-            <div className="m-auto grid max-w-screen-lg gap-8 px-4 py-32 sm:grid-cols-2 sm:px-8 lg:grid-cols-3">
-                {portfolioItems.sort().map((portfolioItem) => (
-                    <>
-                        <PortfolioCard
-                            key={portfolioItem._id}
-                            portfolioItem={portfolioItem}
-                        />
-                    </>
-                ))}
+            <div className="m-auto grid max-w-screen-xl gap-8 px-4 py-32 sm:grid-cols-2 sm:px-8 lg:grid-cols-3">
+                {portfolioItems
+                    .sort()
+                    .filter((item) => !item.hidden)
+                    .map((portfolioItem) => (
+                        <>
+                            <PortfolioCard
+                                key={portfolioItem._id}
+                                portfolioItem={portfolioItem}
+                            />
+                        </>
+                    ))}
             </div>
         </div>
     );
