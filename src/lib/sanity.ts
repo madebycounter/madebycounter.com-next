@@ -29,21 +29,23 @@ export async function useCompanyInfo(): Promise<CompanyInfo> {
 
 export async function usePortfolioItems(): Promise<PortfolioItem[]> {
     return await client.fetch(`
-        *[_type == "portfolioItem"] {
+        *[_type == "portfolioItem"] | order(date desc) {
             title,
             description,
+            date,
             thumbnail {
                 ...,
                 asset-> {
                     ...
                 }
             },
-            cover {
+            heroImage[] {
                 ...,
                 asset-> {
                     ...
                 }
             },
+            heroEmbed,
             gallery[] {
                 ...,
                 asset-> {
@@ -52,6 +54,7 @@ export async function usePortfolioItems(): Promise<PortfolioItem[]> {
             },
             tags[],
             slug,
+            hidden,
         }
     `);
 }
@@ -62,18 +65,20 @@ export async function usePortfolioItem(slug: string): Promise<PortfolioItem> {
         *[_type == "portfolioItem" && slug.current == $slug][0] {
             title,
             description,
+            date,
             thumbnail {
                 ...,
                 asset-> {
                     ...
                 }
             },
-            cover {
+            heroImage[] {
                 ...,
                 asset-> {
                     ...
                 }
             },
+            heroEmbed,
             gallery[] {
                 ...,
                 asset-> {
@@ -82,6 +87,7 @@ export async function usePortfolioItem(slug: string): Promise<PortfolioItem> {
             },
             tags[],
             slug,
+            hidden,
         }
     `,
         { slug },

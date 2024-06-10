@@ -70,12 +70,15 @@ export interface PortfolioItem {
     _id: string;
     _type: "portfolioItem";
     title: string;
+    date: string;
     description: RichText;
     thumbnail: SanityImage;
-    cover: SanityImage;
+    heroMedia: MultiMedia[];
+    heroEmbed: string;
     gallery: MultiMedia[];
     slug: { current: string };
     tags: string[];
+    hidden: boolean;
 }
 
 export interface CompanyInfo {
