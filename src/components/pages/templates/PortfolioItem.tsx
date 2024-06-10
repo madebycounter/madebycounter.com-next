@@ -5,8 +5,9 @@ import { useEffect, useRef } from "react";
 
 import { useContainerSize } from "@/util/hooks";
 
-import Media from "@/components/media/Media";
+import Media, { getAspectRatio } from "@/components/media/Media";
 import Contact from "@/components/site/Contact";
+import Footer from "@/components/site/Footer";
 import Nav from "@/components/site/Nav";
 import Gallery from "@/components/util/Gallery";
 import Parallax from "@/components/util/Parallax";
@@ -26,7 +27,7 @@ export default function Page({
     const mediaRef = useRef<HTMLDivElement>(null);
     const mediaSize = useContainerSize(mediaRef);
 
-    console.log(portfolioItem.description);
+    console.log(portfolioItem.heroMedia);
 
     return (
         <div>
@@ -54,6 +55,7 @@ export default function Page({
 
                             {portfolioItem.heroMedia && (
                                 <Slideshow
+                                    className="aspect-video"
                                     items={filterMedia(portfolioItem.heroMedia)}
                                 />
                             )}
@@ -62,9 +64,9 @@ export default function Page({
                         <Gallery.Vertical
                             items={portfolioItem.gallery.map((item) => ({
                                 component: <Media src={item} />,
-                                aspectRatio: 16 / 9,
+                                aspectRatio: getAspectRatio(item),
                             }))}
-                            className="gap-2 pt-2"
+                            className="my-2 gap-2"
                             columns={2}
                         />
                     </Parallax.Driver>
@@ -79,7 +81,7 @@ export default function Page({
                                 height: mediaSize.height,
                             }}
                         >
-                            <h1 className="font-counter text-8xl leading-[0.8em] tracking-tighter">
+                            <h1 className="font-counter text-7xl leading-[0.8em] tracking-tighter">
                                 {portfolioItem.title}
                             </h1>
 
@@ -138,6 +140,8 @@ export default function Page({
                     </Parallax>
                 </div>
             </div>
+
+            <Footer inverted />
         </div>
     );
 }

@@ -39,7 +39,7 @@ export async function usePortfolioItems(): Promise<PortfolioItem[]> {
                     ...
                 }
             },
-            heroImage[] {
+            heroMedia[] {
                 ...,
                 asset-> {
                     ...
@@ -72,7 +72,7 @@ export async function usePortfolioItem(slug: string): Promise<PortfolioItem> {
                     ...
                 }
             },
-            heroImage[] {
+            heroMedia[] {
                 ...,
                 asset-> {
                     ...
