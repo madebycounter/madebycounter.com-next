@@ -85,7 +85,7 @@ export function useContainerSize<T extends HTMLElement>(
     return dimensions;
 }
 
-export function useIsVisible<T extends HTMLElement>(
+export function useIsVisible<T extends HTMLElement | null | undefined>(
     ref: RefObject<T>,
     threshold = 1,
 ) {
