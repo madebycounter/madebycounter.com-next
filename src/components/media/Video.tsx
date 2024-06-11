@@ -62,6 +62,7 @@ export default function Video({
         <MuxVideoPlayer
             className={clsx(className, styles.Video)}
             playbackId={src.asset.playbackId}
+            maxResolution="720p"
             onCanPlay={onReady}
             autoPlay={playing}
             muted={muted}
