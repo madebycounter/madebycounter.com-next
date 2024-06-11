@@ -77,19 +77,34 @@ export default function Video({
     }, [playing, isVisible]);
 
     return (
-        <MuxVideoPlayer
+        <video
             ref={videoRef}
             className={clsx(className, styles.Video)}
-            playbackId={src.asset.playbackId}
-            maxResolution="720p"
-            minResolution="480p"
-            onPlay={onReady}
+            onCanPlay={onReady}
             autoPlay={playing && isVisible}
             muted={muted}
             loop={loop}
             onEnded={onEnded}
-            disableTracking
             playsInline
-        />
+        >
+            <source
+                src={`https://stream.mux.com/${src.asset.playbackId}/low.mp4`}
+                type="video/mp4"
+            />
+        </video>
+        // <MuxVideoPlayer
+        // ref={videoRef}
+        // className={clsx(className, styles.Video)}
+        // playbackId={src.asset.playbackId}
+        // maxResolution="720p"
+        // minResolution="480p"
+        // onPlay={onReady}
+        // autoPlay={playing && isVisible}
+        // muted={muted}
+        // loop={loop}
+        // onEnded={onEnded}
+        // disableTracking
+        // playsInline
+        // />
     );
 }
