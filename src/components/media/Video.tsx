@@ -89,6 +89,7 @@ export default function Video({
             loop={loop}
             onEnded={onEnded}
             disableTracking
+            playsInline
         />
     );
 }
