@@ -87,6 +87,7 @@ export default function Video({
             muted={muted}
             loop={loop}
             onEnded={onEnded}
+            disableTracking
         />
     );
 }
