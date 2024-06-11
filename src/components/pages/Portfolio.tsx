@@ -48,10 +48,10 @@ export default function Page({
                 {portfolioItems
                     .sort()
                     .filter((item) => !item.hidden)
-                    .map((portfolioItem) => (
+                    .map((portfolioItem, idx) => (
                         <>
                             <PortfolioCard
-                                key={portfolioItem._id}
+                                key={idx}
                                 portfolioItem={portfolioItem}
                             />
                         </>

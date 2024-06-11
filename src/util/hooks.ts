@@ -1,5 +1,5 @@
 import { debounce as db, throttle as th } from "lodash";
-import { RefObject, useEffect, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 
 export function useScrollPosition() {
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -83,4 +83,40 @@ export function useContainerSize<T extends HTMLElement>(
     }, [ref, throttle]);
 
     return dimensions;
+}
+
+export function useIsVisible<T extends HTMLElement>(
+    ref: RefObject<T>,
+    threshold = 1,
+) {
+    const [isVisible, setVisible] = useState(false);
+
+    useEffect(() => {
+        let observerRef = null;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const [entry] = entries;
+                setVisible(entry.isIntersecting);
+            },
+            {
+                root: null,
+                rootMargin: "0px",
+                threshold: threshold,
+            },
+        );
+
+        if (ref.current) {
+            observer.observe(ref.current);
+            observerRef = ref.current;
+        }
+
+        return () => {
+            if (observerRef) {
+                observer.unobserve(observerRef);
+            }
+        };
+    }, [ref, threshold]);
+
+    return isVisible;
 }

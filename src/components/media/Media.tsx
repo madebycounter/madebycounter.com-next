@@ -46,25 +46,12 @@ export default function Media({
     priority = false,
     blur = true,
 }: MediaProps) {
-    const videoRef = useRef<HTMLVideoElement>(null);
     const [isReady, setIsReady] = useState(false);
 
     function handleReady() {
         setIsReady(true);
         if (onReady) onReady();
     }
-
-    useEffect(() => {
-        if (src._type !== "mux.video" || !videoRef.current) return;
-
-        // TODO: proper error handling
-        if (videoOptions?.playing) {
-            videoRef.current.currentTime = 0;
-            videoRef.current.play().catch(console.log);
-        } else {
-            videoRef.current.pause();
-        }
-    }, [src._type, videoOptions?.playing]);
 
     return (
         <div
@@ -90,7 +77,6 @@ export default function Media({
                         src={src}
                         onReady={handleReady}
                         videoOptions={videoOptions}
-                        childRef={videoRef}
                     />
 
                     {blur && (

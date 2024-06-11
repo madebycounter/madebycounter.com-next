@@ -1,6 +1,10 @@
+"use client";
+
 import MuxVideoPlayer from "@mux/mux-video-react";
 import clsx from "clsx";
-import { RefObject } from "react";
+import { useEffect, useRef } from "react";
+
+import { useIsVisible } from "@/util/hooks";
 
 import { MuxVideo } from "@/lib/sanity.types";
 
@@ -34,7 +38,6 @@ export interface VideoProps {
     onReady?: () => void;
     className?: string;
     videoOptions?: VideoOptions;
-    childRef?: RefObject<HTMLVideoElement>;
 }
 
 export type VideoOptions = {
@@ -49,7 +52,6 @@ export default function Video({
     className,
     videoOptions = {},
     onReady,
-    childRef,
 }: VideoProps) {
     const {
         playing = true,
@@ -57,18 +59,34 @@ export default function Video({
         loop = true,
         onEnded = () => null,
     } = videoOptions;
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const isVisible = useIsVisible(videoRef, 0);
+
+    useEffect(() => {
+        if (!videoRef.current) return;
+
+        console.log(playing, isVisible);
+
+        // TODO: proper error handling
+        if (playing && isVisible) {
+            videoRef.current.currentTime = 0;
+            videoRef.current.play().catch(console.log);
+        } else {
+            videoRef.current.pause();
+        }
+    }, [playing, isVisible]);
 
     return (
         <MuxVideoPlayer
+            ref={videoRef}
             className={clsx(className, styles.Video)}
             playbackId={src.asset.playbackId}
             maxResolution="720p"
             onCanPlay={onReady}
-            autoPlay={playing}
+            autoPlay={playing && isVisible}
             muted={muted}
             loop={loop}
             onEnded={onEnded}
-            ref={childRef}
         />
     );
 }
