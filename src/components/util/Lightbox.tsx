@@ -28,7 +28,7 @@ function renderSlide(slide: MediaSlide) {
             src={slide.data}
             mode="contain"
             imageOptions={{
-                sizes: "75vw",
+                sizes: "100vw",
                 sharp: 10,
                 quality: 50,
             }}

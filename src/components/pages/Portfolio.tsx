@@ -21,11 +21,11 @@ function PortfolioCard({ portfolioItem }: { portfolioItem: PortfolioItem }) {
                 </h2>
 
                 <p className="whitespace-nowrap text-right text-base font-light leading-[1em]">
-                    {portfolioItem.tags.map((tag) => (
-                        <>
+                    {portfolioItem.tags.map((tag, i) => (
+                        <span key={i}>
                             {tag}
                             <br />
-                        </>
+                        </span>
                     ))}
                 </p>
             </div>

@@ -56,9 +56,9 @@ export default function Image({
             height={size.height}
             sizes={sizes}
             loader={({ src, width }) => {
-                return `${src}?w=${width}&q=${quality}&sharp=${sharp}`;
+                return `${src}?w=${width}&q=${quality}&sharp=${sharp}&fm=webp`;
             }}
-            priority
+            priority={priority}
         />
     );
 }

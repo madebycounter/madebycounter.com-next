@@ -10,6 +10,10 @@ import Contact from "@/components/site/Contact";
 import Footer from "@/components/site/Footer";
 import Nav from "@/components/site/Nav";
 import Gallery from "@/components/util/Gallery";
+import Lightbox, {
+    mapToSlides,
+    useLightboxState,
+} from "@/components/util/Lightbox";
 import Parallax from "@/components/util/Parallax";
 import Scroller from "@/components/util/Scroller";
 import Slideshow, { filterMedia } from "@/components/util/Slideshow";
@@ -40,11 +44,17 @@ export default function Page({
     portfolioItem: PortfolioItem;
 }) {
     const parallaxRef = useRef<HTMLDivElement>(null);
-    const mediaRef = useRef<HTMLDivElement>(null);
-    const mediaSize = useContainerSize(mediaRef, 100);
+    const [lightboxOpen, lightboxCurrent, setLightbox] = useLightboxState();
 
     return (
         <div>
+            <Lightbox
+                open={lightboxOpen}
+                setLightbox={setLightbox}
+                currentSlide={lightboxCurrent}
+                slides={mapToSlides(portfolioItem.gallery)}
+            />
+
             <Nav
                 companyInfo={companyInfo}
                 active="portfolio"
@@ -57,14 +67,12 @@ export default function Page({
             <div className="m-auto hidden max-w-screen-2xl lg:block">
                 <div className="relative flex gap-0">
                     <Parallax.Driver
-                        className="shrink grow"
+                        className="shrink grow pl-4"
                         driverRef={parallaxRef}
                     >
-                        <div ref={mediaRef}>
+                        <div className="aspect-video">
                             {portfolioItem.heroEmbed && (
-                                <div className="aspect-[4096/2160]">
-                                    <VideoEmbed url={portfolioItem.heroEmbed} />
-                                </div>
+                                <VideoEmbed url={portfolioItem.heroEmbed} />
                             )}
 
                             {portfolioItem.heroMedia && (
@@ -77,7 +85,17 @@ export default function Page({
 
                         <Gallery.Vertical
                             items={portfolioItem.gallery.map((item) => ({
-                                component: <Media src={item} />,
+                                component: (
+                                    <Media
+                                        src={item}
+                                        onClick={(key) =>
+                                            setLightbox(true, key)
+                                        }
+                                        imageOptions={{
+                                            sizes: "30vw",
+                                        }}
+                                    />
+                                ),
                                 aspectRatio: getAspectRatio(item),
                             }))}
                             className="my-2 gap-2"
@@ -89,12 +107,7 @@ export default function Page({
                         className="shrink-0 grow basis-[500px] px-4"
                         driverRef={parallaxRef}
                     >
-                        <div
-                            className="flex flex-col items-stretch justify-end gap-4"
-                            style={{
-                                minHeight: mediaSize.height,
-                            }}
-                        >
+                        <div className="flex flex-col items-stretch justify-end gap-4">
                             <h1 className="font-counter text-7xl leading-[0.8em] tracking-tighter">
                                 {portfolioItem.title}
                             </h1>
@@ -136,7 +149,17 @@ export default function Page({
                             items={portfolioItem.gallery
                                 .slice(0, 2)
                                 .map((item) => ({
-                                    component: <Media src={item} />,
+                                    component: (
+                                        <Media
+                                            src={item}
+                                            onClick={(key) =>
+                                                setLightbox(true, key)
+                                            }
+                                            imageOptions={{
+                                                sizes: "30vw",
+                                            }}
+                                        />
+                                    ),
                                     aspectRatio: 16 / 9,
                                 }))}
                             className="gap-2 pt-2"
@@ -156,18 +179,18 @@ export default function Page({
             </div>
 
             <div className="m-4 block lg:hidden">
-                {portfolioItem.heroEmbed && (
-                    <div className="aspect-[4096/2160]">
+                <div className="aspect-video">
+                    {portfolioItem.heroEmbed && (
                         <VideoEmbed url={portfolioItem.heroEmbed} />
-                    </div>
-                )}
+                    )}
 
-                {portfolioItem.heroMedia && (
-                    <Slideshow
-                        className="aspect-video"
-                        items={filterMedia(portfolioItem.heroMedia)}
-                    />
-                )}
+                    {portfolioItem.heroMedia && (
+                        <Slideshow
+                            className="aspect-video"
+                            items={filterMedia(portfolioItem.heroMedia)}
+                        />
+                    )}
+                </div>
 
                 <h1 className="py-4 font-counter text-5xl leading-[0.8em] tracking-tighter md:text-8xl">
                     {portfolioItem.title}
@@ -210,9 +233,9 @@ export default function Page({
                                 key={i}
                                 className="h-[200px] gap-2 md:h-[400px]"
                             >
-                                {row.map((item) => (
+                                {row.map((item, j) => (
                                     <Media
-                                        key={item._id}
+                                        key={j}
                                         src={item}
                                         mode="width"
                                         className="shrink-0"

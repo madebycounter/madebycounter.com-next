@@ -14,10 +14,8 @@ export type MediaAsset = MuxVideo | SanityImage;
 
 export function getAspectRatio(src: MediaAsset) {
     if (src._type === "mux.video") {
-        return (
-            src.asset.data.tracks[0].max_width /
-            src.asset.data.tracks[0].max_height
-        );
+        let split = src.asset.data.aspect_ratio.split(":");
+        return parseInt(split[0]) / parseInt(split[1]);
     }
 
     return getImageDimensions(src).aspectRatio;
