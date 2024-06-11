@@ -83,7 +83,7 @@ export default function Video({
             playbackId={src.asset.playbackId}
             maxResolution="720p"
             minResolution="480p"
-            onCanPlay={onReady}
+            onPlay={onReady}
             autoPlay={playing && isVisible}
             muted={muted}
             loop={loop}

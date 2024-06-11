@@ -79,7 +79,7 @@ export default function Media({
                         videoOptions={videoOptions}
                     />
 
-                    {blur && (
+                    {/* {blur && (
                         <VideoPreview
                             src={src}
                             className={clsx(
@@ -87,7 +87,7 @@ export default function Media({
                                 isReady && styles.Preview__hidden,
                             )}
                         />
-                    )}
+                    )} */}
                 </>
             )}
 
