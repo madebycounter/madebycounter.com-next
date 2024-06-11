@@ -82,6 +82,7 @@ export default function Video({
             className={clsx(className, styles.Video)}
             playbackId={src.asset.playbackId}
             maxResolution="720p"
+            minResolution="480p"
             onCanPlay={onReady}
             autoPlay={playing && isVisible}
             muted={muted}
