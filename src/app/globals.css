@@ -11,6 +11,10 @@
     font-style: normal;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* * {
     outline: 1px solid red;
 } */

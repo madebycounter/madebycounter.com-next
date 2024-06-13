@@ -1,6 +1,6 @@
 .Media {
-    position: relative;
     overflow: hidden;
+    position: relative;
 }
 
 .Media__width {

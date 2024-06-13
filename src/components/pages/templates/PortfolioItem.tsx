@@ -5,7 +5,7 @@ import { useRef } from "react";
 
 import Contact from "@/components/site/Contact";
 import Footer from "@/components/site/Footer";
-import Nav from "@/components/site/Nav";
+import Nav, { NavSpacer } from "@/components/site/Nav";
 import Gallery from "@/components/util/Gallery";
 import HeroMedia from "@/components/util/HeroMedia";
 import Lightbox, {
@@ -59,7 +59,7 @@ export default function Page({
                 inverted
             />
 
-            <div className="h-20" />
+            <NavSpacer />
 
             <div className="m-auto hidden max-w-screen-2xl lg:block">
                 <div className="relative flex gap-0">
@@ -210,13 +210,13 @@ export default function Page({
                         (row, i) => (
                             <Scroller
                                 key={i}
-                                className="h-[200px] gap-2 md:h-[400px]"
+                                className="flex h-[200px] gap-2 md:h-[300px]"
                             >
                                 {row.map((item, j) => (
                                     <Media
                                         key={j}
                                         src={item}
-                                        mode="width"
+                                        mode="height"
                                         className="shrink-0"
                                     />
                                 ))}

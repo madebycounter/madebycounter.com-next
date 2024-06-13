@@ -49,12 +49,10 @@ export default function Page({
                     .sort()
                     .filter((item) => !item.hidden)
                     .map((portfolioItem, idx) => (
-                        <>
-                            <PortfolioCard
-                                key={idx}
-                                portfolioItem={portfolioItem}
-                            />
-                        </>
+                        <PortfolioCard
+                            key={idx}
+                            portfolioItem={portfolioItem}
+                        />
                     ))}
             </div>
         </div>
