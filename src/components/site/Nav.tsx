@@ -4,7 +4,7 @@ import Link from "next/link";
 import Media from "@/components/util/Media";
 import BaseNav from "@/components/util/Nav";
 
-import { CompanyInfo } from "@/lib/sanity.types";
+import { CompanyInfo } from "@/lib/types";
 
 export interface NavItemProps {
     children: React.ReactNode;

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Slideshow, { filterMedia } from "@/components/util/Slideshow";
 import { VideoEmbed } from "@/components/util/VideoEmbed";
 
-import { MultiMedia } from "@/lib/sanity.types";
+import { MultiMedia } from "@/lib/types";
 
 export interface HeroMediaProps {
     video?: string;

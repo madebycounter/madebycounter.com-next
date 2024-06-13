@@ -1,9 +1,12 @@
 import Media from "@/components/util/Media";
 
-import { usePortfolioItem } from "@/lib/sanity";
+import { usePortfolioItem, useService } from "@/lib/sanity";
 
 export default async function Page() {
     const data = await usePortfolioItem("nava-onti-music-videos");
+    const service = await useService("real-estate");
+
+    console.log(service);
 
     return (
         <div className="m-auto max-w-[500px]">

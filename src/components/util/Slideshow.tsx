@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 import Media from "@/components/util/Media";
 
-import { MultiMedia, MuxVideo, SanityImage } from "@/lib/sanity.types";
+import { MultiMedia, MuxVideo, SanityImage } from "@/lib/types";
 
 import styles from "./Slideshow.module.css";
 

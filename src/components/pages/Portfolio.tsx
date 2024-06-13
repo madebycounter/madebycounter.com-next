@@ -3,7 +3,7 @@ import Link from "next/link";
 import Nav from "@/components/site/Nav";
 import Media from "@/components/util/Media";
 
-import { CompanyInfo, PortfolioItem } from "@/lib/sanity.types";
+import { CompanyInfo, PortfolioItem } from "@/lib/types";
 
 function PortfolioCard({ portfolioItem }: { portfolioItem: PortfolioItem }) {
     return (

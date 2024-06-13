@@ -5,16 +5,10 @@ import clsx from "clsx";
 import Button from "@/components/site/Button";
 import Contact from "@/components/site/Contact";
 import Nav from "@/components/site/Nav";
-import { useLightboxState } from "@/components/util/Lightbox";
 import Media from "@/components/util/Media";
 import Slideshow, { filterMedia } from "@/components/util/Slideshow";
 
-import {
-    AboutPage,
-    CompanyInfo,
-    PortfolioItem,
-    TeamMember,
-} from "@/lib/sanity.types";
+import { AboutPage, CompanyInfo, PortfolioItem, TeamMember } from "@/lib/types";
 
 import styles from "./About.module.css";
 

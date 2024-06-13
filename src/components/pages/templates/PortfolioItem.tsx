@@ -16,7 +16,7 @@ import Media, { getAspectRatio } from "@/components/util/Media";
 import Parallax from "@/components/util/Parallax";
 import Scroller from "@/components/util/Scroller";
 
-import { CompanyInfo, MultiMedia, PortfolioItem } from "@/lib/sanity.types";
+import { CompanyInfo, MultiMedia, PortfolioItem } from "@/lib/types";
 
 function arrangeImageScrollers(
     media: MultiMedia[],

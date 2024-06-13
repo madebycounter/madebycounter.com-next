@@ -10,7 +10,7 @@ import "yet-another-react-lightbox/styles.css";
 
 import Media, { MediaPreview } from "@/components/util/Media";
 
-import { MultiMedia } from "@/lib/sanity.types";
+import { MultiMedia } from "@/lib/types";
 
 declare module "yet-another-react-lightbox" {
     export interface MediaSlide {
