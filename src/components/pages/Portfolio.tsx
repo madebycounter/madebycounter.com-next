@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import Media from "@/components/media/Media";
 import Nav from "@/components/site/Nav";
+import Media from "@/components/util/Media";
 
 import { CompanyInfo, PortfolioItem } from "@/lib/sanity.types";
 

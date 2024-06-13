@@ -3,14 +3,13 @@
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 
-import { MuxVideo, SanityImage } from "@/lib/sanity.types";
+import Media from "@/components/util/Media";
 
-import { ImageOptions } from "../media/Image";
-import Media, { MediaAsset } from "../media/Media";
-import { VideoOptions } from "../media/Video";
+import { MultiMedia, MuxVideo, SanityImage } from "@/lib/sanity.types";
+
 import styles from "./Slideshow.module.css";
 
-export function filterMedia(media: MediaAsset[]): MuxVideo[] | SanityImage[] {
+export function filterMedia(media: MultiMedia[]): MuxVideo[] | SanityImage[] {
     if (media.length === 0) {
         return [];
     }
@@ -31,8 +30,6 @@ export interface SlideshowProps {
     className?: string;
     imageSpeed?: number;
     offset?: number;
-    imageOptions?: ImageOptions;
-    videoOptions?: VideoOptions;
 }
 
 function notLessThanZero(value: number) {
@@ -44,8 +41,6 @@ export default function Slideshow({
     className,
     imageSpeed = 5000,
     offset = 0,
-    imageOptions = {},
-    videoOptions = {},
 }: SlideshowProps) {
     const firstTimeout = useRef(true);
     const [index, setIndex] = useState(0);
@@ -77,15 +72,11 @@ export default function Slideshow({
                 >
                     <Media
                         src={item}
-                        videoOptions={{
-                            ...videoOptions,
-                            onEnded: () => {
-                                setIndex((index + 1) % items.length);
-                            },
-                            loop: items.length === 1,
-                            playing: i === index,
+                        onEnded={() => {
+                            setIndex((index + 1) % items.length);
                         }}
-                        imageOptions={imageOptions}
+                        loop={items.length === 1}
+                        playing={i === index}
                         mode="cover"
                     />
                 </div>

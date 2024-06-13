@@ -1,4 +1,4 @@
-import Media from "@/components/media/Media";
+import Media from "@/components/util/Media";
 
 import { usePortfolioItem } from "@/lib/sanity";
 

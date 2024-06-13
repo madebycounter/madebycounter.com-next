@@ -1,3 +1,19 @@
+export interface Color {
+    r: number;
+    g: number;
+    b: number;
+    hex: string;
+}
+
+export interface Palette {
+    Vibrant: Color;
+    Muted: Color;
+    DarkVibrant: Color;
+    DarkMuted: Color;
+    LightVibrant: Color;
+    LightMuted: Color;
+}
+
 export interface MuxVideo {
     _id: string;
     _key: string;

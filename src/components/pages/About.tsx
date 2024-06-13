@@ -2,12 +2,11 @@
 
 import clsx from "clsx";
 
-import { ImageOptions } from "@/components/media/Image";
-import Media from "@/components/media/Media";
 import Button from "@/components/site/Button";
 import Contact from "@/components/site/Contact";
 import Nav from "@/components/site/Nav";
 import { useLightboxState } from "@/components/util/Lightbox";
+import Media from "@/components/util/Media";
 import Slideshow, { filterMedia } from "@/components/util/Slideshow";
 
 import {
@@ -34,28 +33,16 @@ export default function Page({
     william: TeamMember;
     aboutPage: AboutPage;
 }) {
-    const [open, currentSlide, setLightbox] = useLightboxState();
-
-    const slideshowOptions: ImageOptions = {
-        sizes: "400px",
-    };
-
-    const actionShotOptions: ImageOptions = {
-        sizes: "300px",
-    };
-
-    const signatureOptions: ImageOptions = {
-        sizes: "200px",
-    };
-
-    console.log(aboutPage);
-
     return (
         <div className="bg-black">
             <Nav companyInfo={companyInfo} active="about" />
 
             <div className="relative h-screen w-full">
-                <Media src={portfolioItem.gallery[8]} mode="cover" />
+                <Media
+                    src={portfolioItem.gallery[9]}
+                    mode="cover"
+                    size="large"
+                />
 
                 <div className="absolute bottom-0 left-0 z-10 max-w-[900px] p-4 text-white">
                     <h1 className="font-counter text-9xl font-normal tracking-tighter">
@@ -81,9 +68,6 @@ export default function Page({
                             <Media
                                 src={portfolioItem.gallery[1]}
                                 mode="cover"
-                                imageOptions={{
-                                    sizes: "400px",
-                                }}
                             />
                         </div>
 
@@ -91,9 +75,6 @@ export default function Page({
                             <Media
                                 src={portfolioItem.gallery[1]}
                                 mode="cover"
-                                imageOptions={{
-                                    sizes: "400px",
-                                }}
                             />
                         </div>
                     </div>
@@ -148,32 +129,22 @@ export default function Page({
                         <div className="aspect-video w-full">
                             <Slideshow
                                 items={filterMedia(aboutPage.lukeSlideshow1)}
-                                imageOptions={slideshowOptions}
                             />
                         </div>
 
                         <div className="aspect-video w-full">
                             <Slideshow
                                 items={filterMedia(aboutPage.lukeSlideshow2)}
-                                imageOptions={slideshowOptions}
                             />
                         </div>
                     </div>
 
                     <div className="absolute left-[32vw] top-[75vw] w-[24vw] invert md:left-[369px] md:top-[320px] md:w-[190px]">
-                        <Media
-                            src={luke.signature}
-                            imageOptions={signatureOptions}
-                            mode="width"
-                        />
+                        <Media src={luke.signature} mode="width" />
                     </div>
 
                     <div className="absolute left-[51vw] top-[28vw] w-[44vw] md:left-[540px] md:top-[-50px] md:w-[255px]">
-                        <Media
-                            src={luke.actionShot}
-                            imageOptions={actionShotOptions}
-                            mode="width"
-                        />
+                        <Media src={luke.actionShot} mode="width" />
                     </div>
                 </div>
             </div>
@@ -185,9 +156,6 @@ export default function Page({
                             <Media
                                 src={portfolioItem.gallery[9]}
                                 mode="cover"
-                                imageOptions={{
-                                    sizes: "400px",
-                                }}
                             />
                         </div>
 
@@ -195,9 +163,6 @@ export default function Page({
                             <Media
                                 src={portfolioItem.gallery[7]}
                                 mode="cover"
-                                imageOptions={{
-                                    sizes: "400px",
-                                }}
                             />
                         </div>
                     </div>
@@ -234,14 +199,12 @@ export default function Page({
                             <Slideshow
                                 items={filterMedia(aboutPage.henrySlideshow2)}
                                 offset={2500}
-                                imageOptions={slideshowOptions}
                             />
                         </div>
 
                         <div className="aspect-video w-full">
                             <Slideshow
                                 items={filterMedia(aboutPage.henrySlideshow1)}
-                                imageOptions={slideshowOptions}
                             />
                         </div>
                     </div>
@@ -270,20 +233,12 @@ export default function Page({
                         </p>
 
                         <div className="w-[50vw] invert md:w-[335px]">
-                            <Media
-                                src={henry.signature}
-                                imageOptions={signatureOptions}
-                                mode="width"
-                            />
+                            <Media src={henry.signature} mode="width" />
                         </div>
                     </div>
 
                     <div className="absolute left-[44vw] top-[-20vw] w-[51vw] md:left-[-20px] md:top-[-40px] md:w-[310px] md:-scale-x-100">
-                        <Media
-                            src={henry.actionShot}
-                            imageOptions={actionShotOptions}
-                            mode="width"
-                        />
+                        <Media src={henry.actionShot} mode="width" />
                     </div>
                 </div>
             </div>
@@ -295,9 +250,6 @@ export default function Page({
                             <Media
                                 src={portfolioItem.gallery[0]}
                                 mode="cover"
-                                imageOptions={{
-                                    sizes: "400px",
-                                }}
                             />
                         </div>
 
@@ -305,9 +257,6 @@ export default function Page({
                             <Media
                                 src={portfolioItem.gallery[1]}
                                 mode="cover"
-                                imageOptions={{
-                                    sizes: "400px",
-                                }}
                             />
                         </div>
                     </div>
@@ -364,40 +313,26 @@ export default function Page({
                         <div className="aspect-video w-full">
                             <Slideshow
                                 items={filterMedia(aboutPage.williamSlideshow1)}
-                                imageOptions={slideshowOptions}
                             />
                         </div>
 
                         <div className="aspect-video w-full">
                             <Slideshow
                                 items={filterMedia(aboutPage.williamSlideshow2)}
-                                imageOptions={slideshowOptions}
                             />
                         </div>
                     </div>
 
                     <div className="absolute left-[40vw] top-[77vw] w-[25vw] invert md:left-[394px] md:top-[362px] md:w-[146px]">
-                        <Media
-                            src={william.signature}
-                            imageOptions={signatureOptions}
-                            mode="width"
-                        />
+                        <Media src={william.signature} mode="width" />
                     </div>
 
                     <div className="absolute left-[53vw] top-[-3vw] w-[40vw] md:left-[520px] md:top-0 md:w-[250px]">
-                        <Media
-                            src={william.actionShot}
-                            imageOptions={actionShotOptions}
-                            mode="width"
-                        />
+                        <Media src={william.actionShot} mode="width" />
                     </div>
 
                     <div className="absolute left-[55vw] top-[-31vw] w-[31vw] md:left-[467px] md:top-[-190px] md:w-[215px]">
-                        <Media
-                            src={william.actionShotExtra}
-                            imageOptions={actionShotOptions}
-                            mode="width"
-                        />
+                        <Media src={william.actionShotExtra} mode="width" />
                     </div>
                 </div>
             </div>

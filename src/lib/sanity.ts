@@ -16,7 +16,8 @@ export const client = createClient({
 });
 
 export async function useCompanyInfo(): Promise<CompanyInfo> {
-    return await client.fetch(`*[_type == "companyInfo"][0] {
+    return await client.fetch(
+        `*[_type == "companyInfo"][0] {
         name,
         logo {
             ...,
@@ -24,11 +25,13 @@ export async function useCompanyInfo(): Promise<CompanyInfo> {
                 ...
             }
         },
-    }`);
+    }`,
+    );
 }
 
 export async function usePortfolioItems(): Promise<PortfolioItem[]> {
-    return await client.fetch(`
+    return await client.fetch(
+        `
         *[_type == "portfolioItem"] | order(date desc) {
             title,
             description,
@@ -56,7 +59,8 @@ export async function usePortfolioItems(): Promise<PortfolioItem[]> {
             slug,
             hidden,
         }
-    `);
+    `,
+    );
 }
 
 export async function usePortfolioItem(slug: string): Promise<PortfolioItem> {
@@ -132,7 +136,8 @@ export async function useTeamMember(slug: TeamMemberSlug): Promise<TeamMember> {
 }
 
 export async function useAboutPage(): Promise<AboutPage> {
-    return await client.fetch(`*[_type == "aboutPage"][0] {
+    return await client.fetch(
+        `*[_type == "aboutPage"][0] {
         lukeSlideshow1[] {
             ...,
             asset-> {
@@ -169,5 +174,6 @@ export async function useAboutPage(): Promise<AboutPage> {
                 ...
             }
         }
-    }`);
+    }`,
+    );
 }

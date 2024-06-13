@@ -43,16 +43,6 @@ export function useWindowSize() {
     return size;
 }
 
-export function useHasWindow() {
-    const [hasWindow, setHasWindow] = useState(false);
-
-    useEffect(() => {
-        if (typeof window !== "undefined") setHasWindow(true);
-    }, []);
-
-    return hasWindow;
-}
-
 export function useContainerSize<T extends HTMLElement>(
     ref: RefObject<T>,
     throttle: number = 0,

@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import Link from "next/link";
 
-import Media from "@/components/media/Media";
+import Media from "@/components/util/Media";
 import BaseNav from "@/components/util/Nav";
 
 import { CompanyInfo } from "@/lib/sanity.types";
@@ -69,8 +69,6 @@ export default function Nav({
                         src={companyInfo.logo}
                         alt={companyInfo.name}
                         mode="cover"
-                        priority
-                        blur={false}
                     />
                 </Link>
             </BaseNav.Logo>

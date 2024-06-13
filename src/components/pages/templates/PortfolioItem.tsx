@@ -1,33 +1,30 @@
 "use client";
 
 import { PortableText } from "next-sanity";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
-import { useContainerSize } from "@/util/hooks";
-
-import Media, { MediaAsset, getAspectRatio } from "@/components/media/Media";
 import Contact from "@/components/site/Contact";
 import Footer from "@/components/site/Footer";
 import Nav from "@/components/site/Nav";
 import Gallery from "@/components/util/Gallery";
+import HeroMedia from "@/components/util/HeroMedia";
 import Lightbox, {
     mapToSlides,
     useLightboxState,
 } from "@/components/util/Lightbox";
+import Media, { getAspectRatio } from "@/components/util/Media";
 import Parallax from "@/components/util/Parallax";
 import Scroller from "@/components/util/Scroller";
-import Slideshow, { filterMedia } from "@/components/util/Slideshow";
-import { VideoEmbed } from "@/components/util/VideoEmbed";
 
-import { CompanyInfo, PortfolioItem } from "@/lib/sanity.types";
+import { CompanyInfo, MultiMedia, PortfolioItem } from "@/lib/sanity.types";
 
 function arrangeImageScrollers(
-    media: MediaAsset[],
+    media: MultiMedia[],
     maxPerRow: number = 6,
-): MediaAsset[][] {
+): MultiMedia[][] {
     var rowsRequired = Math.ceil(media.length / maxPerRow);
     var quantityPerRow = Math.ceil(media.length / rowsRequired);
-    var rows: MediaAsset[][] = [];
+    var rows: MultiMedia[][] = [];
 
     for (let i = 0; i < rowsRequired; i++) {
         rows.push(media.slice(i * quantityPerRow, (i + 1) * quantityPerRow));
@@ -70,18 +67,11 @@ export default function Page({
                         className="shrink grow pl-4"
                         driverRef={parallaxRef}
                     >
-                        <div className="aspect-video">
-                            {portfolioItem.heroEmbed && (
-                                <VideoEmbed url={portfolioItem.heroEmbed} />
-                            )}
-
-                            {portfolioItem.heroMedia && (
-                                <Slideshow
-                                    className="aspect-video"
-                                    items={filterMedia(portfolioItem.heroMedia)}
-                                />
-                            )}
-                        </div>
+                        <HeroMedia
+                            className="aspect-video"
+                            video={portfolioItem.heroEmbed}
+                            slideshow={portfolioItem.heroMedia}
+                        />
 
                         <Gallery.Vertical
                             items={portfolioItem.gallery.map((item) => ({
@@ -91,9 +81,7 @@ export default function Page({
                                         onClick={(key) =>
                                             setLightbox(true, key)
                                         }
-                                        imageOptions={{
-                                            sizes: "30vw",
-                                        }}
+                                        size="medium"
                                     />
                                 ),
                                 aspectRatio: getAspectRatio(item),
@@ -155,9 +143,7 @@ export default function Page({
                                             onClick={(key) =>
                                                 setLightbox(true, key)
                                             }
-                                            imageOptions={{
-                                                sizes: "30vw",
-                                            }}
+                                            size="small"
                                         />
                                     ),
                                     aspectRatio: 16 / 9,
@@ -179,18 +165,11 @@ export default function Page({
             </div>
 
             <div className="m-4 block lg:hidden">
-                <div className="aspect-video">
-                    {portfolioItem.heroEmbed && (
-                        <VideoEmbed url={portfolioItem.heroEmbed} />
-                    )}
-
-                    {portfolioItem.heroMedia && (
-                        <Slideshow
-                            className="aspect-video"
-                            items={filterMedia(portfolioItem.heroMedia)}
-                        />
-                    )}
-                </div>
+                <HeroMedia
+                    className="aspect-video"
+                    video={portfolioItem.heroEmbed}
+                    slideshow={portfolioItem.heroMedia}
+                />
 
                 <h1 className="py-4 font-counter text-5xl leading-[0.8em] tracking-tighter md:text-8xl">
                     {portfolioItem.title}
