@@ -34,9 +34,6 @@ export default function Button({
         <Link
             className={clsx(
                 "block font-counter text-5xl font-normal tracking-tight",
-                {
-                    "flex-row-reverse": direction === "left",
-                },
             )}
             href={href}
             onClick={(e) => {
@@ -44,7 +41,11 @@ export default function Button({
                 if (onClick) onClick();
             }}
         >
-            <div className={clsx(className, "flex flex-nowrap")}>
+            <div
+                className={clsx(className, "flex flex-nowrap", {
+                    "flex-row-reverse": direction === "left",
+                })}
+            >
                 <div
                     ref={ref}
                     className={clsx("relative p-1", classNameInner, {
