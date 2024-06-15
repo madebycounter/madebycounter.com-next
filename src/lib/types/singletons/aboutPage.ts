@@ -1,4 +1,8 @@
 import { client } from "@/lib/sanity";
+import {
+    PortfolioItem,
+    portfolioItemFragment,
+} from "@/lib/types/portfolioItem";
 
 import { MultiMedia, assetFragment } from "../assets";
 
@@ -7,10 +11,13 @@ export interface AboutPage {
     _type: "aboutPage";
     lukeSlideshow1: MultiMedia[];
     lukeSlideshow2: MultiMedia[];
+    lukeReferences: PortfolioItem[];
     henrySlideshow1: MultiMedia[];
     henrySlideshow2: MultiMedia[];
+    henryReferences: PortfolioItem[];
     williamSlideshow1: MultiMedia[];
     williamSlideshow2: MultiMedia[];
+    williamReferences: PortfolioItem[];
 }
 
 export const aboutPageFragment = `
@@ -24,6 +31,9 @@ export const aboutPageFragment = `
         _key,
         ${assetFragment}
     },
+    lukeReferences[]->{
+        ${portfolioItemFragment}
+    },
     henrySlideshow1[] {
         _key,
         ${assetFragment}
@@ -32,6 +42,9 @@ export const aboutPageFragment = `
         _key,
         ${assetFragment}
     },
+    henryReferences[]->{
+        ${portfolioItemFragment}
+    },
     williamSlideshow1[] {
         _key,
         ${assetFragment}
@@ -39,6 +52,9 @@ export const aboutPageFragment = `
     williamSlideshow2[] {
         _key,
         ${assetFragment}
+    },
+    williamReferences[]->{
+        ${portfolioItemFragment}
     }
 `;
 

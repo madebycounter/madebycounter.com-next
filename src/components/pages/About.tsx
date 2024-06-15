@@ -6,6 +6,7 @@ import Button from "@/components/site/Button";
 import Contact from "@/components/site/Contact";
 import Nav from "@/components/site/Nav";
 import PrettyCoolRight from "@/components/site/PrettyCoolRight";
+import PortfolioCard from "@/components/site/cards/PortfolioCard";
 import Media from "@/components/util/Media";
 import Slideshow, { filterMedia } from "@/components/util/Slideshow";
 
@@ -60,16 +61,16 @@ export default function Page({
                 <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row xl:w-[450px] xl:flex-col 2xl:w-[750px]">
                     <div className="flex shrink grow-0 flex-col gap-4 xl:flex-row">
                         <div className="aspect-video w-full sm:w-[40vw] lg:w-full">
-                            <Media
-                                src={portfolioItem.gallery[1]}
-                                mode="cover"
+                            <PortfolioCard
+                                className="aspect-video"
+                                src={aboutPage.lukeReferences[0]}
                             />
                         </div>
 
                         <div className="hidden aspect-video w-[40vw] sm:block lg:w-full xl:hidden 2xl:block">
-                            <Media
-                                src={portfolioItem.gallery[1]}
-                                mode="cover"
+                            <PortfolioCard
+                                className="aspect-video"
+                                src={aboutPage.lukeReferences[1]}
                             />
                         </div>
                     </div>
@@ -134,11 +135,11 @@ export default function Page({
                         </div>
                     </div>
 
-                    <div className="absolute left-[32vw] top-[75vw] w-[24vw] invert md:left-[369px] md:top-[320px] md:w-[190px]">
+                    <div className="absolute left-[32vw] top-[75vw] z-10 w-[24vw] invert md:left-[369px] md:top-[320px] md:w-[190px]">
                         <Media src={luke.signature} mode="width" />
                     </div>
 
-                    <div className="absolute left-[51vw] top-[28vw] w-[44vw] md:left-[540px] md:top-[-50px] md:w-[255px]">
+                    <div className="absolute left-[51vw] top-[28vw] z-10 w-[44vw] md:left-[540px] md:top-[-50px] md:w-[255px]">
                         <Media src={luke.actionShot} mode="width" />
                     </div>
                 </div>
@@ -148,16 +149,16 @@ export default function Page({
                 <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row-reverse xl:w-[450px] xl:flex-col 2xl:w-[750px]">
                     <div className="flex shrink grow-0 flex-col gap-4 xl:flex-row">
                         <div className="aspect-video w-full sm:w-[40vw] lg:w-full">
-                            <Media
-                                src={portfolioItem.gallery[9]}
-                                mode="cover"
+                            <PortfolioCard
+                                className="aspect-video"
+                                src={aboutPage.henryReferences[0]}
                             />
                         </div>
 
                         <div className="hidden aspect-video w-[40vw] sm:block lg:w-full xl:hidden 2xl:block">
-                            <Media
-                                src={portfolioItem.gallery[7]}
-                                mode="cover"
+                            <PortfolioCard
+                                className="aspect-video"
+                                src={aboutPage.henryReferences[1]}
                             />
                         </div>
                     </div>
@@ -188,7 +189,7 @@ export default function Page({
                         <div
                             className={clsx(
                                 styles.henryImageMobile,
-                                "absolute bottom-4 right-4 aspect-[3/4] md:relative md:bottom-0 md:right-0",
+                                "absolute bottom-4 right-4 z-10 aspect-[3/4] md:relative md:bottom-0 md:right-0",
                             )}
                         >
                             <Slideshow
@@ -232,7 +233,7 @@ export default function Page({
                         </div>
                     </div>
 
-                    <div className="absolute left-[44vw] top-[-20vw] w-[51vw] md:left-[-20px] md:top-[-40px] md:w-[310px] md:-scale-x-100">
+                    <div className="absolute left-[44vw] top-[-20vw] z-10 w-[51vw] md:left-[-20px] md:top-[-40px] md:w-[310px] md:-scale-x-100">
                         <Media src={henry.actionShot} mode="width" />
                     </div>
                 </div>
@@ -242,16 +243,16 @@ export default function Page({
                 <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row xl:w-[450px] xl:flex-col 2xl:w-[750px]">
                     <div className="flex shrink grow-0 flex-col gap-4 xl:flex-row">
                         <div className="aspect-video w-full sm:w-[40vw] lg:w-full">
-                            <Media
-                                src={portfolioItem.gallery[0]}
-                                mode="cover"
+                            <PortfolioCard
+                                className="aspect-video"
+                                src={aboutPage.williamReferences[0]}
                             />
                         </div>
 
                         <div className="hidden aspect-video w-[40vw] sm:block lg:w-full xl:hidden 2xl:block">
-                            <Media
-                                src={portfolioItem.gallery[1]}
-                                mode="cover"
+                            <PortfolioCard
+                                className="aspect-video"
+                                src={aboutPage.williamReferences[1]}
                             />
                         </div>
                     </div>
@@ -318,15 +319,15 @@ export default function Page({
                         </div>
                     </div>
 
-                    <div className="absolute left-[40vw] top-[77vw] w-[25vw] invert md:left-[394px] md:top-[362px] md:w-[146px]">
+                    <div className="absolute left-[40vw] top-[77vw] z-10 w-[25vw] invert md:left-[394px] md:top-[362px] md:w-[146px]">
                         <Media src={william.signature} mode="width" />
                     </div>
 
-                    <div className="absolute left-[53vw] top-[-3vw] w-[40vw] md:left-[520px] md:top-0 md:w-[250px]">
+                    <div className="absolute left-[53vw] top-[-3vw] z-10 w-[40vw] md:left-[520px] md:top-0 md:w-[250px]">
                         <Media src={william.actionShot} mode="width" />
                     </div>
 
-                    <div className="absolute left-[55vw] top-[-31vw] w-[31vw] md:left-[467px] md:top-[-190px] md:w-[215px]">
+                    <div className="absolute left-[55vw] top-[-31vw] z-10 w-[31vw] md:left-[467px] md:top-[-190px] md:w-[215px]">
                         <Media src={william.actionShotExtra} mode="width" />
                     </div>
                 </div>
