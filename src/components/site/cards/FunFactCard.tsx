@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { link } from "fs";
 import { PortableText } from "next-sanity";
 
 import Arrow from "@/components/site/Arrow";
@@ -38,6 +39,21 @@ export default function FunFactCard({ src }: FunFactCardProps) {
                         components={{
                             block: {
                                 normal: ({ children }) => <>{children}</>,
+                            },
+                            marks: {
+                                link: ({ children, value }) => {
+                                    return (
+                                        <a
+                                            href={value.href}
+                                            className="underline has-[sup]:no-underline [&>sup]:underline"
+                                        >
+                                            {children}
+                                        </a>
+                                    );
+                                },
+                                sup: ({ children }) => (
+                                    <sup className="text-sm">{children}</sup>
+                                ),
                             },
                         }}
                     />
