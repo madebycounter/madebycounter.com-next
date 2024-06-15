@@ -5,9 +5,9 @@ import { useRef } from "react";
 
 import Contact from "@/components/site/Contact";
 import Footer from "@/components/site/Footer";
+import HeroMedia from "@/components/site/HeroMedia";
 import Nav, { NavSpacer } from "@/components/site/Nav";
 import Gallery from "@/components/util/Gallery";
-import HeroMedia from "@/components/util/HeroMedia";
 import Lightbox, {
     mapToSlides,
     useLightboxState,

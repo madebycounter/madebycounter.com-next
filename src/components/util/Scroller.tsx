@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import { useEffect, useRef } from "react";
 
-import { useContainerSize } from "@/util/hooks";
+import { useContainerSize, useWindowSize } from "@/util/hooks";
 
 import styles from "./Scroller.module.css";
 
@@ -12,7 +12,7 @@ export interface ScrollerProps {
     className?: string;
 }
 
-export default function Scroller({ children, className = "" }: ScrollerProps) {
+export default function Scroller({ children, className }: ScrollerProps) {
     const ref = useRef<HTMLDivElement>(null);
     const size = useContainerSize(ref, 500);
 

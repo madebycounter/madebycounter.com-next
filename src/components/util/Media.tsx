@@ -32,7 +32,7 @@ function makeVideoUrl(src: MuxVideo, size: MediaSize) {
 function makeImageUrl(src: SanityImage, size: MediaSize) {
     if (size === "small") return `${src.asset.url}?w=480&q=50&sharp=10&fm=webp`;
     if (size === "medium")
-        return `${src.asset.url}?w=854&q=70&sharp=10&fm=webp`;
+        return `${src.asset.url}?w=1028&q=70&sharp=10&fm=webp`;
     return `${src.asset.url}?w=1920&q=75&sharp=1&fm=webp`;
 }
 

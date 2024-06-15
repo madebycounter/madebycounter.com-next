@@ -21,6 +21,9 @@ const config: Config = {
             fontFamily: {
                 counter: ["Counter Arial"],
             },
+            aspectRatio: {
+                "4kdci": "4096 / 2160",
+            },
         },
     },
 };

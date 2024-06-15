@@ -15,6 +15,15 @@ import {
 } from "./groups/portfolioItemGroup";
 import { RichText } from "./richText";
 
+export type ServiceContent = {
+    references: { _id: string; _type: string }[];
+    funFacts: FunFact[];
+    testimonials: Testimonial[];
+    mediaGroups: MediaGroup[];
+    miniServiceGroups: MiniServiceGroup[];
+    portfolioItemGroups: PortfolioItemGroup[];
+};
+
 export interface Service {
     _id: string;
     _type: "service";
@@ -23,14 +32,7 @@ export interface Service {
     videoEmbed: string;
     heroText: RichText;
     teamMember: TeamMember;
-    content: {
-        ids: string[];
-        funFacts: FunFact[];
-        testimonials: Testimonial[];
-        mediaGroups: MediaGroup[];
-        miniServiceGroups: MiniServiceGroup[];
-        portfolioItemGroups: PortfolioItemGroup[];
-    };
+    content: ServiceContent;
     callToAction: string;
     offerings: string[];
     slug: { current: string };
@@ -50,20 +52,23 @@ export const serviceFragment = `
         ${teamMemberFragment}
     },
     "content": {
-        "ids": content[]->_id,
-        "funFacts": content[_type=="funFact"]->{
+        "references": content[]->{
+            _id,
+            _type,
+        },
+        "funFacts": content[@->_type=="funFact"]->{
             ${funFactFragment}
         },
-        "testimonials": content[_type=="testimonial"]->{
+        "testimonials": content[@->_type=="testimonial"]->{
             ${testimonialFragment}
         },
-        "mediaGroups": content[_type=="mediaGroup"]->{
+        "mediaGroups": content[@->_type=="mediaGroup"]->{
             ${mediaGroupFragment}
         },
-        "miniServiceGroups": content[_type=="miniServiceGroup"]->{
+        "miniServiceGroups": content[@->_type=="miniServiceGroup"]->{
             ${miniServiceGroupFragment}
         },
-        "portfolioItemGroups": content[_type=="portfolioItemGroup"]->{
+        "portfolioItemGroups": content[@->_type=="portfolioItemGroup"]->{
             ${portfolioItemGroupFragment}
         }
     },

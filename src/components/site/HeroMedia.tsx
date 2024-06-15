@@ -1,3 +1,6 @@
+"use client";
+
+import clsx from "clsx";
 import { useEffect, useState } from "react";
 
 import Slideshow, { filterMedia } from "@/components/util/Slideshow";

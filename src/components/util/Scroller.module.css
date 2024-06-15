@@ -1,4 +1,4 @@
 .Scroller {
     scroll-behavior: smooth;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
