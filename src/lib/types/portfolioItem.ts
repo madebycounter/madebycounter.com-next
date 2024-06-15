@@ -1,5 +1,22 @@
-import { MultiMedia, SanityImage, assetFragment } from "@/lib/types/assets";
-import { RichText } from "@/lib/types/richText";
+import { client } from "@/lib/sanity";
+
+import { MultiMedia, SanityImage, assetFragment } from "./assets";
+import { RichText } from "./richText";
+
+export interface PortfolioItem {
+    _id: string;
+    _type: "portfolioItem";
+    title: string;
+    date: string;
+    description: RichText;
+    thumbnail: SanityImage;
+    heroMedia: MultiMedia[];
+    heroEmbed: string;
+    gallery: MultiMedia[];
+    slug: { current: string };
+    tags: string[];
+    hidden: boolean;
+}
 
 export const portfolioItemFragment = `
     _id,
@@ -24,17 +41,17 @@ export const portfolioItemFragment = `
     hidden
 `;
 
-export interface PortfolioItem {
-    _id: string;
-    _type: "portfolioItem";
-    title: string;
-    date: string;
-    description: RichText;
-    thumbnail: SanityImage;
-    heroMedia: MultiMedia[];
-    heroEmbed: string;
-    gallery: MultiMedia[];
-    slug: { current: string };
-    tags: string[];
-    hidden: boolean;
+export async function usePortfolioItems(): Promise<PortfolioItem[]> {
+    return await client.fetch(`*[_type == "portfolioItem"] | order(date desc) {
+        ${portfolioItemFragment}
+    }`);
+}
+
+export async function usePortfolioItem(slug: string): Promise<PortfolioItem> {
+    return await client.fetch(
+        `*[_type == "portfolioItem" && slug.current == $slug][0] {
+            ${portfolioItemFragment}
+        }`,
+        { slug },
+    );
 }

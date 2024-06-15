@@ -1,6 +1,6 @@
 import PortfolioItemPage from "@/components/pages/templates/PortfolioItem";
 
-import { useCompanyInfo, usePortfolioItem } from "@/lib/sanity";
+import { useCompanyInfo, usePortfolioItem } from "@/lib/types";
 
 export default async function Page({ params }: { params: { slug: string } }) {
     const portfolioItem = await usePortfolioItem(params.slug);

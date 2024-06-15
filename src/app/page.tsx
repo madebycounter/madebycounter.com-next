@@ -5,7 +5,7 @@ import {
     useCompanyInfo,
     usePortfolioItem,
     useTeamMember,
-} from "@/lib/sanity";
+} from "@/lib/types";
 
 export default async function Page() {
     const portfolioItem = await usePortfolioItem("margaretfest-2023");

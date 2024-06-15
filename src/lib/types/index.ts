@@ -1,19 +1,15 @@
-export { aboutPageFragment } from "./aboutPage";
-export type { AboutPage } from "./aboutPage";
+export * from "./assets";
+export * from "./portfolioItem";
+export * from "./richText";
+export * from "./service";
 
-export { assetFragment } from "./assets";
-export type { MultiMedia, SanityImage, MuxVideo } from "./assets";
+export * from "./singletons/companyInfo";
+export * from "./singletons/aboutPage";
 
-export { companyInfoFragment } from "./companyInfo";
-export type { CompanyInfo } from "./companyInfo";
+export * from "./components/funFact";
+export * from "./components/testimonial";
+export * from "./components/miniService";
+export * from "./components/teamMember";
 
-export { portfolioItemFragment } from "./portfolioItem";
-export type { PortfolioItem } from "./portfolioItem";
-
-export type { RichText } from "./richText";
-
-export { serviceFragment } from "./service";
-export type { Service } from "./service";
-
-export { teamMemberFragment } from "./teamMember";
-export type { TeamMember, TeamMemberSlug } from "./teamMember";
+export * from "./groups/mediaGroup";
+export * from "./groups/miniServiceGroup";

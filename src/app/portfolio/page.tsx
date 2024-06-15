@@ -1,7 +1,7 @@
 import About from "@/components/pages/About";
 import PortfolioPage from "@/components/pages/Portfolio";
 
-import { useCompanyInfo, usePortfolioItems } from "@/lib/sanity";
+import { useCompanyInfo, usePortfolioItems } from "@/lib/types";
 
 export default async function Page() {
     const companyInfo = await useCompanyInfo();
