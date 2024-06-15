@@ -76,7 +76,7 @@ export default function Page({
                     </div>
 
                     <div className="flex shrink grow flex-col justify-between">
-                        <p className="font-counter text-[19vw] !leading-[0.8em] tracking-tighter sm:text-[12vw] lg:text-9xl xl:text-8xl 2xl:text-9xl">
+                        <p className="text-nowrap font-counter text-[19vw] !leading-[0.8em] tracking-tighter sm:text-[12vw] lg:text-9xl xl:text-8xl 2xl:text-9xl">
                             We make
                             <br />
                             business
@@ -164,7 +164,7 @@ export default function Page({
                     </div>
 
                     <div className="flex shrink grow flex-col justify-between">
-                        <p className="text-right font-counter text-[19vw] !leading-[0.8em] tracking-tighter sm:text-[12vw] lg:text-9xl xl:text-8xl 2xl:text-9xl">
+                        <p className="text-nowrap text-right font-counter text-[19vw] !leading-[0.8em] tracking-tighter sm:text-[12vw] lg:text-9xl xl:text-8xl 2xl:text-9xl">
                             Our pics
                             <br />
                             increase
@@ -258,7 +258,7 @@ export default function Page({
                     </div>
 
                     <div className="flex shrink grow flex-col justify-between">
-                        <p className="font-counter text-[19vw] !leading-[0.8em] tracking-tighter sm:text-[12vw] lg:text-9xl xl:text-8xl 2xl:text-9xl">
+                        <p className="text-nowrap font-counter text-[19vw] !leading-[0.8em] tracking-tighter sm:text-[10vw] lg:text-9xl xl:text-8xl 2xl:text-9xl">
                             Drones
                             <br />
                             make you
