@@ -1,0 +1,12 @@
+.Arrow {
+    height: 100%;
+    aspect-ratio: 16 / 46;
+}
+
+.Arrow__left {
+    clip-path: polygon(105% 0%, 100% 0%, 0% 50%, 100% 100%, 105% 100%);
+}
+
+.Arrow__right {
+    clip-path: polygon(-5% 0%, 0% 0%, 100% 50%, 0% 100%, -5% 100%);
+}

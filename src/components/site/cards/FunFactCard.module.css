@@ -1,0 +1,110 @@
+.FunFactCard {
+    display: grid;
+    grid-row-gap: 0.5rem;
+    grid-column-gap: 2rem;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas: "portrait fact" "portrait button";
+}
+
+@media (max-width: 600px) {
+    .FunFactCard {
+        grid-template-areas: "portrait fact" "button button";
+    }
+}
+
+.Portrait {
+    grid-area: portrait;
+    display: flex;
+    width: 200px;
+
+    align-items: flex-end;
+    padding-bottom: 0.1rem;
+
+    z-index: 10;
+}
+
+.Portrait__desktop {
+    display: block;
+}
+
+.Portrait__mobile {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .Portrait {
+        width: 80px;
+        align-items: flex-start;
+    }
+
+    .Portrait__desktop {
+        display: none;
+    }
+
+    .Portrait__mobile {
+        display: block;
+    }
+}
+
+.Fact {
+    position: relative;
+    grid-area: fact;
+
+    padding: 0.5rem 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Fact p {
+    font-size: 1.7rem;
+    line-height: 1.2em;
+    margin: 0;
+}
+
+@media (max-width: 670px) {
+    .Fact {
+        padding: 0.5rem 1rem;
+    }
+
+    .Fact p {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .Fact {
+        padding: 0.5rem 0rem;
+    }
+
+    .Fact p {
+        font-size: 1.2rem;
+    }
+}
+
+.ButtonBox {
+    grid-area: button;
+}
+
+.Button {
+    font-size: 2.5rem;
+}
+
+@media (max-width: 600px) {
+    .ButtonBox {
+        margin-left: 0.25rem;
+    }
+
+    .Button {
+        font-size: 1.6rem;
+    }
+}
+
+.Arrow {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 100%;
+}

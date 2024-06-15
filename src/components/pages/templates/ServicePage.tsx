@@ -3,6 +3,7 @@ import { PortableText } from "next-sanity";
 import Button from "@/components/site/Button";
 import HeroMedia from "@/components/site/HeroMedia";
 import Nav, { NavSpacer } from "@/components/site/Nav";
+import FunFactCard from "@/components/site/cards/FunFactCard";
 import MiniServiceCard from "@/components/site/cards/MiniServiceCard";
 import Media from "@/components/util/Media";
 import Scroller from "@/components/util/Scroller";
@@ -24,7 +25,7 @@ function findItem<T extends { _id: string }>(items: T[], id: string) {
 
 function makeContent(content: ServiceContent) {
     return content.references.map((ref, idx) => (
-        <div className="my-16 lg:my-32" key={idx}>
+        <div className="my-24 lg:my-32" key={idx}>
             {ref._type === "funFact" &&
                 makeFunFact(findItem(content.funFacts, ref._id))}
             {ref._type === "testimonial" &&
@@ -42,7 +43,7 @@ function makeContent(content: ServiceContent) {
 }
 
 function makeFunFact(funFact: FunFact) {
-    return <p>{funFact.title}</p>;
+    return <FunFactCard src={funFact} />;
 }
 
 function makeTestimonial(testimonial: Testimonial) {
@@ -58,7 +59,7 @@ function makeServiceGroup(servicesGroup: MiniServiceGroup) {
         <Scroller className="flex gap-4">
             {servicesGroup.items.map((service, idx) => (
                 <MiniServiceCard
-                    className="min-w-[300px] shrink-0 grow basis-1"
+                    className="min-w-[280px] shrink-0 grow basis-1"
                     src={service}
                     key={idx}
                 />
@@ -99,7 +100,7 @@ export default function Page({
                                         </h1>
                                     ),
                                     normal: ({ children }) => (
-                                        <p className="text-[1.6rem] font-light leading-[1.2em] md:max-w-[80%]">
+                                        <p className="text-xl font-light leading-[1.2em] sm:text-[1.6rem] md:max-w-[80%]">
                                             {children}
                                         </p>
                                     ),
@@ -138,7 +139,7 @@ export default function Page({
                 </div>
             </div>
 
-            <div className="m-auto max-w-screen-lg px-4">
+            <div className="m-auto max-w-screen-lg">
                 {makeContent(service.content)}
             </div>
         </>
