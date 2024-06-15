@@ -11,11 +11,12 @@ export interface PortfolioCardProps {
 
 export default function PortfolioCard({ src, className }: PortfolioCardProps) {
     return (
-        <div
+        <a
             className={clsx(
                 className,
                 "group relative block w-full cursor-pointer overflow-hidden",
             )}
+            href={`/portfolio/${src.slug.current}`}
         >
             <div className="h-full w-full scale-100 blur-sm brightness-75 transition-all group-hover:scale-105 group-hover:brightness-100">
                 <Media src={src.thumbnail} mode="cover" />
@@ -33,6 +34,6 @@ export default function PortfolioCard({ src, className }: PortfolioCardProps) {
                     </span>
                 ))}
             </p>
-        </div>
+        </a>
     );
 }
