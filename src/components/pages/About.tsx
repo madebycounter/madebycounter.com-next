@@ -5,6 +5,7 @@ import clsx from "clsx";
 import Button from "@/components/site/Button";
 import Contact from "@/components/site/Contact";
 import Nav from "@/components/site/Nav";
+import PrettyCoolRight from "@/components/site/PrettyCoolRight";
 import Media from "@/components/util/Media";
 import Slideshow, { filterMedia } from "@/components/util/Slideshow";
 
@@ -332,7 +333,7 @@ export default function Page({
             </div>
 
             <div className="m-auto max-w-screen-lg px-4 py-32 sm:px-8">
-                <Contact />
+                <PrettyCoolRight />
             </div>
         </div>
     );

@@ -17,7 +17,9 @@ export interface TeamMember {
     actionShotExtra: SanityImage;
     funFact: SanityImage;
     signature: SanityImage;
-    slug: TeamMemberSlug;
+    slug: {
+        current: TeamMemberSlug;
+    };
 }
 
 export const teamMemberFragment = `

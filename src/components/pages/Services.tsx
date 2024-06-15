@@ -42,12 +42,9 @@ export default function Page({
             titlesRef.current[
                 mod(Math.round(index) - 2, titlesRef.current.length)
             ].offsetHeight;
-        console.log(titleHeight);
         boxRef.current.style.transform = `translateY(${-index * titleHeight}px)`;
 
         setActive(Math.round(index));
-
-        console.log(index);
     }, [scrollPosition, boxRef]);
 
     return (

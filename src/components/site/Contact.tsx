@@ -1,3 +1,5 @@
+"use client";
+
 import clsx from "clsx";
 
 import Form, { FormData } from "../util/Form";

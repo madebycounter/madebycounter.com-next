@@ -1,8 +1,10 @@
+import clsx from "clsx";
 import { PortableText } from "next-sanity";
 
 import Button from "@/components/site/Button";
 import HeroMedia from "@/components/site/HeroMedia";
 import Nav, { NavSpacer } from "@/components/site/Nav";
+import PrettyCoolRight from "@/components/site/PrettyCoolRight";
 import FunFactCard from "@/components/site/cards/FunFactCard";
 import MiniServiceCard from "@/components/site/cards/MiniServiceCard";
 import PortfolioCard from "@/components/site/cards/PortfolioCard";
@@ -91,8 +93,6 @@ export default function Page({
     companyInfo: CompanyInfo;
     service: Service;
 }) {
-    console.log(service);
-
     return (
         <>
             <Nav companyInfo={companyInfo} inverted />
@@ -124,17 +124,33 @@ export default function Page({
                             <Button
                                 href="#"
                                 className="my-4 hidden text-3xl md:flex"
-                                // classNameInner="!pl-0"
                                 inverted
                             >
                                 {service.callToAction}
                             </Button>
                         </div>
 
-                        <div className="absolute right-0 top-[-10px] hidden h-[110%] md:block lg:right-[-70px]">
+                        <div
+                            className={clsx(
+                                "absolute right-0 hidden md:block",
+                                {
+                                    "top-[-10px] h-[110%] lg:right-[-70px]":
+                                        service.teamMember.slug.current ===
+                                        "william-gardner",
+                                    "top-[-13px] h-[115%] lg:right-[-100px]":
+                                        service.teamMember.slug.current ===
+                                        "luke-a-makinson",
+                                    "top-[-10px] h-[110%] lg:right-[-71px]":
+                                        service.teamMember.slug.current ===
+                                        "henry-buck",
+                                },
+                            )}
+                        >
                             <Media
                                 src={service.teamMember.actionShot}
                                 size="small"
+                                mode="contain"
+                                className="float-right"
                             />
                         </div>
                     </div>
@@ -153,6 +169,8 @@ export default function Page({
 
             <div className="m-auto max-w-[900px]">
                 {makeContent(service.content)}
+
+                <PrettyCoolRight className="mb-32" inverted />
             </div>
         </>
     );
