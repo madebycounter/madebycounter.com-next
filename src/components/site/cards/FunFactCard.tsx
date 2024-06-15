@@ -31,7 +31,7 @@ export default function FunFactCard({ src }: FunFactCardProps) {
             </div>
 
             <div className={clsx(styles.Fact, "bg-black text-white")}>
-                <p>
+                <p className="font-light">
                     &ldquo;
                     <PortableText
                         value={src.fact}

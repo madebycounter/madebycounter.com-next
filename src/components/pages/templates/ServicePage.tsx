@@ -5,6 +5,7 @@ import HeroMedia from "@/components/site/HeroMedia";
 import Nav, { NavSpacer } from "@/components/site/Nav";
 import FunFactCard from "@/components/site/cards/FunFactCard";
 import MiniServiceCard from "@/components/site/cards/MiniServiceCard";
+import TestimonialCard from "@/components/site/cards/TestimonialCard";
 import Media from "@/components/util/Media";
 import Scroller from "@/components/util/Scroller";
 
@@ -47,7 +48,7 @@ function makeFunFact(funFact: FunFact) {
 }
 
 function makeTestimonial(testimonial: Testimonial) {
-    return <p>{testimonial.name}</p>;
+    return <TestimonialCard src={testimonial} />;
 }
 
 function makeMediaGroup(mediaGroup: MediaGroup) {
@@ -139,7 +140,7 @@ export default function Page({
                 </div>
             </div>
 
-            <div className="m-auto max-w-screen-lg">
+            <div className="m-auto max-w-[900px]">
                 {makeContent(service.content)}
             </div>
         </>

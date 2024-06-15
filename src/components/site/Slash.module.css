@@ -1,0 +1,11 @@
+.Slash {
+    aspect-ratio: 400 / 1650;
+}
+
+.Slash__left {
+    clip-path: polygon(0% 0%, 0% 100%, 100% 0%);
+}
+
+.Slash__right {
+    clip-path: polygon(100% 0%, 100% 100%, 0% 100%);
+}
