@@ -15,6 +15,7 @@ export interface TeamMember {
     profile: SanityImage;
     actionShot: SanityImage;
     actionShotExtra: SanityImage;
+    funFact: SanityImage;
     signature: SanityImage;
     slug: TeamMemberSlug;
 }
@@ -33,6 +34,9 @@ export const teamMemberFragment = `
         ${assetFragment}
     },
     signature {
+        ${assetFragment}
+    },
+    funFact {
         ${assetFragment}
     },
     slug
