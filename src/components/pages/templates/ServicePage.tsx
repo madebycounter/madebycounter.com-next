@@ -5,6 +5,7 @@ import HeroMedia from "@/components/site/HeroMedia";
 import Nav, { NavSpacer } from "@/components/site/Nav";
 import FunFactCard from "@/components/site/cards/FunFactCard";
 import MiniServiceCard from "@/components/site/cards/MiniServiceCard";
+import PortfolioCard from "@/components/site/cards/PortfolioCard";
 import TestimonialCard from "@/components/site/cards/TestimonialCard";
 import Media from "@/components/util/Media";
 import Scroller from "@/components/util/Scroller";
@@ -70,7 +71,17 @@ function makeServiceGroup(servicesGroup: MiniServiceGroup) {
 }
 
 function makePortfolioGroup(portfolioGroup: PortfolioItemGroup) {
-    return <p>{portfolioGroup.title}</p>;
+    return (
+        <Scroller className="flex gap-4">
+            {portfolioGroup.items.map((item, idx) => (
+                <PortfolioCard
+                    className="min-w-[280px] shrink-0 grow basis-1"
+                    src={item}
+                    key={idx}
+                />
+            ))}
+        </Scroller>
+    );
 }
 
 export default function Page({

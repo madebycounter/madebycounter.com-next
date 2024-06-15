@@ -23,6 +23,7 @@ const config: Config = {
             },
             aspectRatio: {
                 "4kdci": "4096 / 2160",
+                "4/3": "4 / 3",
             },
         },
     },
