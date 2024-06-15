@@ -1,0 +1,27 @@
+.Carousel {
+    overflow: hidden;
+}
+
+.Slider {
+    display: flex;
+    flex-wrap: nowrap;
+    animation: slide var(--speed) linear infinite;
+}
+
+.Slider__horizontal {
+    flex-direction: row;
+}
+
+.Slider__vertical {
+    flex-direction: column;
+}
+
+@keyframes slide {
+    0% {
+        transform: translate(var(--x1), var(--y1));
+    }
+
+    100% {
+        transform: translate(var(--x2), var(--y2));
+    }
+}

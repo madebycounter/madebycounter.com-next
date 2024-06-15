@@ -1,4 +1,5 @@
 import About from "@/components/pages/About";
+import Carousel from "@/components/util/Carousel";
 
 import {
     useAboutPage,
