@@ -95,7 +95,7 @@ export default function Page({
 }) {
     return (
         <>
-            <Nav companyInfo={companyInfo} inverted />
+            <Nav companyInfo={companyInfo} threshold={0} inverted />
 
             <NavSpacer />
 
