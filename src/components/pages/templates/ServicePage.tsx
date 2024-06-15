@@ -77,7 +77,7 @@ function makePortfolioGroup(portfolioGroup: PortfolioItemGroup) {
         <Scroller className="flex gap-4">
             {portfolioGroup.items.map((item, idx) => (
                 <PortfolioCard
-                    className="min-w-[280px] shrink-0 grow basis-1"
+                    className="aspect-4/3 min-w-[280px] shrink-0 grow basis-1"
                     src={item}
                     key={idx}
                 />

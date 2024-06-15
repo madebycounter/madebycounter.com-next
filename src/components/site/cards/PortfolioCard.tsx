@@ -14,7 +14,7 @@ export default function PortfolioCard({ src, className }: PortfolioCardProps) {
         <div
             className={clsx(
                 className,
-                "aspect-4/3 group relative block w-full cursor-pointer overflow-hidden",
+                "group relative block w-full cursor-pointer overflow-hidden",
             )}
         >
             <div className="h-full w-full scale-100 blur-sm brightness-75 transition-all group-hover:scale-105 group-hover:brightness-100">
