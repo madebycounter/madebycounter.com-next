@@ -16,6 +16,9 @@
     flex-direction: column;
 }
 
+.Child {
+}
+
 @keyframes slide {
     0% {
         transform: translate(var(--x1), var(--y1));

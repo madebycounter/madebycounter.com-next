@@ -3,10 +3,12 @@
 import clsx from "clsx";
 
 import Button from "@/components/site/Button";
+import CarouselButton from "@/components/site/CarouselButton";
 import Contact from "@/components/site/Contact";
 import Nav from "@/components/site/Nav";
 import PrettyCoolRight from "@/components/site/PrettyCoolRight";
 import PortfolioCard from "@/components/site/cards/PortfolioCard";
+import Carousel from "@/components/util/Carousel";
 import Media from "@/components/util/Media";
 import Slideshow, { filterMedia } from "@/components/util/Slideshow";
 
@@ -29,6 +31,8 @@ export default function Page({
     william: TeamMember;
     aboutPage: AboutPage;
 }) {
+    const buttonSpeed = 30;
+
     return (
         <div className="bg-black">
             <Nav companyInfo={companyInfo} active="about" />
@@ -60,14 +64,14 @@ export default function Page({
             <div className="flex w-full flex-col-reverse items-center gap-12 overflow-x-clip py-32 sm:gap-32 xl:flex-row-reverse xl:gap-0">
                 <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row xl:w-[450px] xl:flex-col 2xl:w-[750px]">
                     <div className="flex shrink grow-0 flex-col gap-4 xl:flex-row">
-                        <div className="aspect-video w-full sm:w-[40vw] lg:w-full">
+                        <div className="aspect-video w-full max-w-[400px] sm:w-[40vw] lg:w-full">
                             <PortfolioCard
                                 className="aspect-video"
                                 src={aboutPage.lukeReferences[0]}
                             />
                         </div>
 
-                        <div className="hidden aspect-video w-[40vw] sm:block lg:w-full xl:hidden 2xl:block">
+                        <div className="hidden aspect-video w-[40vw] max-w-[400px] sm:block lg:w-full xl:hidden 2xl:block">
                             <PortfolioCard
                                 className="aspect-video"
                                 src={aboutPage.lukeReferences[1]}
@@ -84,10 +88,14 @@ export default function Page({
                             happen.
                         </p>
 
-                        <div>
-                            <Button href="/contact" className="mt-8">
+                        <div className="z-0">
+                            <CarouselButton
+                                className="mt-8"
+                                direction="right"
+                                media={aboutPage.lukeReferences[1].gallery}
+                            >
                                 Learn More
-                            </Button>
+                            </CarouselButton>
                         </div>
                     </div>
                 </div>
@@ -148,14 +156,14 @@ export default function Page({
             <div className="flex w-full flex-col-reverse items-center gap-12 overflow-x-clip py-32 sm:gap-32 xl:flex-row xl:gap-0">
                 <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row-reverse xl:w-[450px] xl:flex-col 2xl:w-[750px]">
                     <div className="flex shrink grow-0 flex-col gap-4 xl:flex-row">
-                        <div className="aspect-video w-full sm:w-[40vw] lg:w-full">
+                        <div className="aspect-video w-full max-w-[400px] sm:w-[40vw] lg:w-full">
                             <PortfolioCard
                                 className="aspect-video"
                                 src={aboutPage.henryReferences[0]}
                             />
                         </div>
 
-                        <div className="hidden aspect-video w-[40vw] sm:block lg:w-full xl:hidden 2xl:block">
+                        <div className="hidden aspect-video w-[40vw] max-w-[400px] sm:block lg:w-full xl:hidden 2xl:block">
                             <PortfolioCard
                                 className="aspect-video"
                                 src={aboutPage.henryReferences[1]}
@@ -172,14 +180,14 @@ export default function Page({
                             sales.
                         </p>
 
-                        <div>
-                            <Button
-                                href="/contact"
+                        <div className="z-0">
+                            <CarouselButton
                                 className="mt-8"
                                 direction="left"
+                                media={aboutPage.henryReferences[1].gallery}
                             >
                                 Learn More
-                            </Button>
+                            </CarouselButton>
                         </div>
                     </div>
                 </div>
@@ -242,14 +250,14 @@ export default function Page({
             <div className="flex w-full flex-col-reverse items-center gap-12 overflow-x-clip py-32 sm:gap-32 xl:flex-row-reverse xl:gap-0">
                 <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row xl:w-[450px] xl:flex-col 2xl:w-[750px]">
                     <div className="flex shrink grow-0 flex-col gap-4 xl:flex-row">
-                        <div className="aspect-video w-full sm:w-[40vw] lg:w-full">
+                        <div className="aspect-video w-full max-w-[400px] sm:w-[40vw] lg:w-full">
                             <PortfolioCard
                                 className="aspect-video"
                                 src={aboutPage.williamReferences[0]}
                             />
                         </div>
 
-                        <div className="hidden aspect-video w-[40vw] sm:block lg:w-full xl:hidden 2xl:block">
+                        <div className="hidden aspect-video w-[40vw] max-w-[400px] sm:block lg:w-full xl:hidden 2xl:block">
                             <PortfolioCard
                                 className="aspect-video"
                                 src={aboutPage.williamReferences[1]}
@@ -266,10 +274,14 @@ export default function Page({
                             stand out.
                         </p>
 
-                        <div>
-                            <Button href="/contact" className="mt-8">
+                        <div className="z-0">
+                            <CarouselButton
+                                className="mt-8"
+                                direction="right"
+                                media={aboutPage.williamReferences[0].gallery}
+                            >
                                 Learn More
-                            </Button>
+                            </CarouselButton>
                         </div>
                     </div>
                 </div>

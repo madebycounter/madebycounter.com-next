@@ -4,6 +4,8 @@ import { PortableText } from "next-sanity";
 
 import Arrow from "@/components/site/Arrow";
 import Button from "@/components/site/Button";
+import CarouselButton from "@/components/site/CarouselButton";
+import Carousel from "@/components/util/Carousel";
 import Media from "@/components/util/Media";
 
 import { FunFact } from "@/lib/types";
@@ -15,6 +17,8 @@ export interface FunFactCardProps {
 }
 
 export default function FunFactCard({ src }: FunFactCardProps) {
+    console.log(src);
+
     return (
         <div className={clsx(styles.FunFactCard)}>
             <div className={clsx(styles.Portrait)}>
@@ -67,9 +71,13 @@ export default function FunFactCard({ src }: FunFactCardProps) {
             </div>
 
             <div className={clsx(styles.ButtonBox)}>
-                <Button href="/contact" className={styles.Button}>
+                <CarouselButton
+                    href="/contact"
+                    className={styles.Button}
+                    media={src.buttonImages}
+                >
                     {src.buttonText}
-                </Button>
+                </CarouselButton>
             </div>
         </div>
     );

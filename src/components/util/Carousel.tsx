@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 
-import { useContainerSize } from "@/util/hooks";
+import { useContainerSize, useWindowSize } from "@/util/hooks";
 
 import styles from "./Carousel.module.css";
 
@@ -15,6 +15,7 @@ export interface CarouselProps {
     speed?: number;
     direction?: CarouselDirection;
     className?: string;
+    classNameInner?: string;
 }
 
 function isHorizontal(direction: CarouselDirection) {
@@ -27,9 +28,9 @@ export default function Carousel({
     speed = 100,
     direction = "left",
     className,
+    classNameInner,
 }: CarouselProps) {
-    const ref = useRef<HTMLDivElement>(null);
-    const size = useContainerSize(ref);
+    const size = useWindowSize();
     const [quantity, setQuantity] = useState(0);
     const [directions, setDirections] = useState({
         x1: 0,
@@ -39,10 +40,7 @@ export default function Carousel({
     });
 
     const updateQuantity = () => {
-        if (!ref.current) return;
-        const parentSize = isHorizontal(direction)
-            ? ref.current.offsetWidth
-            : ref.current.offsetHeight;
+        const parentSize = isHorizontal(direction) ? size.width : size.height;
         setQuantity(Math.ceil(parentSize / childSize) + 1);
     };
 
@@ -87,7 +85,6 @@ export default function Carousel({
     return (
         <div
             className={clsx(styles.Carousel, className)}
-            ref={ref}
             style={
                 {
                     "--speed": `${childSize / speed}s`,
@@ -99,14 +96,25 @@ export default function Carousel({
             }
         >
             <div
-                className={clsx(styles.Slider, {
+                className={clsx(styles.Slider, classNameInner, {
                     [styles.Slider__horizontal]: isHorizontal(direction),
                     [styles.Slider__vertical]: !isHorizontal(direction),
                 })}
+                style={
+                    isHorizontal(direction)
+                        ? {
+                              width: `${childSize * quantity}px`,
+                          }
+                        : {
+                              height: `${childSize * quantity}px`,
+                          }
+                }
                 onLoad={updateQuantity}
             >
                 {[...Array(quantity)].map((_, i) => (
-                    <div key={i}>{child}</div>
+                    <div className={clsx(styles.Child)} key={i}>
+                        {child}
+                    </div>
                 ))}
             </div>
         </div>

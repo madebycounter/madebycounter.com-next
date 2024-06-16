@@ -11,7 +11,7 @@ export const funFactFragment = `
         ${teamMemberFragment}
     },
     buttonText,
-    buttonImages {
+    buttonImages[] {
         ${assetFragment}
     }
 `;

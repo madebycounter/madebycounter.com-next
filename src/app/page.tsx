@@ -1,5 +1,4 @@
-import About from "@/components/pages/About";
-import Carousel from "@/components/util/Carousel";
+import Button from "@/components/site/Button2";
 
 import {
     useAboutPage,
@@ -7,6 +6,8 @@ import {
     usePortfolioItem,
     useTeamMember,
 } from "@/lib/types";
+
+import Test from "@/app/test";
 
 export default async function Page() {
     const portfolioItem = await usePortfolioItem("margaretfest-2023");
@@ -17,13 +18,15 @@ export default async function Page() {
     const aboutPage = await useAboutPage();
 
     return (
-        <About
-            portfolioItem={portfolioItem}
-            companyInfo={companyInfo}
-            aboutPage={aboutPage}
-            henry={henry}
-            luke={luke}
-            william={william}
-        />
+        <Test />
+
+        // <About
+        //     portfolioItem={portfolioItem}
+        //     companyInfo={companyInfo}
+        //     aboutPage={aboutPage}
+        //     henry={henry}
+        //     luke={luke}
+        //     william={william}
+        // />
     );
 }

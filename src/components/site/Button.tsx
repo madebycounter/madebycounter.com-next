@@ -2,9 +2,7 @@
 
 import clsx from "clsx";
 import Link from "next/link";
-import { ReactNode, useRef } from "react";
-
-import { useContainerSize } from "@/util/hooks";
+import { ReactNode, useEffect, useRef, useState } from "react";
 
 import styles from "./Button.module.css";
 
@@ -16,6 +14,7 @@ export interface ButtonProps {
     direction?: "left" | "right";
     inverted?: boolean;
     onClick?: () => void;
+    onSizeChange?: (size: { width: number; height: number }) => void;
 }
 
 export default function Button({
@@ -26,14 +25,39 @@ export default function Button({
     className,
     classNameInner,
     onClick,
+    onSizeChange,
 }: ButtonProps) {
     const ref = useRef<HTMLDivElement>(null);
-    const size = useContainerSize(ref);
+    const [size, setSize] = useState({ width: 0, height: 0 });
+
+    useEffect(() => {
+        function update() {
+            if (!ref.current) return;
+            setSize({
+                width: ref.current.offsetWidth,
+                height: ref.current.offsetHeight,
+            });
+
+            if (onSizeChange) {
+                onSizeChange({
+                    width: ref.current.offsetWidth,
+                    height: ref.current.offsetHeight,
+                });
+            }
+        }
+
+        window.addEventListener("resize", update);
+        update();
+
+        return () => {
+            window.removeEventListener("resize", update);
+        };
+    }, [className, classNameInner, onSizeChange, ref]);
 
     return (
         <Link
             className={clsx(
-                "block font-counter text-5xl font-normal tracking-tight",
+                "relative block font-counter text-5xl font-normal tracking-tight",
             )}
             href={href}
             onClick={(e) => {
@@ -42,13 +66,13 @@ export default function Button({
             }}
         >
             <div
-                className={clsx(className, "flex flex-nowrap", {
+                className={clsx(className, "flex flex-nowrap items-start", {
                     "flex-row-reverse": direction === "left",
                 })}
             >
                 <div
                     ref={ref}
-                    className={clsx("relative p-1", classNameInner, {
+                    className={clsx("text-nowrap p-1", classNameInner, {
                         "bg-white text-black": !inverted,
                         "bg-black text-white": inverted,
                     })}
