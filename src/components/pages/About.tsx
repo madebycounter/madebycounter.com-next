@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 
-import Button from "@/components/site/Button";
+import Button from "@/components/site/Button2";
 import CarouselButton from "@/components/site/CarouselButton";
 import Contact from "@/components/site/Contact";
 import Nav from "@/components/site/Nav";
@@ -89,13 +89,15 @@ export default function Page({
                         </p>
 
                         <div className="z-0">
-                            <CarouselButton
-                                className="mt-8"
-                                direction="right"
-                                media={aboutPage.lukeReferences[1].gallery}
-                            >
-                                Learn More
-                            </CarouselButton>
+                            <Button direction="right" className="mt-8">
+                                <Button.Label className="bg-white text-3xl text-black lg:text-5xl">
+                                    Learn More
+                                </Button.Label>
+                                <Button.Arrow className="bg-white" />
+                                <Button.Carousel
+                                    items={aboutPage.lukeReferences[1].gallery}
+                                />
+                            </Button>
                         </div>
                     </div>
                 </div>
@@ -181,13 +183,15 @@ export default function Page({
                         </p>
 
                         <div className="z-0">
-                            <CarouselButton
-                                className="mt-8"
-                                direction="left"
-                                media={aboutPage.henryReferences[1].gallery}
-                            >
-                                Learn More
-                            </CarouselButton>
+                            <Button direction="left" className="mt-8">
+                                <Button.Label className="bg-white text-3xl text-black lg:text-5xl">
+                                    Learn More
+                                </Button.Label>
+                                <Button.Arrow className="bg-white" />
+                                <Button.Carousel
+                                    items={aboutPage.henryReferences[0].gallery}
+                                />
+                            </Button>
                         </div>
                     </div>
                 </div>

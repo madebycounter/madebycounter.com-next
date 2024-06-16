@@ -27,9 +27,16 @@ export interface ButtonProps {
     direction?: "left" | "right";
     href?: string;
     onClick?: () => void;
+    className?: string;
 }
 
-function Button({ children, href, direction = "right", onClick }: ButtonProps) {
+function Button({
+    children,
+    href,
+    direction = "right",
+    onClick,
+    className,
+}: ButtonProps) {
     const ref = useRef<HTMLDivElement>(null);
     const [height, setHeight] = useState(0);
     const Action = href ? "a" : "button";
@@ -54,7 +61,7 @@ function Button({ children, href, direction = "right", onClick }: ButtonProps) {
             <Action
                 href={href}
                 onClick={onClick}
-                className={clsx("z-0 flex w-full items-start", {
+                className={clsx("z-0 flex w-full items-start", className, {
                     "flex-row": direction === "right",
                     "flex-row-reverse": direction === "left",
                 })}

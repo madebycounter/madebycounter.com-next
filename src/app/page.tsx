@@ -1,4 +1,4 @@
-import Button from "@/components/site/Button2";
+import About from "@/components/pages/About";
 
 import {
     useAboutPage,
@@ -18,15 +18,15 @@ export default async function Page() {
     const aboutPage = await useAboutPage();
 
     return (
-        <Test aboutPage={aboutPage} />
+        // <Test aboutPage={aboutPage} />
 
-        // <About
-        //     portfolioItem={portfolioItem}
-        //     companyInfo={companyInfo}
-        //     aboutPage={aboutPage}
-        //     henry={henry}
-        //     luke={luke}
-        //     william={william}
-        // />
+        <About
+            portfolioItem={portfolioItem}
+            companyInfo={companyInfo}
+            aboutPage={aboutPage}
+            henry={henry}
+            luke={luke}
+            william={william}
+        />
     );
 }
