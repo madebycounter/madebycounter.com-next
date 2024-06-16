@@ -1,11 +1,21 @@
-import { PortfolioItem, portfolioItemFragment } from "../portfolioItem";
+import { assetFragment } from "../assets";
+import { PortfolioItem } from "../portfolioItem";
 
 export const portfolioItemGroupFragment = `
     _id,
     _type,
     title,
     items[]->{
-        ${portfolioItemFragment}
+        _id,
+        _type,
+        title,
+        date,
+        tags,
+        thumbnail {
+            ${assetFragment}
+        },
+        slug,
+        hidden
     },
 `;
 

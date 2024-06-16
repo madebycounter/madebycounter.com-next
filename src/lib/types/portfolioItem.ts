@@ -1,21 +1,26 @@
 import { client } from "@/lib/sanity";
 
 import { MultiMedia, SanityImage, assetFragment } from "./assets";
+import { Testimonial, testimonialFragment } from "./components/testimonial";
 import { RichText } from "./richText";
+import { Service, serviceFragment } from "./service";
 
 export interface PortfolioItem {
     _id: string;
     _type: "portfolioItem";
     title: string;
     date: string;
+    tags: string[];
     description: RichText;
     thumbnail: SanityImage;
     heroMedia: MultiMedia[];
     heroEmbed: string;
     gallery: MultiMedia[];
-    slug: { current: string };
-    tags: string[];
+    serviceReference: Service;
+    testimonial: Testimonial;
+    relatedProjects: PortfolioItem[];
     hidden: boolean;
+    slug: { current: string };
 }
 
 export const portfolioItemFragment = `
@@ -36,9 +41,27 @@ export const portfolioItemFragment = `
         _key,
         ${assetFragment}
     },
+    serviceReference->{
+        ${serviceFragment}
+    },
+    testimonial->{
+        ${testimonialFragment}
+    },
+    relatedProjects[]->{
+        _id,
+        _type,
+        title,
+        date,
+        tags,
+        thumbnail {
+            ${assetFragment}
+        },
+        slug,
+        hidden,
+    },
     tags[],
     slug,
-    hidden
+    hidden,
 `;
 
 export async function usePortfolioItems(): Promise<PortfolioItem[]> {

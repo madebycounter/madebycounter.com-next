@@ -7,6 +7,7 @@ import Contact from "@/components/site/Contact";
 import Footer from "@/components/site/Footer";
 import HeroMedia from "@/components/site/HeroMedia";
 import Nav, { NavSpacer } from "@/components/site/Nav";
+import PortfolioCard from "@/components/site/cards/PortfolioCard";
 import Gallery from "@/components/util/Gallery";
 import Lightbox, {
     mapToSlides,
@@ -133,24 +134,17 @@ export default function Page({
                             </div>
                         </div>
 
-                        <Gallery.Vertical
-                            items={portfolioItem.gallery
-                                .slice(0, 2)
-                                .map((item) => ({
-                                    component: (
-                                        <Media
-                                            src={item}
-                                            onClick={(key) =>
-                                                setLightbox(true, key)
-                                            }
-                                            size="small"
-                                        />
-                                    ),
-                                    aspectRatio: 16 / 9,
-                                }))}
-                            className="gap-2 pt-2"
-                            columns={1}
-                        />
+                        <div className="my-8 flex flex-col gap-4">
+                            {(portfolioItem.relatedProjects || []).map(
+                                (item, i) => (
+                                    <PortfolioCard
+                                        className="aspect-video"
+                                        key={i}
+                                        src={item}
+                                    />
+                                ),
+                            )}
+                        </div>
 
                         <div className="pt-8">
                             <p className="mb-8 font-counter text-8xl leading-[1em] tracking-tighter">
@@ -164,45 +158,49 @@ export default function Page({
                 </div>
             </div>
 
-            <div className="m-4 block lg:hidden">
+            <div className="my-4 block lg:hidden">
                 <HeroMedia
                     className="aspect-video"
                     video={portfolioItem.heroEmbed}
                     slideshow={portfolioItem.heroMedia}
                 />
 
-                <h1 className="py-4 font-counter text-5xl leading-[0.8em] tracking-tighter md:text-8xl">
-                    {portfolioItem.title}
-                </h1>
+                <div className="px-4">
+                    <h1 className="py-4 font-counter text-5xl leading-[0.8em] tracking-tighter md:text-8xl">
+                        {portfolioItem.title}
+                    </h1>
 
-                <div className="flex flex-col gap-1">
-                    <p className="m-0 text-xl font-light leading-[1.2em] md:text-3xl">
-                        <span className="font-counter tracking-tighter">
-                            /date&nbsp;
-                        </span>
-                        {portfolioItem.date}
-                    </p>
+                    <div className="flex flex-col gap-1">
+                        <p className="m-0 text-xl font-light leading-[1.2em] md:text-3xl">
+                            <span className="font-counter tracking-tighter">
+                                /date&nbsp;
+                            </span>
+                            {portfolioItem.date}
+                        </p>
 
-                    <p className="m-0 text-xl font-light leading-[1.2em] md:text-3xl">
-                        <span className="font-counter tracking-tighter">
-                            /tags&nbsp;
-                        </span>
-                        {portfolioItem.tags.join(", ")}
-                    </p>
+                        <p className="m-0 text-xl font-light leading-[1.2em] md:text-3xl">
+                            <span className="font-counter tracking-tighter">
+                                /tags&nbsp;
+                            </span>
+                            {portfolioItem.tags.join(", ")}
+                        </p>
 
-                    <p className="m-0 text-xl font-light leading-[1.2em] md:text-3xl">
-                        <span className="font-counter tracking-tighter">
-                            /description&nbsp;
-                        </span>
-                        <PortableText
-                            value={portfolioItem.description}
-                            components={{
-                                block: {
-                                    normal: ({ children }) => <>{children}</>,
-                                },
-                            }}
-                        />
-                    </p>
+                        <p className="m-0 text-xl font-light leading-[1.2em] md:text-3xl">
+                            <span className="font-counter tracking-tighter">
+                                /description&nbsp;
+                            </span>
+                            <PortableText
+                                value={portfolioItem.description}
+                                components={{
+                                    block: {
+                                        normal: ({ children }) => (
+                                            <>{children}</>
+                                        ),
+                                    },
+                                }}
+                            />
+                        </p>
+                    </div>
                 </div>
 
                 <div className="my-4 flex flex-col gap-2">
@@ -210,7 +208,7 @@ export default function Page({
                         (row, i) => (
                             <Scroller
                                 key={i}
-                                className="flex h-[200px] gap-2 md:h-[300px]"
+                                className="flex h-[200px] gap-2 px-2 md:h-[300px]"
                             >
                                 {row.map((item, j) => (
                                     <Media
@@ -223,14 +221,30 @@ export default function Page({
                             </Scroller>
                         ),
                     )}
+
+                    <Scroller className="flex h-[200px] gap-2 px-2 md:h-[300px]">
+                        {(portfolioItem.relatedProjects || []).map(
+                            (item, i) => (
+                                <div key={i} className="aspect-[3/2] shrink-0">
+                                    <PortfolioCard
+                                        className="h-full w-full"
+                                        key={i}
+                                        src={item}
+                                    />
+                                </div>
+                            ),
+                        )}
+                    </Scroller>
                 </div>
 
-                <p className="mb-4 mt-8 font-counter text-7xl leading-[1em] tracking-tighter">
-                    Pretty cool,
-                    <br />
-                    right?
-                </p>
-                <Contact inverted />
+                <div className="mt-8 px-4">
+                    <p className="mb-4 font-counter text-7xl leading-[1em] tracking-tighter">
+                        Pretty cool,
+                        <br />
+                        right?
+                    </p>
+                    <Contact inverted />
+                </div>
             </div>
 
             <Footer inverted />
