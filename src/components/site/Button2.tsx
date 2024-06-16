@@ -75,7 +75,10 @@ function Label({ children, className }: ButtonLabelProps) {
 
     return (
         <div
-            className={clsx(className, "text-nowrap leading-[1em]")}
+            className={clsx(
+                className,
+                "text-nowrap p-[0.17em] pb-0 font-counter leading-[1em] tracking-tighter",
+            )}
             ref={ctx.ref}
         >
             {children}
