@@ -18,7 +18,7 @@ export default async function Page() {
     const aboutPage = await useAboutPage();
 
     return (
-        <Test />
+        <Test aboutPage={aboutPage} />
 
         // <About
         //     portfolioItem={portfolioItem}

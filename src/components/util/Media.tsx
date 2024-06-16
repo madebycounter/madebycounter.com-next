@@ -23,6 +23,10 @@ export function getAspectRatio(src: MultiMedia) {
     return getImageDimensions(src).aspectRatio;
 }
 
+export function getVideoThumbnail(src: MuxVideo, size: number = 100) {
+    return `https://image.mux.com/${src.asset.playbackId}/thumbnail.webp?width=${size}`;
+}
+
 function makeVideoUrl(src: MuxVideo, size: MediaSize) {
     if (size === "small" || size === "medium")
         return `https://stream.mux.com/${src.asset.playbackId}/low.mp4`;
