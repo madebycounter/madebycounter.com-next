@@ -1,9 +1,12 @@
+import clsx from "clsx";
 import Link from "next/link";
 
 import Nav from "@/components/site/Nav";
 import Media from "@/components/util/Media";
 
 import { CompanyInfo, PortfolioItem } from "@/lib/types";
+
+import styles from "./Portfolio.module.css";
 
 function PortfolioCard({ portfolioItem }: { portfolioItem: PortfolioItem }) {
     return (
@@ -44,15 +47,19 @@ export default function Page({
         <div className="min-h-screen bg-black">
             <Nav companyInfo={companyInfo} active="portfolio" />
 
-            <div className="m-auto grid max-w-screen-xl gap-8 px-4 py-32 sm:grid-cols-2 sm:px-8 lg:grid-cols-3">
+            <div
+                className={clsx(
+                    "m-auto grid max-w-screen-xl grid-flow-row gap-8 px-4 py-32 sm:px-8",
+                    styles.container,
+                )}
+            >
                 {portfolioItems
                     .sort()
                     .filter((item) => !item.hidden)
                     .map((portfolioItem, idx) => (
-                        <PortfolioCard
-                            key={idx}
-                            portfolioItem={portfolioItem}
-                        />
+                        <div key={idx}>
+                            <PortfolioCard portfolioItem={portfolioItem} />
+                        </div>
                     ))}
             </div>
         </div>
