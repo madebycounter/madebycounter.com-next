@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-import Button from "@/components/site/Button2";
+import Button from "@/components/site/Button";
 import Slash from "@/components/site/Slash";
 import Action from "@/components/util/Action";
 import Slideshow, { filterMedia } from "@/components/util/Slideshow";

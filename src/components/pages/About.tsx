@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 
-import Button from "@/components/site/Button2";
+import Button from "@/components/site/Button";
 import Nav from "@/components/site/Nav";
 import PrettyCoolRight from "@/components/site/PrettyCoolRight";
 import PortfolioCard from "@/components/site/cards/PortfolioCard";

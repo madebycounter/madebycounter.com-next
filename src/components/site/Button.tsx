@@ -1,49 +1,51 @@
-"use client";
-
 import clsx from "clsx";
-import Link from "next/link";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import {
+    ReactNode,
+    RefObject,
+    createContext,
+    useContext,
+    useEffect,
+    useRef,
+    useState,
+} from "react";
+
+import Action from "@/components/util/Action";
+import Carousel from "@/components/util/Carousel";
+import Media, { getVideoThumbnail } from "@/components/util/Media";
+import { Small } from "@/components/util/MediaSize";
+
+import { MultiMedia } from "@/lib/types";
 
 import styles from "./Button.module.css";
 
+const ButtonContext = createContext<{
+    height: number;
+    direction: "left" | "right";
+    ref: RefObject<HTMLDivElement> | null;
+}>({ height: 0, direction: "right", ref: null });
+
 export interface ButtonProps {
-    children: ReactNode;
-    href?: string;
-    className?: string;
-    classNameInner?: string;
+    children?: ReactNode;
     direction?: "left" | "right";
-    inverted?: boolean;
+    href?: string;
     onClick?: () => void;
-    onSizeChange?: (size: { width: number; height: number }) => void;
+    className?: string;
 }
 
-export default function Button({
+function Button({
     children,
-    href = "",
+    href,
     direction = "right",
-    inverted = false,
-    className,
-    classNameInner,
     onClick,
-    onSizeChange,
+    className,
 }: ButtonProps) {
     const ref = useRef<HTMLDivElement>(null);
-    const [size, setSize] = useState({ width: 0, height: 0 });
+    const [height, setHeight] = useState(0);
 
     useEffect(() => {
         function update() {
             if (!ref.current) return;
-            setSize({
-                width: ref.current.offsetWidth,
-                height: ref.current.offsetHeight,
-            });
-
-            if (onSizeChange) {
-                onSizeChange({
-                    width: ref.current.offsetWidth,
-                    height: ref.current.offsetHeight,
-                });
-            }
+            setHeight(ref.current.offsetHeight);
         }
 
         window.addEventListener("resize", update);
@@ -52,46 +54,143 @@ export default function Button({
         return () => {
             window.removeEventListener("resize", update);
         };
-    }, [className, classNameInner, onSizeChange, ref]);
+    }, [ref]);
 
     return (
-        <Link
-            className={clsx(
-                "relative block font-counter text-5xl font-normal tracking-tight",
-            )}
-            href={href}
-            onClick={(e) => {
-                e.preventDefault();
-                if (onClick) onClick();
-            }}
-        >
-            <div
-                className={clsx(className, "flex flex-nowrap items-start", {
+        <ButtonContext.Provider value={{ height, direction, ref }}>
+            <Action
+                href={href}
+                onClick={onClick}
+                className={clsx("z-0 flex w-full items-start", className, {
+                    "flex-row": direction === "right",
                     "flex-row-reverse": direction === "left",
                 })}
             >
-                <div
-                    ref={ref}
-                    className={clsx("text-nowrap p-1", classNameInner, {
-                        "bg-white text-black": !inverted,
-                        "bg-black text-white": inverted,
-                    })}
-                >
-                    {children}
-                </div>
-
-                <div
-                    className={clsx("aspect-[16/46]", {
-                        "bg-white text-black": !inverted,
-                        "bg-black text-white": inverted,
-                        [styles.right]: direction === "right",
-                        [styles.left]: direction === "left",
-                    })}
-                    style={{
-                        height: size.height,
-                    }}
-                />
-            </div>
-        </Link>
+                {children}
+            </Action>
+        </ButtonContext.Provider>
     );
 }
+
+export interface ButtonLabelProps {
+    children?: ReactNode;
+    className?: string;
+}
+
+function Label({ children, className }: ButtonLabelProps) {
+    const ctx = useContext(ButtonContext);
+
+    return (
+        <span
+            className={clsx(
+                className,
+                "block text-nowrap p-[0.17em] pb-0 font-counter leading-[1em] tracking-tighter",
+            )}
+            ref={ctx.ref}
+        >
+            {children}
+        </span>
+    );
+}
+
+export interface ButtonArrowProps {
+    className?: string;
+}
+
+function Arrow({ className }: ButtonArrowProps) {
+    const ctx = useContext(ButtonContext);
+
+    return (
+        <span className="relative">
+            <span
+                className={clsx("absolute z-10 aspect-[16/46]", className, {
+                    [styles.right]: ctx.direction === "right",
+                    [styles.left]: ctx.direction === "left",
+                })}
+                style={{
+                    height: ctx.height,
+                }}
+            />
+        </span>
+    );
+}
+
+export interface ButtonSpacerProps {
+    children?: ReactNode;
+    className?: string;
+}
+
+function Spacer({ children, className }: ButtonSpacerProps) {
+    const ctx = useContext(ButtonContext);
+
+    return (
+        <div
+            className={clsx(className)}
+            style={{
+                height: ctx.height,
+                minWidth: ctx.height * (16 / 46),
+            }}
+        >
+            {children}
+        </div>
+    );
+}
+
+export interface ButtonCarouselProps {
+    items: MultiMedia[];
+    className?: string;
+    speed?: number;
+}
+
+function CarouselSpacer({ items, speed = 30, className }: ButtonCarouselProps) {
+    const ctx = useContext(ButtonContext);
+
+    return (
+        <div
+            className={clsx(className, "-z-10 grow overflow-hidden")}
+            style={{
+                height: ctx.height,
+                minWidth: ctx.height * (16 / 46),
+            }}
+        >
+            <Carousel
+                direction={ctx.direction}
+                speed={speed}
+                child={
+                    <div className="mr-1 flex flex-nowrap gap-1">
+                        {items.map((item, idx) => (
+                            <div
+                                className="aspect-square"
+                                key={idx}
+                                style={{
+                                    width: ctx.height,
+                                }}
+                            >
+                                {item._type !== "mux.video" && (
+                                    <Media src={item} size={Small} />
+                                )}
+
+                                {item._type === "mux.video" && (
+                                    // eslint-disable-next-line @next/next/no-img-element
+                                    <img
+                                        src={getVideoThumbnail(item, 200)}
+                                        className="h-full w-full object-cover"
+                                        alt=""
+                                    />
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                }
+                childSize={(ctx.height + 4) * items.length}
+            />
+        </div>
+    );
+}
+
+Button.Label = Label;
+Button.Arrow = Arrow;
+Button.Spacer = Spacer;
+Button.Carousel = CarouselSpacer;
+
+export default Button;

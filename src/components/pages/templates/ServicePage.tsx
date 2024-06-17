@@ -1,3 +1,5 @@
+"use client";
+
 import clsx from "clsx";
 import { PortableText } from "next-sanity";
 
@@ -123,12 +125,12 @@ export default function Page({
                         />
 
                         <div>
-                            <Button
-                                href="#"
-                                className="my-4 hidden text-3xl md:flex"
-                                inverted
-                            >
-                                {service.callToAction}
+                            <Button className="my-4">
+                                <Button.Label className="bg-black text-3xl text-white">
+                                    {service.callToAction}
+                                </Button.Label>
+                                <Button.Arrow className="bg-black" />
+                                <Button.Spacer />
                             </Button>
                         </div>
 

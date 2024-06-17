@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { PortableText } from "next-sanity";
 
 import Arrow from "@/components/site/Arrow";
-import CarouselButton from "@/components/site/CarouselButton";
+import Button from "@/components/site/Button";
 import Media from "@/components/util/Media";
 import { Small } from "@/components/util/MediaSize";
 
@@ -67,14 +67,16 @@ export default function FunFactCard({ src, gallery }: FunFactCardProps) {
                 />
             </div>
 
-            <div className={clsx(styles.ButtonBox)}>
-                <CarouselButton
-                    href="/contact"
-                    className={styles.Button}
-                    media={gallery}
-                >
-                    {src.buttonText}
-                </CarouselButton>
+            <div className={clsx(styles.ButtonBox, "min-w-0")}>
+                <Button direction="right">
+                    <Button.Label
+                        className={clsx(styles.Button, "bg-white text-black")}
+                    >
+                        {src.buttonText}
+                    </Button.Label>
+                    <Button.Arrow className="bg-white" />
+                    <Button.Carousel items={src.buttonImages} />
+                </Button>
             </div>
         </div>
     );

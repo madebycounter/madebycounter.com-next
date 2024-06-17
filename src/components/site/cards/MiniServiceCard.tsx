@@ -47,13 +47,14 @@ export default function MiniServiceCard({
 
             <Button
                 onClick={() => {
-                    if (onClick) onClick(src);
+                    onClick?.(src);
                 }}
-                className="text-2xl"
-                classNameInner="!py-0 grow text-right"
-                inverted
             >
-                {src.buttonText}
+                <Button.Label className="grow bg-black !py-0 text-right text-2xl text-white">
+                    {src.buttonText}
+                </Button.Label>
+                <Button.Arrow className="bg-black" />
+                <Button.Spacer />
             </Button>
         </div>
     );
