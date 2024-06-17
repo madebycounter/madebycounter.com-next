@@ -126,7 +126,7 @@ export default function Page({
 
                         <div>
                             <Button className="my-4">
-                                <Button.Label className="bg-black text-3xl text-white">
+                                <Button.Label className="bg-black pb-1 text-3xl text-white">
                                     {service.callToAction}
                                 </Button.Label>
                                 <Button.Arrow className="bg-black" />
