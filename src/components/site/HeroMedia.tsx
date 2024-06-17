@@ -13,12 +13,14 @@ export interface HeroMediaProps {
     video?: string;
     slideshow?: MultiMedia[];
     className?: string;
+    onClick?: (key: string) => void;
 }
 
 export default function HeroMedia({
     video,
     slideshow,
     className,
+    onClick,
 }: HeroMediaProps) {
     const [dynamicData, setDynamicData] = useState(<></>);
 
@@ -33,10 +35,11 @@ export default function HeroMedia({
                         img: 1920,
                         video: "high",
                     }}
+                    onClick={onClick}
                 />,
             );
         }
-    }, [video, slideshow]);
+    }, [video, slideshow, onClick]);
 
     return <div className={className}>{dynamicData}</div>;
 }

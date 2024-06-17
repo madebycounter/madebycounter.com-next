@@ -54,7 +54,10 @@ export default function Page({
                 open={lightboxOpen}
                 setLightbox={setLightbox}
                 currentSlide={lightboxCurrent}
-                slides={mapToSlides(portfolioItem.gallery)}
+                slides={mapToSlides([
+                    ...(portfolioItem.heroMedia || []),
+                    ...portfolioItem.gallery,
+                ])}
             />
 
             <Nav
@@ -77,6 +80,7 @@ export default function Page({
                             className="aspect-video"
                             video={portfolioItem.heroEmbed}
                             slideshow={portfolioItem.heroMedia}
+                            onClick={(key) => setLightbox(true, key)}
                         />
 
                         <Gallery.Vertical
@@ -181,6 +185,7 @@ export default function Page({
                     className="aspect-video"
                     video={portfolioItem.heroEmbed}
                     slideshow={portfolioItem.heroMedia}
+                    onClick={(key) => setLightbox(true, key)}
                 />
 
                 <div className="px-4">
@@ -268,6 +273,9 @@ export default function Page({
                             >
                                 {row.map((item, j) => (
                                     <Media
+                                        onClick={(key) =>
+                                            setLightbox(true, key)
+                                        }
                                         key={j}
                                         src={item}
                                         mode="height"

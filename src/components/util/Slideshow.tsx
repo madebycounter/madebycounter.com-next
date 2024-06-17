@@ -31,6 +31,7 @@ export interface SlideshowProps {
     imageSpeed?: number;
     offset?: number;
     size?: MediaSize;
+    onClick?: (key: string) => void;
 }
 
 function notLessThanZero(value: number) {
@@ -43,6 +44,7 @@ export default function Slideshow({
     imageSpeed = 5000,
     offset = 0,
     size = MediaSizes.Small,
+    onClick,
 }: SlideshowProps) {
     const firstTimeout = useRef(true);
     const [index, setIndex] = useState(0);
@@ -81,6 +83,7 @@ export default function Slideshow({
                         playing={i === index}
                         mode="cover"
                         size={size}
+                        onClick={() => onClick?.(item._key)}
                     />
                 </div>
             ))}
