@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { PortableText } from "next-sanity";
 
 import Button from "@/components/site/Button";
-import Media from "@/components/util/Media";
+import Media, { MediaSizes } from "@/components/util/Media";
 
 import { MiniService } from "@/lib/types";
 
@@ -22,7 +22,7 @@ export default function MiniServiceCard({
     return (
         <div className={clsx(className)}>
             <div className="aspect-4/3">
-                <Media src={src.photo} size="small" />
+                <Media src={src.photo} size={MediaSizes.Small} />
             </div>
 
             <h2 className="py-2 font-counter text-3xl leading-[0.8em] tracking-tighter">

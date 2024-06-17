@@ -3,6 +3,7 @@
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 
+import { MediaSizes } from "@/components/util/Media";
 import Slideshow, { filterMedia } from "@/components/util/Slideshow";
 import { VideoEmbed } from "@/components/util/VideoEmbed";
 
@@ -25,7 +26,15 @@ export default function HeroMedia({
         if (video) {
             setDynamicData(<VideoEmbed url={video} />);
         } else if (slideshow) {
-            setDynamicData(<Slideshow items={filterMedia(slideshow)} />);
+            setDynamicData(
+                <Slideshow
+                    items={filterMedia(slideshow)}
+                    size={{
+                        img: 1920,
+                        video: "high",
+                    }}
+                />,
+            );
         }
     }, [video, slideshow]);
 

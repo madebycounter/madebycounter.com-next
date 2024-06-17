@@ -8,7 +8,7 @@ import mod from "@/util/mod";
 import "@/util/scrollSnap.css";
 
 import Nav from "@/components/site/Nav";
-import Media from "@/components/util/Media";
+import Media, { MediaSizes } from "@/components/util/Media";
 
 import { CompanyInfo, Service } from "@/lib/types";
 
@@ -94,7 +94,7 @@ export default function Page({
                     >
                         <Media
                             src={services[0].slideshow[i]}
-                            size="large"
+                            size={MediaSizes.Large}
                             mode="cover"
                         />
                     </div>

@@ -12,7 +12,25 @@ import styles from "./Media.module.css";
 
 /* eslint-disable @next/next/no-img-element */
 
-export type MediaSize = "small" | "medium" | "large";
+export type MediaSize = {
+    img: number;
+    video: "low" | "medium" | "high" | "stream";
+};
+
+export const MediaSizes: Record<string, MediaSize> = {
+    Small: {
+        img: 480,
+        video: "low",
+    },
+    Medium: {
+        img: 1028,
+        video: "low",
+    },
+    Large: {
+        img: 1920,
+        video: "high",
+    },
+};
 
 export function getAspectRatio(src: MultiMedia) {
     if (src._type === "mux.video") {
@@ -28,16 +46,11 @@ export function getVideoThumbnail(src: MuxVideo, size: number = 100) {
 }
 
 function makeVideoUrl(src: MuxVideo, size: MediaSize) {
-    if (size === "small" || size === "medium")
-        return `https://stream.mux.com/${src.asset.playbackId}/low.mp4`;
-    return `https://stream.mux.com/${src.asset.playbackId}/medium.mp4`;
+    return `https://stream.mux.com/${src.asset.playbackId}/${size.video}.mp4`;
 }
 
 function makeImageUrl(src: SanityImage, size: MediaSize) {
-    if (size === "small") return `${src.asset.url}?w=480&q=50&sharp=10&fm=webp`;
-    if (size === "medium")
-        return `${src.asset.url}?w=1028&q=70&sharp=10&fm=webp`;
-    return `${src.asset.url}?w=1920&q=75&sharp=1&fm=webp`;
+    return `${src.asset.url}?w=${size.img}&q=70&sharp=10&fm=webp`;
 }
 
 function useImageLoaded(): [
@@ -82,7 +95,7 @@ export function MediaPreview({ src, className }: MediaPreviewProps) {
             )}
 
             {src._type === "image" && (
-                <Media src={src} mode="contain" size="small" />
+                <Media src={src} mode="contain" size={MediaSizes.Small} />
             )}
         </div>
     );
@@ -175,7 +188,7 @@ export interface MediaProps {
     loop?: boolean;
     className?: string;
     mode?: "height" | "width" | "cover" | "contain";
-    size?: "small" | "medium" | "large";
+    size?: MediaSize;
 }
 
 export default function Media({
@@ -186,7 +199,7 @@ export default function Media({
     playing,
     loop,
     mode = "cover",
-    size = "medium",
+    size = MediaSizes.Medium,
     className,
 }: MediaProps) {
     const [ready, setReady] = useState(false);

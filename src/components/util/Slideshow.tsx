@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 
-import Media from "@/components/util/Media";
+import Media, { MediaSize, MediaSizes } from "@/components/util/Media";
 
 import { MultiMedia, MuxVideo, SanityImage } from "@/lib/types";
 
@@ -30,6 +30,7 @@ export interface SlideshowProps {
     className?: string;
     imageSpeed?: number;
     offset?: number;
+    size?: MediaSize;
 }
 
 function notLessThanZero(value: number) {
@@ -41,6 +42,7 @@ export default function Slideshow({
     className,
     imageSpeed = 5000,
     offset = 0,
+    size = MediaSizes.Small,
 }: SlideshowProps) {
     const firstTimeout = useRef(true);
     const [index, setIndex] = useState(0);
@@ -78,6 +80,7 @@ export default function Slideshow({
                         loop={items.length === 1}
                         playing={i === index}
                         mode="cover"
+                        size={size}
                     />
                 </div>
             ))}

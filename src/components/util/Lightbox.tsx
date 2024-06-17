@@ -24,7 +24,16 @@ declare module "yet-another-react-lightbox" {
 }
 
 function renderSlide(slide: MediaSlide) {
-    return <Media src={slide.data} mode="contain" size="large" />;
+    return (
+        <Media
+            src={slide.data}
+            mode="contain"
+            size={{
+                img: 1920,
+                video: "high",
+            }}
+        />
+    );
 }
 
 function renderThumbnail(slide: MediaSlide) {

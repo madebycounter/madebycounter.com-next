@@ -9,7 +9,7 @@ import Nav from "@/components/site/Nav";
 import PrettyCoolRight from "@/components/site/PrettyCoolRight";
 import PortfolioCard from "@/components/site/cards/PortfolioCard";
 import Carousel from "@/components/util/Carousel";
-import Media from "@/components/util/Media";
+import Media, { MediaSizes } from "@/components/util/Media";
 import Slideshow, { filterMedia } from "@/components/util/Slideshow";
 
 import { AboutPage, CompanyInfo, PortfolioItem, TeamMember } from "@/lib/types";
@@ -33,7 +33,7 @@ export default function Page({
                 <Media
                     src={aboutPage.henryButtonImages[0]}
                     mode="cover"
-                    size="large"
+                    size={MediaSizes.Large}
                 />
 
                 <div className="absolute bottom-0 left-0 z-10 max-w-[900px] p-4 text-white">

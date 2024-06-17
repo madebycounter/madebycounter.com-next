@@ -6,7 +6,7 @@ import Arrow from "@/components/site/Arrow";
 import Button from "@/components/site/Button";
 import CarouselButton from "@/components/site/CarouselButton";
 import Carousel from "@/components/util/Carousel";
-import Media from "@/components/util/Media";
+import Media, { MediaSizes } from "@/components/util/Media";
 
 import { FunFact, MultiMedia } from "@/lib/types";
 
@@ -22,13 +22,16 @@ export default function FunFactCard({ src, gallery }: FunFactCardProps) {
         <div className={clsx(styles.FunFactCard)}>
             <div className={clsx(styles.Portrait)}>
                 <div className={clsx(styles.Portrait__desktop)}>
-                    <Media src={src.teamMember.profile} size="small" />
+                    <Media
+                        src={src.teamMember.profile}
+                        size={MediaSizes.Small}
+                    />
                 </div>
 
                 <div className={clsx(styles.Portrait__mobile)}>
                     <Media
                         src={src.teamMember.funFact}
-                        size="small"
+                        size={MediaSizes.Small}
                         className="block"
                     />
                 </div>
