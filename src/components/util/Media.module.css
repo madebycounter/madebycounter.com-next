@@ -26,30 +26,6 @@
     max-height: 100%;
 }
 
-.Preview {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 1;
-    transition: opacity 250ms ease-in-out;
-}
-
-.Preview__hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.clickable {
-    cursor: pointer;
-}
-
-.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
 .Image {
     object-fit: cover;
     width: 100%;
@@ -75,10 +51,19 @@
     height: 100%;
     opacity: 1;
     transition: opacity 250ms ease-in-out;
-    z-index: 100;
+    z-index: 10;
 }
 
 .Preview__hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.hidden {
     opacity: 0;
     pointer-events: none;
 }
