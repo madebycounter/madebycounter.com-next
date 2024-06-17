@@ -2,6 +2,9 @@
 
 import clsx from "clsx";
 import { PortableText } from "next-sanity";
+import { useRef } from "react";
+
+import { useContainerSize, useWindowSize } from "@/util/hooks";
 
 import Button from "@/components/site/Button";
 import HeroMedia from "@/components/site/HeroMedia";
@@ -11,8 +14,10 @@ import FunFactCard from "@/components/site/cards/FunFactCard";
 import MiniServiceCard from "@/components/site/cards/MiniServiceCard";
 import PortfolioCard from "@/components/site/cards/PortfolioCard";
 import TestimonialCard from "@/components/site/cards/TestimonialCard";
-import Media from "@/components/util/Media";
-import { Small } from "@/components/util/MediaSize";
+import Carousel from "@/components/util/Carousel";
+import Gallery from "@/components/util/Gallery";
+import Media, { getAspectRatio } from "@/components/util/Media";
+import { Medium, Small } from "@/components/util/MediaSize";
 import Scroller from "@/components/util/Scroller";
 
 import {
@@ -27,19 +32,26 @@ import {
 } from "@/lib/types";
 import { PortfolioItemGroup } from "@/lib/types/groups/portfolioItemGroup";
 
-function findItem<T extends { _id: string }>(items: T[], id: string) {
+function findItem<T extends { _id: string }>(items: T[] = [], id: string) {
     return items.find((item) => item._id === id) as T;
 }
 
-function makeContent(content: ServiceContent, gallery: MultiMedia[]) {
+function makeContent(
+    content: ServiceContent,
+    gallery: MultiMedia[],
+    windowSize: { width: number },
+) {
     return content.references.map((ref, idx) => (
-        <div className="my-24 lg:my-32" key={idx}>
+        <div className="my-16 lg:my-16" key={idx}>
             {ref._type === "funFact" &&
                 makeFunFact(findItem(content.funFacts, ref._id), gallery)}
             {ref._type === "testimonial" &&
                 makeTestimonial(findItem(content.testimonials, ref._id))}
             {ref._type === "mediaGroup" &&
-                makeMediaGroup(findItem(content.mediaGroups, ref._id))}
+                makeMediaGroup(
+                    findItem(content.mediaGroups, ref._id),
+                    windowSize,
+                )}
             {ref._type === "miniServiceGroup" &&
                 makeServiceGroup(findItem(content.miniServiceGroups, ref._id))}
             {ref._type === "portfolioItemGroup" &&
@@ -51,42 +63,65 @@ function makeContent(content: ServiceContent, gallery: MultiMedia[]) {
 }
 
 function makeFunFact(funFact: FunFact, gallery: MultiMedia[]) {
-    return <FunFactCard src={funFact} gallery={gallery} />;
+    return (
+        <div className="m-auto max-w-[900px]">
+            <FunFactCard src={funFact} gallery={gallery} />
+        </div>
+    );
 }
 
 function makeTestimonial(testimonial: Testimonial) {
-    return <TestimonialCard src={testimonial} />;
+    return (
+        <div className="m-auto max-w-[900px]">
+            <TestimonialCard src={testimonial} />
+        </div>
+    );
 }
 
-function makeMediaGroup(mediaGroup: MediaGroup) {
-    return <p>{mediaGroup.title}</p>;
+function makeMediaGroup(mediaGroup: MediaGroup, windowSize: { width: number }) {
+    return (
+        <Gallery.Carousel
+            rows={2}
+            gap={windowSize.width > 800 ? 8 : 4}
+            height={windowSize.width > 800 ? 300 : 150}
+            speed={50}
+            items={(mediaGroup.items || []).map((item) => ({
+                component: <Media src={item} size={Medium} />,
+                aspectRatio: getAspectRatio(item),
+            }))}
+        />
+    );
 }
 
 function makeServiceGroup(servicesGroup: MiniServiceGroup) {
     return (
-        <Scroller className="flex gap-4">
-            {servicesGroup.items.map((service, idx) => (
-                <MiniServiceCard
-                    className="min-w-[280px] shrink-0 grow basis-1"
-                    src={service}
-                    key={idx}
-                />
-            ))}
-        </Scroller>
+        <div className="m-auto max-w-[900px]">
+            <Scroller className="flex gap-4">
+                {servicesGroup.items.map((service, idx) => (
+                    <MiniServiceCard
+                        className="min-w-[280px] shrink-0 grow basis-1"
+                        src={service}
+                        key={idx}
+                    />
+                ))}
+            </Scroller>
+        </div>
     );
 }
 
 function makePortfolioGroup(portfolioGroup: PortfolioItemGroup) {
     return (
-        <Scroller className="flex gap-4">
-            {portfolioGroup.items.map((item, idx) => (
-                <PortfolioCard
-                    className="aspect-4/3 min-w-[280px] shrink-0 grow basis-1"
-                    src={item}
-                    key={idx}
-                />
-            ))}
-        </Scroller>
+        <div className="m-auto max-w-[900px]">
+            <Scroller className="flex gap-4">
+                {portfolioGroup.items.map((item, idx) => (
+                    <PortfolioCard
+                        className="aspect-4/3 min-w-[280px] shrink-0 grow basis-1"
+                        src={item}
+                        key={idx}
+                    />
+                ))}
+            </Scroller>
+        </div>
     );
 }
 
@@ -97,6 +132,8 @@ export default function Page({
     companyInfo: CompanyInfo;
     service: Service;
 }) {
+    const windowSize = useWindowSize();
+
     return (
         <>
             <Nav companyInfo={companyInfo} threshold={0} inverted />
@@ -171,9 +208,9 @@ export default function Page({
                 </div>
             </div>
 
-            <div className="m-auto max-w-[900px]">
-                {makeContent(service.content, service.slideshow)}
+            {makeContent(service.content, service.slideshow, windowSize)}
 
+            <div className="m-auto max-w-[900px] px-4">
                 <PrettyCoolRight className="mb-32" inverted />
             </div>
         </>

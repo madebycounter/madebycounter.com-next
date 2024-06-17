@@ -1,5 +1,10 @@
 import clsx from "clsx";
+import React, { RefObject } from "react";
+
 import seededShuffle from "@/util/seededShuffle";
+
+import Carousel from "@/components/util/Carousel";
+import Media from "@/components/util/Media";
 
 import styles from "./Gallery.module.css";
 
@@ -16,7 +21,7 @@ type GalleryLayout = {
 function createLayout(
     items: GalleryItem[],
     groups: number,
-    getSize: (item: GalleryItem) => number
+    getSize: (item: GalleryItem) => number,
 ) {
     // Sort images by size
     items.sort((a, b) => getSize(b) - getSize(a));
@@ -29,7 +34,7 @@ function createLayout(
     for (let i = 0; i < items.length; i++) {
         var img = items[i];
         var shortestColumn = layout.reduce((prev, curr) =>
-            prev.size < curr.size ? prev : curr
+            prev.size < curr.size ? prev : curr,
         );
 
         shortestColumn.items.push(img);
@@ -54,11 +59,17 @@ function createHorizontalLayout(items: GalleryItem[], rows: number) {
 
 export interface GalleryProps {
     items: GalleryItem[][];
+    childRef?: RefObject<HTMLDivElement>;
     className?: string;
     groupClassName?: string;
 }
 
-function Gallery({ items = [], className, groupClassName }: GalleryProps) {
+function Gallery({
+    items = [],
+    className,
+    groupClassName,
+    childRef,
+}: GalleryProps) {
     return (
         <div className={className}>
             {items.map((group, i) => (
@@ -67,6 +78,7 @@ function Gallery({ items = [], className, groupClassName }: GalleryProps) {
                         <div
                             key={j}
                             className={clsx(styles.item)}
+                            ref={childRef}
                             style={
                                 {
                                     "--aspect-ratio": item.aspectRatio,
@@ -86,15 +98,22 @@ export interface VerticalGalleryProps {
     items: GalleryItem[];
     columns: number;
     className?: string;
+    childRef?: RefObject<HTMLDivElement>;
 }
 
-function Vertical({ items, columns, className }: VerticalGalleryProps) {
+function Vertical({
+    items,
+    columns,
+    className,
+    childRef,
+}: VerticalGalleryProps) {
     const groups = createVerticalLayout(items, columns);
 
     return (
         <Gallery
             items={groups}
             className={clsx(className, styles.GalleryVertical)}
+            childRef={childRef}
         />
     );
 }
@@ -104,6 +123,7 @@ export interface HorizontalGalleryProps {
     rows: number;
     groupClassName?: string;
     className?: string;
+    childRef?: RefObject<HTMLDivElement>;
 }
 
 function Horizontal({
@@ -111,6 +131,7 @@ function Horizontal({
     className,
     rows,
     groupClassName = styles.group300,
+    childRef,
 }: HorizontalGalleryProps) {
     const groups = createHorizontalLayout(items, rows);
 
@@ -119,11 +140,76 @@ function Horizontal({
             items={groups}
             className={clsx(className, styles.GalleryHorizontal)}
             groupClassName={groupClassName}
+            childRef={childRef}
         />
+    );
+}
+
+export interface CarouselGalleryProps {
+    items: GalleryItem[];
+    rows: number;
+    className?: string;
+    speed?: number;
+    direction?: "left" | "right";
+    height?: number;
+    gap?: number;
+}
+
+function CarouselGallery({
+    items,
+    rows,
+    className,
+    speed,
+    direction = "left",
+    height = 300,
+    gap = 4,
+}: CarouselGalleryProps) {
+    const groups = createHorizontalLayout(items, rows);
+
+    return (
+        <div
+            className={clsx(className, "flex flex-col")}
+            style={{
+                gap: `${gap}px`,
+            }}
+        >
+            {groups.map((group, i) => (
+                <Carousel
+                    direction={direction}
+                    speed={speed}
+                    key={i}
+                    child={
+                        <div
+                            className="flex flex-row flex-nowrap"
+                            style={{
+                                gap: `${gap}px`,
+                                marginRight: `${gap}px`,
+                            }}
+                        >
+                            {group.map((item, j) => (
+                                <div
+                                    key={j}
+                                    style={{
+                                        height: height,
+                                        aspectRatio: item.aspectRatio,
+                                    }}
+                                >
+                                    {item.component}
+                                </div>
+                            ))}
+                        </div>
+                    }
+                    childSize={group
+                        .map((item) => item.aspectRatio * height + gap)
+                        .reduce((a, b) => a + b, 0)}
+                />
+            ))}
+        </div>
     );
 }
 
 Gallery.Vertical = Vertical;
 Gallery.Horizontal = Horizontal;
+Gallery.Carousel = CarouselGallery;
 
 export default Gallery;

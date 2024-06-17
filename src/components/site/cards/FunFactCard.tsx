@@ -75,7 +75,7 @@ export default function FunFactCard({ src, gallery }: FunFactCardProps) {
                         {src.buttonText}
                     </Button.Label>
                     <Button.Arrow className="bg-white" />
-                    <Button.Carousel items={src.buttonImages} />
+                    <Button.Carousel items={gallery} />
                 </Button>
             </div>
         </div>

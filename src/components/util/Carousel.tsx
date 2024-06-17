@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 
-import { useWindowSize } from "@/util/hooks";
+import { useContainerSize, useWindowSize } from "@/util/hooks";
 
 import styles from "./Carousel.module.css";
 
@@ -22,7 +22,7 @@ function isHorizontal(direction: CarouselDirection) {
     return direction === "left" || direction === "right";
 }
 
-export default function Carousel({
+function Carousel({
     child,
     childSize,
     speed = 100,
@@ -120,3 +120,5 @@ export default function Carousel({
         </div>
     );
 }
+
+export default Carousel;

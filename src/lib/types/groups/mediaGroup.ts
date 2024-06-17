@@ -4,7 +4,8 @@ export const mediaGroupFragment = `
     _id,
     _type,
     title,
-    items[]->{
+    items[] {
+        _key,
         ${assetFragment}
     },
 `;
