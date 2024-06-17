@@ -59,11 +59,6 @@ export default function Nav({
 }: NavProps) {
     const [navOpen, setNavOpen] = useState(false);
 
-    const textStyle = clsx({
-        "text-white": !inverted,
-        "text-black": inverted,
-    });
-
     return (
         <>
             <BaseNav.Variable
@@ -100,12 +95,7 @@ export default function Nav({
                 threshold={threshold}
             >
                 <BaseNav.Logo className="py-2">
-                    <Link
-                        href="/"
-                        className={clsx({
-                            invert: !inverted,
-                        })}
-                    >
+                    <Link href="/">
                         <Media
                             src={companyInfo.logo}
                             alt={companyInfo.name}
@@ -114,7 +104,9 @@ export default function Nav({
                                 img: 300,
                                 video: "low",
                             }}
-                            className="!h-auto !w-[150px]"
+                            className={clsx("!h-auto !w-[150px]", {
+                                "!invert": !inverted,
+                            })}
                         />
                     </Link>
                 </BaseNav.Logo>
