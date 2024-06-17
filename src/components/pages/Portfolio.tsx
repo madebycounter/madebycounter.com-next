@@ -45,7 +45,7 @@ export default function Page({
 }) {
     return (
         <div className="min-h-screen bg-black">
-            <Nav companyInfo={companyInfo} active="portfolio" />
+            <Nav companyInfo={companyInfo} active="portfolio" solid />
 
             <div
                 className={clsx(

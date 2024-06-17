@@ -48,6 +48,7 @@ export interface NavProps {
     inverted?: boolean;
     threshold?: number;
     scrollBehavior?: boolean;
+    solid?: boolean;
 }
 
 export default function Nav({
@@ -56,6 +57,7 @@ export default function Nav({
     active = "",
     threshold,
     scrollBehavior = true,
+    solid = false,
 }: NavProps) {
     const [navOpen, setNavOpen] = useState(false);
 
@@ -66,7 +68,8 @@ export default function Nav({
                     "z-30 h-16 px-4 py-2 transition-all duration-300 md:px-8",
                     {
                         "bg-gradient-to-b from-black/60 to-transparent":
-                            !inverted,
+                            !inverted && !solid,
+                        "bg-black": inverted || solid,
                         "bg-white": inverted,
                     },
                 )}

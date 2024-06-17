@@ -181,7 +181,7 @@ export default function Page({
             </div>
 
             {/* MOBILE */}
-            <div className="my-4 block lg:hidden">
+            <div className="mb-4 block lg:hidden">
                 <HeroMedia
                     className="aspect-video"
                     video={portfolioItem.heroEmbed}
