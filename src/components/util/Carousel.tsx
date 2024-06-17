@@ -1,9 +1,9 @@
 "use client";
 
 import clsx from "clsx";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { useContainerSize, useWindowSize } from "@/util/hooks";
+import { useWindowSize } from "@/util/hooks";
 
 import styles from "./Carousel.module.css";
 

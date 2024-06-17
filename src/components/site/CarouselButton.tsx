@@ -4,8 +4,9 @@ import clsx from "clsx";
 import { useState } from "react";
 
 import Button, { ButtonProps } from "@/components/site/Button";
-import Carousel, { CarouselProps } from "@/components/util/Carousel";
-import Media, { MediaSizes } from "@/components/util/Media";
+import Carousel from "@/components/util/Carousel";
+import Media from "@/components/util/Media";
+import { Small } from "@/components/util/MediaSize";
 
 import { MultiMedia } from "@/lib/types";
 
@@ -38,7 +39,7 @@ export default function CarouselButton({
                     <div className="mr-1 flex h-full gap-1">
                         {media.map((m, i) => (
                             <div key={i} className="aspect-square h-full">
-                                <Media src={m} size={MediaSizes.Small} />
+                                <Media src={m} size={Small} />
                             </div>
                         ))}
                     </div>

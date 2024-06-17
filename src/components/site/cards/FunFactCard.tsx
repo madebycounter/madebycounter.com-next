@@ -1,12 +1,10 @@
 import clsx from "clsx";
-import { link } from "fs";
 import { PortableText } from "next-sanity";
 
 import Arrow from "@/components/site/Arrow";
-import Button from "@/components/site/Button";
 import CarouselButton from "@/components/site/CarouselButton";
-import Carousel from "@/components/util/Carousel";
-import Media, { MediaSizes } from "@/components/util/Media";
+import Media from "@/components/util/Media";
+import { Small } from "@/components/util/MediaSize";
 
 import { FunFact, MultiMedia } from "@/lib/types";
 
@@ -22,16 +20,13 @@ export default function FunFactCard({ src, gallery }: FunFactCardProps) {
         <div className={clsx(styles.FunFactCard)}>
             <div className={clsx(styles.Portrait)}>
                 <div className={clsx(styles.Portrait__desktop)}>
-                    <Media
-                        src={src.teamMember.profile}
-                        size={MediaSizes.Small}
-                    />
+                    <Media src={src.teamMember.profile} size={Small} />
                 </div>
 
                 <div className={clsx(styles.Portrait__mobile)}>
                     <Media
                         src={src.teamMember.funFact}
-                        size={MediaSizes.Small}
+                        size={Small}
                         className="block"
                     />
                 </div>

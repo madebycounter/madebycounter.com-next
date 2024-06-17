@@ -16,7 +16,8 @@ import Lightbox, {
     mapToSlides,
     useLightboxState,
 } from "@/components/util/Lightbox";
-import Media, { MediaSizes, getAspectRatio } from "@/components/util/Media";
+import Media, { getAspectRatio } from "@/components/util/Media";
+import { Medium } from "@/components/util/MediaSize";
 import Parallax from "@/components/util/Parallax";
 import Rating from "@/components/util/Rating";
 import Scroller from "@/components/util/Scroller";
@@ -91,7 +92,7 @@ export default function Page({
                                         onClick={(key) =>
                                             setLightbox(true, key)
                                         }
-                                        size={MediaSizes.Medium}
+                                        size={Medium}
                                     />
                                 ),
                                 aspectRatio: getAspectRatio(item),

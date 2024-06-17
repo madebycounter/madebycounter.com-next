@@ -6,31 +6,13 @@ import { useEffect, useRef, useState } from "react";
 
 import { useIsVisible } from "@/util/hooks";
 
+import MediaSize, { Medium, Small } from "@/components/util/MediaSize";
+
 import { MultiMedia, MuxVideo, SanityImage } from "@/lib/types";
 
 import styles from "./Media.module.css";
 
 /* eslint-disable @next/next/no-img-element */
-
-export type MediaSize = {
-    img: number;
-    video: "low" | "medium" | "high" | "stream";
-};
-
-export const MediaSizes: Record<string, MediaSize> = {
-    Small: {
-        img: 480,
-        video: "low",
-    },
-    Medium: {
-        img: 1028,
-        video: "low",
-    },
-    Large: {
-        img: 1920,
-        video: "high",
-    },
-};
 
 export function getAspectRatio(src: MultiMedia) {
     if (src._type === "mux.video") {
@@ -95,7 +77,7 @@ export function MediaPreview({ src, className }: MediaPreviewProps) {
             )}
 
             {src._type === "image" && (
-                <Media src={src} mode="contain" size={MediaSizes.Small} />
+                <Media src={src} mode="contain" size={Small} />
             )}
         </div>
     );
@@ -199,7 +181,7 @@ export default function Media({
     playing,
     loop,
     mode = "cover",
-    size = MediaSizes.Medium,
+    size = Medium,
     className,
 }: MediaProps) {
     const [ready, setReady] = useState(false);

@@ -1,9 +1,7 @@
 "use client";
 
-import clsx from "clsx";
 import { useEffect, useState } from "react";
 
-import { MediaSizes } from "@/components/util/Media";
 import Slideshow, { filterMedia } from "@/components/util/Slideshow";
 import { VideoEmbed } from "@/components/util/VideoEmbed";
 

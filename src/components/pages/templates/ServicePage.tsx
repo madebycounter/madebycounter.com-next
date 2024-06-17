@@ -9,7 +9,8 @@ import FunFactCard from "@/components/site/cards/FunFactCard";
 import MiniServiceCard from "@/components/site/cards/MiniServiceCard";
 import PortfolioCard from "@/components/site/cards/PortfolioCard";
 import TestimonialCard from "@/components/site/cards/TestimonialCard";
-import Media, { MediaSizes } from "@/components/util/Media";
+import Media from "@/components/util/Media";
+import { Small } from "@/components/util/MediaSize";
 import Scroller from "@/components/util/Scroller";
 
 import {
@@ -149,7 +150,7 @@ export default function Page({
                         >
                             <Media
                                 src={service.teamMember.actionShot}
-                                size={MediaSizes.Small}
+                                size={Small}
                                 mode="contain"
                                 className="float-right"
                             />

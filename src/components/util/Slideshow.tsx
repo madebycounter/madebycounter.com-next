@@ -3,7 +3,8 @@
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 
-import Media, { MediaSize, MediaSizes } from "@/components/util/Media";
+import Media from "@/components/util/Media";
+import MediaSize, { Small } from "@/components/util/MediaSize";
 
 import { MultiMedia, MuxVideo, SanityImage } from "@/lib/types";
 
@@ -43,7 +44,7 @@ export default function Slideshow({
     className,
     imageSpeed = 5000,
     offset = 0,
-    size = MediaSizes.Small,
+    size = Small,
     onClick,
 }: SlideshowProps) {
     const firstTimeout = useRef(true);

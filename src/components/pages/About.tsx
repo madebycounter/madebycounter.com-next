@@ -3,16 +3,14 @@
 import clsx from "clsx";
 
 import Button from "@/components/site/Button2";
-import CarouselButton from "@/components/site/CarouselButton";
-import Contact from "@/components/site/Contact";
 import Nav from "@/components/site/Nav";
 import PrettyCoolRight from "@/components/site/PrettyCoolRight";
 import PortfolioCard from "@/components/site/cards/PortfolioCard";
-import Carousel from "@/components/util/Carousel";
-import Media, { MediaSizes } from "@/components/util/Media";
+import Media from "@/components/util/Media";
+import { Large } from "@/components/util/MediaSize";
 import Slideshow, { filterMedia } from "@/components/util/Slideshow";
 
-import { AboutPage, CompanyInfo, PortfolioItem, TeamMember } from "@/lib/types";
+import { AboutPage, CompanyInfo } from "@/lib/types";
 
 import styles from "./About.module.css";
 
@@ -31,9 +29,9 @@ export default function Page({
 
             <div className="relative h-screen w-full">
                 <Media
-                    src={aboutPage.henryButtonImages[0]}
+                    src={aboutPage.henryService.slideshow[0]}
                     mode="cover"
-                    size={MediaSizes.Large}
+                    size={Large}
                 />
 
                 <div className="absolute bottom-0 left-0 z-10 max-w-[900px] p-4 text-white">
@@ -81,13 +79,17 @@ export default function Page({
                         </p>
 
                         <div className="z-0">
-                            <Button direction="right" className="mt-8">
+                            <Button
+                                href={`/services/${aboutPage.lukeService.slug.current}`}
+                                direction="right"
+                                className="mt-8"
+                            >
                                 <Button.Label className="bg-white text-3xl text-black lg:text-5xl">
                                     Learn More
                                 </Button.Label>
                                 <Button.Arrow className="bg-white" />
                                 <Button.Carousel
-                                    items={aboutPage.lukeButtonImages}
+                                    items={aboutPage.lukeService.slideshow}
                                 />
                             </Button>
                         </div>
@@ -175,13 +177,17 @@ export default function Page({
                         </p>
 
                         <div className="z-0">
-                            <Button direction="left" className="mt-8">
+                            <Button
+                                href={`/services/${aboutPage.henryService.slug.current}`}
+                                direction="left"
+                                className="mt-8"
+                            >
                                 <Button.Label className="bg-white text-3xl text-black lg:text-5xl">
                                     Learn More
                                 </Button.Label>
                                 <Button.Arrow className="bg-white" />
                                 <Button.Carousel
-                                    items={aboutPage.henryButtonImages}
+                                    items={aboutPage.henryService.slideshow}
                                 />
                             </Button>
                         </div>
@@ -274,13 +280,17 @@ export default function Page({
                         </p>
 
                         <div className="z-0">
-                            <Button direction="right" className="mt-8">
+                            <Button
+                                href={`/services/${aboutPage.williamService.slug.current}`}
+                                direction="right"
+                                className="mt-8"
+                            >
                                 <Button.Label className="bg-white text-3xl text-black lg:text-5xl">
                                     Learn More
                                 </Button.Label>
                                 <Button.Arrow className="bg-white" />
                                 <Button.Carousel
-                                    items={aboutPage.williamButtonImages}
+                                    items={aboutPage.williamService.slideshow}
                                 />
                             </Button>
                         </div>

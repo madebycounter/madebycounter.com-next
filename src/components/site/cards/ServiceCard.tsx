@@ -3,7 +3,6 @@ import clsx from "clsx";
 import Button from "@/components/site/Button2";
 import Slash from "@/components/site/Slash";
 import Action from "@/components/util/Action";
-import Media from "@/components/util/Media";
 import Slideshow, { filterMedia } from "@/components/util/Slideshow";
 
 import { Service } from "@/lib/types";

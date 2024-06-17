@@ -1,4 +1,5 @@
 import { client } from "@/lib/sanity";
+import { Service } from "@/lib/types/service";
 
 import { MultiMedia, assetFragment } from "../assets";
 import { TeamMember, teamMemberFragment } from "../components/teamMember";
@@ -10,9 +11,9 @@ export interface AboutPage {
     luke: TeamMember;
     henry: TeamMember;
     william: TeamMember;
-    lukeButtonImages: MultiMedia[];
-    henryButtonImages: MultiMedia[];
-    williamButtonImages: MultiMedia[];
+    lukeService: Service;
+    henryService: Service;
+    williamService: Service;
     lukeSlideshow1: MultiMedia[];
     lukeSlideshow2: MultiMedia[];
     lukeReferences: PortfolioItem[];
@@ -36,14 +37,23 @@ export const aboutPageFragment = `
     "william": *[_type=="teamMember" && slug.current == "william-gardner"][0] {
         ${teamMemberFragment}
     },
-    "lukeButtonImages": *[_type=="service" && slug.current == "videography"][0].slideshow[] {
-        ${assetFragment}
+    "lukeService": *[_type=="service" && slug.current == "videography"][0] {
+        slideshow[] {
+            ${assetFragment}
+        },
+        slug
     },
-    "henryButtonImages": *[_type=="service" && slug.current == "photography"][0].slideshow[] {
-        ${assetFragment}
+    "henryService": *[_type=="service" && slug.current == "photography"][0] {
+        slideshow[] {
+            ${assetFragment}
+        },
+        slug
     },
-    "williamButtonImages": *[_type=="service" && slug.current == "drone-piloting"][0].slideshow[] {
-        ${assetFragment}
+    "williamService": *[_type=="service" && slug.current == "drone-piloting"][0] {
+        slideshow[] {
+            ${assetFragment}
+        },
+        slug
     },
     lukeSlideshow1[] {
         _key,

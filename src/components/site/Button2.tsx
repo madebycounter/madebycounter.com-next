@@ -10,7 +10,8 @@ import {
 } from "react";
 
 import Carousel from "@/components/util/Carousel";
-import Media, { MediaSizes, getVideoThumbnail } from "@/components/util/Media";
+import Media, { getVideoThumbnail } from "@/components/util/Media";
+import { Small } from "@/components/util/MediaSize";
 
 import { MultiMedia } from "@/lib/types";
 
@@ -166,7 +167,7 @@ function CarouselSpacer({ items, speed = 30, className }: ButtonCarouselProps) {
                                 }}
                             >
                                 {item._type !== "mux.video" && (
-                                    <Media src={item} size={MediaSizes.Small} />
+                                    <Media src={item} size={Small} />
                                 )}
 
                                 {item._type === "mux.video" && (
