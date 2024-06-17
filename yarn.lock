@@ -3570,6 +3570,11 @@ safe-regex-test@^1.0.3:
     es-errors "^1.3.0"
     is-regex "^1.1.4"
 
+sanity-image@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/sanity-image/-/sanity-image-0.1.7.tgz#14b3bf4fde02bae175efae23ac0016afece6b39f"
+  integrity sha512-4HRRWGIJPHvJBpezG22gHRVdTWG4R+Xk4Pj0W1utftgpYvBn6O0dekGEP/3B6rPWhGSKcZrWDbu9zNaAl0lBPQ==
+
 sanity-plugin-media@^2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/sanity-plugin-media/-/sanity-plugin-media-2.2.5.tgz#56f9a3ed26b06f65883eaf1f8effb4168ba2d678"

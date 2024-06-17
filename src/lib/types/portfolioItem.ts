@@ -66,7 +66,16 @@ export const portfolioItemFragment = `
 
 export async function usePortfolioItems(): Promise<PortfolioItem[]> {
     return await client.fetch(`*[_type == "portfolioItem"] | order(date desc) {
-        ${portfolioItemFragment}
+        _id,
+        _type,
+        title,
+        date,
+        tags,
+        thumbnail {
+            ${assetFragment}
+        },
+        slug,
+        hidden
     }`);
 }
 

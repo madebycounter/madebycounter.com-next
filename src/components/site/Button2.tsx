@@ -45,7 +45,6 @@ function Button({
         function update() {
             if (!ref.current) return;
             setHeight(ref.current.offsetHeight);
-            console.log(ref.current.offsetHeight);
         }
 
         window.addEventListener("resize", update);
@@ -171,9 +170,11 @@ function CarouselSpacer({ items, speed = 30, className }: ButtonCarouselProps) {
                                 )}
 
                                 {item._type === "mux.video" && (
+                                    // eslint-disable-next-line @next/next/no-img-element
                                     <img
                                         src={getVideoThumbnail(item, 200)}
                                         className="h-full w-full object-cover"
+                                        alt=""
                                     />
                                 )}
                             </div>

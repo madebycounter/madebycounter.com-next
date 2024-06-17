@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import { PortableText } from "next-sanity";
 import { useRef } from "react";
 
@@ -8,6 +9,8 @@ import Footer from "@/components/site/Footer";
 import HeroMedia from "@/components/site/HeroMedia";
 import Nav, { NavSpacer } from "@/components/site/Nav";
 import PortfolioCard from "@/components/site/cards/PortfolioCard";
+import PortfolioTestimonial from "@/components/site/cards/PortfolioTestimonial";
+import ServiceCard from "@/components/site/cards/ServiceCard";
 import Gallery from "@/components/util/Gallery";
 import Lightbox, {
     mapToSlides,
@@ -15,6 +18,7 @@ import Lightbox, {
 } from "@/components/util/Lightbox";
 import Media, { getAspectRatio } from "@/components/util/Media";
 import Parallax from "@/components/util/Parallax";
+import Rating from "@/components/util/Rating";
 import Scroller from "@/components/util/Scroller";
 
 import { CompanyInfo, MultiMedia, PortfolioItem } from "@/lib/types";
@@ -62,6 +66,7 @@ export default function Page({
 
             <NavSpacer />
 
+            {/* DESKTOP */}
             <div className="m-auto hidden max-w-screen-2xl lg:block">
                 <div className="relative flex gap-0">
                     <Parallax.Driver
@@ -131,10 +136,22 @@ export default function Page({
                                         }}
                                     />
                                 </p>
+
+                                {portfolioItem.testimonial && (
+                                    <PortfolioTestimonial
+                                        src={portfolioItem.testimonial}
+                                    />
+                                )}
                             </div>
                         </div>
 
                         <div className="my-8 flex flex-col gap-4">
+                            {portfolioItem.serviceReference && (
+                                <ServiceCard
+                                    src={portfolioItem.serviceReference}
+                                />
+                            )}
+
                             {(portfolioItem.relatedProjects || []).map(
                                 (item, i) => (
                                     <PortfolioCard
@@ -158,6 +175,7 @@ export default function Page({
                 </div>
             </div>
 
+            {/* MOBILE */}
             <div className="my-4 block lg:hidden">
                 <HeroMedia
                     className="aspect-video"
@@ -200,6 +218,44 @@ export default function Page({
                                 }}
                             />
                         </p>
+
+                        {portfolioItem.testimonial && (
+                            <div>
+                                <p className="m-0 text-xl font-light leading-[1.2em] md:text-3xl">
+                                    <span className="font-counter tracking-tighter">
+                                        /review&nbsp;
+                                    </span>
+                                    &ldquo;
+                                    <PortableText
+                                        value={portfolioItem.testimonial.quote}
+                                        components={{
+                                            block: {
+                                                normal: ({ children }) => (
+                                                    <>{children}</>
+                                                ),
+                                            },
+                                        }}
+                                    />
+                                    &rdquo;
+                                </p>
+
+                                <p className="text-md mt-2 text-right font-light leading-[1.2em] md:text-3xl">
+                                    <span className="font-bold">
+                                        {portfolioItem.testimonial.name}
+                                    </span>
+
+                                    <span>
+                                        ,{" "}
+                                        {
+                                            portfolioItem.testimonial.jobTitle[
+                                                portfolioItem.testimonial
+                                                    .jobTitle.length - 1
+                                            ]
+                                        }
+                                    </span>
+                                </p>
+                            </div>
+                        )}
                     </div>
                 </div>
 

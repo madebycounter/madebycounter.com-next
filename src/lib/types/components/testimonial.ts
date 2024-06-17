@@ -10,6 +10,9 @@ export const testimonialFragment = `
     photo {
         ${assetFragment}
     },
+    photoBackground {
+        ${assetFragment}
+    },
     rating
 `;
 
@@ -20,5 +23,6 @@ export interface Testimonial {
     jobTitle: string[];
     quote: RichText;
     photo: SanityImage;
+    photoBackground: SanityImage;
     rating: 1 | 2 | 3 | 4 | 5;
 }

@@ -22,6 +22,7 @@
         "react-dom": "^18",
         "react-icons": "^5.2.1",
         "react-player": "^2.16.0",
+        "sanity-image": "^0.1.7",
         "sanity-plugin-media": "^2.2.5",
         "styled-components": "^6.1.11",
         "yet-another-react-lightbox": "^3.19.0"

@@ -1,5 +1,6 @@
 .Star {
     aspect-ratio: 1;
+    flex-shrink: 0;
 
     clip-path: polygon(
         50% 0%,

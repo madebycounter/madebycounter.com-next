@@ -135,6 +135,37 @@ export function Video({
     );
 }
 
+export interface ImageProps {
+    src: SanityImage;
+    size: MediaSize;
+    className?: string;
+    onReady?: () => void;
+    alt?: string;
+}
+
+export function Image({ src, className, size, onReady, alt = "" }: ImageProps) {
+    const [imgRef, imgLoaded, onImgLoad] = useImageLoaded();
+
+    useEffect(() => {
+        if (imgLoaded) onReady?.();
+    }, [imgLoaded, onReady]);
+
+    return (
+        <img
+            ref={imgRef}
+            src={makeImageUrl(src, size)}
+            alt={alt}
+            className={className}
+            onLoad={onImgLoad}
+            style={{
+                objectPosition: src.hotspot
+                    ? `${src.hotspot?.x * 100}% ${src.hotspot?.y * 100}%`
+                    : "center",
+            }}
+        />
+    );
+}
+
 export interface MediaProps {
     src: MultiMedia;
     alt?: string;
@@ -159,11 +190,6 @@ export default function Media({
     className,
 }: MediaProps) {
     const [ready, setReady] = useState(false);
-    const [imgRef, imgLoaded, onImgLoad] = useImageLoaded();
-
-    useEffect(() => {
-        if (imgLoaded) setReady(true);
-    }, [imgLoaded]);
 
     return (
         <div
@@ -180,7 +206,7 @@ export default function Media({
                 } as React.CSSProperties
             }
             onClick={() => {
-                if (onClick) onClick(src._key);
+                onClick?.(src._key);
             }}
         >
             <div
@@ -207,12 +233,12 @@ export default function Media({
             )}
 
             {src._type === "image" && (
-                <img
-                    ref={imgRef}
-                    src={makeImageUrl(src, size)}
-                    alt={alt}
-                    onLoad={onImgLoad}
+                <Image
+                    src={src}
                     className={styles.Image}
+                    onReady={() => setReady(true)}
+                    alt={alt}
+                    size={size}
                 />
             )}
         </div>

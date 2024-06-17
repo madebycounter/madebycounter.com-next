@@ -30,7 +30,7 @@ export default function TestimonialCard({
                 </Rating>
 
                 <div className={clsx(styles.ReviewContent)}>
-                    <p className="font-light">
+                    <p className={clsx("font-light")}>
                         &ldquo;
                         <PortableText
                             value={src.quote}

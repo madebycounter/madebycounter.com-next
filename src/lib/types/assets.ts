@@ -1,7 +1,12 @@
 export const assetFragment = `
+    _id,
     _type,
     asset-> {
         ...
+    },
+    hotspot {
+        x,
+        y
     }
 `;
 
@@ -67,6 +72,12 @@ export interface SanityImage {
         url: string;
         originalFilename: string;
         metadata?: any;
+    };
+    hotspot: {
+        height: number;
+        width: number;
+        x: number;
+        y: number;
     };
 }
 

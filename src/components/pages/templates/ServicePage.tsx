@@ -17,6 +17,7 @@ import {
     FunFact,
     MediaGroup,
     MiniServiceGroup,
+    MultiMedia,
     Service,
     ServiceContent,
     Testimonial,
@@ -27,11 +28,11 @@ function findItem<T extends { _id: string }>(items: T[], id: string) {
     return items.find((item) => item._id === id) as T;
 }
 
-function makeContent(content: ServiceContent) {
+function makeContent(content: ServiceContent, gallery: MultiMedia[]) {
     return content.references.map((ref, idx) => (
         <div className="my-24 lg:my-32" key={idx}>
             {ref._type === "funFact" &&
-                makeFunFact(findItem(content.funFacts, ref._id))}
+                makeFunFact(findItem(content.funFacts, ref._id), gallery)}
             {ref._type === "testimonial" &&
                 makeTestimonial(findItem(content.testimonials, ref._id))}
             {ref._type === "mediaGroup" &&
@@ -46,8 +47,8 @@ function makeContent(content: ServiceContent) {
     ));
 }
 
-function makeFunFact(funFact: FunFact) {
-    return <FunFactCard src={funFact} />;
+function makeFunFact(funFact: FunFact, gallery: MultiMedia[]) {
+    return <FunFactCard src={funFact} gallery={gallery} />;
 }
 
 function makeTestimonial(testimonial: Testimonial) {
@@ -168,7 +169,7 @@ export default function Page({
             </div>
 
             <div className="m-auto max-w-[900px]">
-                {makeContent(service.content)}
+                {makeContent(service.content, service.slideshow)}
 
                 <PrettyCoolRight className="mb-32" inverted />
             </div>

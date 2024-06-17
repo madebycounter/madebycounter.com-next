@@ -8,17 +8,16 @@ import CarouselButton from "@/components/site/CarouselButton";
 import Carousel from "@/components/util/Carousel";
 import Media from "@/components/util/Media";
 
-import { FunFact } from "@/lib/types";
+import { FunFact, MultiMedia } from "@/lib/types";
 
 import styles from "./FunFactCard.module.css";
 
 export interface FunFactCardProps {
     src: FunFact;
+    gallery: MultiMedia[];
 }
 
-export default function FunFactCard({ src }: FunFactCardProps) {
-    console.log(src);
-
+export default function FunFactCard({ src, gallery }: FunFactCardProps) {
     return (
         <div className={clsx(styles.FunFactCard)}>
             <div className={clsx(styles.Portrait)}>
@@ -74,7 +73,7 @@ export default function FunFactCard({ src }: FunFactCardProps) {
                 <CarouselButton
                     href="/contact"
                     className={styles.Button}
-                    media={src.buttonImages}
+                    media={gallery}
                 >
                     {src.buttonText}
                 </CarouselButton>
