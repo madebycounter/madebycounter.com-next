@@ -1,5 +1,6 @@
 "use client";
 
+import MuxVideoPlayer from "@mux/mux-video-react";
 import { getImageDimensions } from "@sanity/asset-utils";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
@@ -84,12 +85,13 @@ export function MediaPreview({ src, className }: MediaPreviewProps) {
 }
 
 export interface VideoProps {
-    src: string;
+    src: MuxVideo;
     className?: string;
     onReady?: () => void;
     onEnded?: () => void;
     playing?: boolean;
     loop?: boolean;
+    size: MediaSize;
 }
 
 export function Video({
@@ -99,6 +101,7 @@ export function Video({
     onEnded,
     playing = true,
     loop = true,
+    size,
 }: VideoProps) {
     const videoRef = useRef<HTMLVideoElement>(null);
     const isVisible = useIsVisible(videoRef, 0);
@@ -116,17 +119,34 @@ export function Video({
     }, [playing, isVisible]);
 
     return (
-        <video
-            ref={videoRef}
-            className={className}
-            onCanPlay={onReady}
-            loop={loop}
-            onEnded={onEnded}
-            playsInline
-            muted
-        >
-            <source src={src} type="video/mp4" />
-        </video>
+        <>
+            {size.video !== "stream" && (
+                <video
+                    ref={videoRef}
+                    className={className}
+                    onCanPlay={onReady}
+                    loop={loop}
+                    onEnded={onEnded}
+                    playsInline
+                    muted
+                >
+                    <source src={makeVideoUrl(src, size)} type="video/mp4" />
+                </video>
+            )}
+
+            {size.video === "stream" && (
+                <MuxVideoPlayer
+                    ref={videoRef}
+                    playbackId={src.asset.playbackId}
+                    className={className}
+                    onCanPlay={onReady}
+                    loop={loop}
+                    onEnded={onEnded}
+                    playsInline
+                    muted
+                />
+            )}
+        </>
     );
 }
 
@@ -218,12 +238,13 @@ export default function Media({
 
             {src._type === "mux.video" && (
                 <Video
-                    src={makeVideoUrl(src, size)}
+                    src={src}
                     onReady={() => setReady(true)}
                     onEnded={onEnded}
                     playing={playing}
                     loop={loop}
                     className={styles.Video}
+                    size={size}
                 />
             )}
 

@@ -25,6 +25,9 @@ const config: Config = {
                 "4kdci": "4096 / 2160",
                 "4/3": "4 / 3",
             },
+            dropShadow: {
+                counter: ["0px 0px 5px rgba(0, 0, 0, 0.5)"],
+            },
         },
     },
 };

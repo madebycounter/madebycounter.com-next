@@ -1,6 +1,6 @@
 import { client } from "@/lib/sanity";
 
-import { MultiMedia, assetFragment } from "./assets";
+import { MultiMedia, MuxVideo, assetFragment } from "./assets";
 import { FunFact, funFactFragment } from "./components/funFact";
 import { TeamMember, teamMemberFragment } from "./components/teamMember";
 import { Testimonial, testimonialFragment } from "./components/testimonial";
@@ -29,6 +29,7 @@ export interface Service {
     _type: "service";
     title: string;
     slideshow: MultiMedia[];
+    videoSnippet: MuxVideo;
     videoEmbed: string;
     heroText: RichText;
     teamMember: TeamMember;
@@ -44,6 +45,9 @@ export const serviceFragment = `
     title,
     slideshow[] {
         _key,
+        ${assetFragment}
+    },
+    videoSnippet {
         ${assetFragment}
     },
     videoEmbed,
@@ -79,7 +83,22 @@ export const serviceFragment = `
 
 export async function useServices(): Promise<Service[]> {
     return await client.fetch(`*[_type == "service"] {
-        ${serviceFragment}
+        _id,
+        _type,
+        title,
+        slideshow[] {
+            _key,
+            ${assetFragment}
+        },
+        videoSnippet {
+            ${assetFragment}
+        },
+        videoEmbed,
+        teamMember->{
+            ${teamMemberFragment}
+        },
+        offerings[],
+        slug,
     }`);
 }
 
