@@ -14,7 +14,7 @@ export interface NavItemProps {
 }
 
 export function NavSpacer() {
-    return <div className="h-20" />;
+    return <div className="h-16" />;
 }
 
 export function NavItem({
@@ -53,20 +53,32 @@ export default function Nav({
 }: NavProps) {
     return (
         <BaseNav.Variable
-            className={clsx("px-8 transition-all duration-300", {
+            className={clsx("h-16 px-8 py-2 transition-all duration-300", {
                 "bg-gradient-to-b from-black/60 to-transparent": !inverted,
                 "bg-white": inverted,
-                "h-20 py-4": !scrollBehavior,
             })}
-            classNameTop="h-20 py-4"
             classNameScrolled={
                 scrollBehavior
-                    ? clsx("h-16 py-2", {
+                    ? clsx({
                           "bg-black": !inverted,
                           "bg-white": inverted,
                       })
                     : ""
             }
+            // className={clsx("px-8 transition-all duration-300", {
+            //     "bg-gradient-to-b from-black/60 to-transparent": !inverted,
+            //     "bg-white": inverted,
+            //     "h-20 py-4": !scrollBehavior,
+            // })}
+            // classNameTop="h-20 py-4"
+            // classNameScrolled={
+            //     scrollBehavior
+            //         ? clsx("h-16 py-2", {
+            //               "bg-black": !inverted,
+            //               "bg-white": inverted,
+            //           })
+            //         : ""
+            // }
             threshold={threshold}
         >
             <BaseNav.Logo className="py-2">
