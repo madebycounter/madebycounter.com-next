@@ -98,7 +98,7 @@ export default function Page({
                     </Parallax.Driver>
 
                     <Parallax
-                        className="shrink-0 grow basis-[500px] px-4"
+                        className="shrink-0 grow-0 basis-[500px] px-4"
                         driverRef={parallaxRef}
                     >
                         <div className="flex flex-col items-stretch justify-end gap-4">
