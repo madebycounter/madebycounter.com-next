@@ -13,7 +13,7 @@ export default function Action({
     className,
     children,
 }: ActionProps) {
-    const Action = href ? "a" : "button";
+    const Action = href ? "a" : onClick ? "button" : "div";
 
     return (
         <Action href={href} onClick={onClick} className={className}>

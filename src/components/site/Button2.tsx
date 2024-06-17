@@ -9,6 +9,7 @@ import {
     useState,
 } from "react";
 
+import Action from "@/components/util/Action";
 import Carousel from "@/components/util/Carousel";
 import Media, { getVideoThumbnail } from "@/components/util/Media";
 import { Small } from "@/components/util/MediaSize";
@@ -40,7 +41,6 @@ function Button({
 }: ButtonProps) {
     const ref = useRef<HTMLDivElement>(null);
     const [height, setHeight] = useState(0);
-    const Action = href ? "a" : "button";
 
     useEffect(() => {
         function update() {
@@ -81,7 +81,7 @@ function Label({ children, className }: ButtonLabelProps) {
     const ctx = useContext(ButtonContext);
 
     return (
-        <div
+        <span
             className={clsx(
                 className,
                 "text-nowrap p-[0.17em] pb-0 font-counter leading-[1em] tracking-tighter",
@@ -89,7 +89,7 @@ function Label({ children, className }: ButtonLabelProps) {
             ref={ctx.ref}
         >
             {children}
-        </div>
+        </span>
     );
 }
 
@@ -101,8 +101,8 @@ function Arrow({ className }: ButtonArrowProps) {
     const ctx = useContext(ButtonContext);
 
     return (
-        <div className="relative">
-            <div
+        <span className="relative">
+            <span
                 className={clsx("absolute z-10 aspect-[16/46]", className, {
                     [styles.right]: ctx.direction === "right",
                     [styles.left]: ctx.direction === "left",
@@ -111,7 +111,7 @@ function Arrow({ className }: ButtonArrowProps) {
                     height: ctx.height,
                 }}
             />
-        </div>
+        </span>
     );
 }
 
