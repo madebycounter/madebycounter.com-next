@@ -30,7 +30,7 @@ function renderSlide(slide: MediaSlide) {
             mode="contain"
             size={{
                 img: 1920,
-                video: "high",
+                video: "stream",
             }}
         />
     );
