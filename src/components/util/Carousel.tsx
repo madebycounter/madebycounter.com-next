@@ -66,9 +66,9 @@ export default function Carousel({
                 break;
             case "left":
                 setDirections({
-                    x1: childSize,
+                    x1: 0,
                     y1: 0,
-                    x2: 0,
+                    x2: -childSize,
                     y2: 0,
                 });
                 break;

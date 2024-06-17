@@ -17,18 +17,10 @@ import { AboutPage, CompanyInfo, PortfolioItem, TeamMember } from "@/lib/types";
 import styles from "./About.module.css";
 
 export default function Page({
-    portfolioItem,
     companyInfo,
-    henry,
-    luke,
-    william,
     aboutPage,
 }: {
-    portfolioItem: PortfolioItem;
     companyInfo: CompanyInfo;
-    henry: TeamMember;
-    luke: TeamMember;
-    william: TeamMember;
     aboutPage: AboutPage;
 }) {
     const buttonSpeed = 30;
@@ -39,7 +31,7 @@ export default function Page({
 
             <div className="relative h-screen w-full">
                 <Media
-                    src={portfolioItem.gallery[9]}
+                    src={aboutPage.henryButtonImages[0]}
                     mode="cover"
                     size="large"
                 />
@@ -64,14 +56,14 @@ export default function Page({
             <div className="flex w-full flex-col-reverse items-center gap-12 overflow-x-clip py-32 sm:gap-32 xl:flex-row-reverse xl:gap-0">
                 <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row xl:w-[450px] xl:flex-col 2xl:w-[750px]">
                     <div className="flex shrink grow-0 flex-col gap-4 xl:flex-row">
-                        <div className="aspect-video w-full max-w-[400px] sm:w-[40vw] lg:w-full">
+                        <div className="aspect-video w-full sm:w-[40vw]">
                             <PortfolioCard
                                 className="aspect-video"
                                 src={aboutPage.lukeReferences[0]}
                             />
                         </div>
 
-                        <div className="hidden aspect-video w-[40vw] max-w-[400px] sm:block lg:w-full xl:hidden 2xl:block">
+                        <div className="hidden aspect-video w-[40vw] sm:block xl:hidden 2xl:block">
                             <PortfolioCard
                                 className="aspect-video"
                                 src={aboutPage.lukeReferences[1]}
@@ -79,7 +71,7 @@ export default function Page({
                         </div>
                     </div>
 
-                    <div className="flex shrink grow flex-col justify-between">
+                    <div className="flex min-w-0 shrink grow flex-col justify-between">
                         <p className="text-nowrap font-counter text-[19vw] !leading-[0.8em] tracking-tighter sm:text-[12vw] lg:text-9xl xl:text-8xl 2xl:text-9xl">
                             We make
                             <br />
@@ -95,7 +87,7 @@ export default function Page({
                                 </Button.Label>
                                 <Button.Arrow className="bg-white" />
                                 <Button.Carousel
-                                    items={aboutPage.lukeReferences[1].gallery}
+                                    items={aboutPage.lukeButtonImages}
                                 />
                             </Button>
                         </div>
@@ -146,11 +138,11 @@ export default function Page({
                     </div>
 
                     <div className="absolute left-[32vw] top-[75vw] z-10 w-[24vw] invert md:left-[369px] md:top-[320px] md:w-[190px]">
-                        <Media src={luke.signature} mode="width" />
+                        <Media src={aboutPage.luke.signature} mode="width" />
                     </div>
 
                     <div className="absolute left-[51vw] top-[28vw] z-10 w-[44vw] md:left-[540px] md:top-[-50px] md:w-[255px]">
-                        <Media src={luke.actionShot} mode="width" />
+                        <Media src={aboutPage.luke.actionShot} mode="width" />
                     </div>
                 </div>
             </div>
@@ -158,14 +150,14 @@ export default function Page({
             <div className="flex w-full flex-col-reverse items-center gap-12 overflow-x-clip py-32 sm:gap-32 xl:flex-row xl:gap-0">
                 <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row-reverse xl:w-[450px] xl:flex-col 2xl:w-[750px]">
                     <div className="flex shrink grow-0 flex-col gap-4 xl:flex-row">
-                        <div className="aspect-video w-full max-w-[400px] sm:w-[40vw] lg:w-full">
+                        <div className="aspect-video w-full sm:w-[40vw]">
                             <PortfolioCard
                                 className="aspect-video"
                                 src={aboutPage.henryReferences[0]}
                             />
                         </div>
 
-                        <div className="hidden aspect-video w-[40vw] max-w-[400px] sm:block lg:w-full xl:hidden 2xl:block">
+                        <div className="hidden aspect-video w-[40vw] sm:block xl:hidden 2xl:block">
                             <PortfolioCard
                                 className="aspect-video"
                                 src={aboutPage.henryReferences[1]}
@@ -173,7 +165,7 @@ export default function Page({
                         </div>
                     </div>
 
-                    <div className="flex shrink grow flex-col justify-between">
+                    <div className="flex min-w-0 shrink grow flex-col justify-between">
                         <p className="text-nowrap text-right font-counter text-[19vw] !leading-[0.8em] tracking-tighter sm:text-[12vw] lg:text-9xl xl:text-8xl 2xl:text-9xl">
                             Our pics
                             <br />
@@ -189,7 +181,7 @@ export default function Page({
                                 </Button.Label>
                                 <Button.Arrow className="bg-white" />
                                 <Button.Carousel
-                                    items={aboutPage.henryReferences[0].gallery}
+                                    items={aboutPage.henryButtonImages}
                                 />
                             </Button>
                         </div>
@@ -241,12 +233,15 @@ export default function Page({
                         </p>
 
                         <div className="w-[50vw] invert md:w-[335px]">
-                            <Media src={henry.signature} mode="width" />
+                            <Media
+                                src={aboutPage.henry.signature}
+                                mode="width"
+                            />
                         </div>
                     </div>
 
                     <div className="absolute left-[44vw] top-[-20vw] z-10 w-[51vw] md:left-[-20px] md:top-[-40px] md:w-[310px] md:-scale-x-100">
-                        <Media src={henry.actionShot} mode="width" />
+                        <Media src={aboutPage.henry.actionShot} mode="width" />
                     </div>
                 </div>
             </div>
@@ -254,14 +249,14 @@ export default function Page({
             <div className="flex w-full flex-col-reverse items-center gap-12 overflow-x-clip py-32 sm:gap-32 xl:flex-row-reverse xl:gap-0">
                 <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row xl:w-[450px] xl:flex-col 2xl:w-[750px]">
                     <div className="flex shrink grow-0 flex-col gap-4 xl:flex-row">
-                        <div className="aspect-video w-full max-w-[400px] sm:w-[40vw] lg:w-full">
+                        <div className="aspect-video w-full sm:w-[40vw]">
                             <PortfolioCard
                                 className="aspect-video"
                                 src={aboutPage.williamReferences[0]}
                             />
                         </div>
 
-                        <div className="hidden aspect-video w-[40vw] max-w-[400px] sm:block lg:w-full xl:hidden 2xl:block">
+                        <div className="hidden aspect-video w-[40vw] sm:block xl:hidden 2xl:block">
                             <PortfolioCard
                                 className="aspect-video"
                                 src={aboutPage.williamReferences[1]}
@@ -269,7 +264,7 @@ export default function Page({
                         </div>
                     </div>
 
-                    <div className="flex shrink grow flex-col justify-between">
+                    <div className="flex min-w-0 shrink grow flex-col justify-between">
                         <p className="text-nowrap font-counter text-[19vw] !leading-[0.8em] tracking-tighter sm:text-[10vw] lg:text-9xl xl:text-8xl 2xl:text-9xl">
                             Drones
                             <br />
@@ -279,13 +274,15 @@ export default function Page({
                         </p>
 
                         <div className="z-0">
-                            <CarouselButton
-                                className="mt-8"
-                                direction="right"
-                                media={aboutPage.williamReferences[0].gallery}
-                            >
-                                Learn More
-                            </CarouselButton>
+                            <Button direction="right" className="mt-8">
+                                <Button.Label className="bg-white text-3xl text-black lg:text-5xl">
+                                    Learn More
+                                </Button.Label>
+                                <Button.Arrow className="bg-white" />
+                                <Button.Carousel
+                                    items={aboutPage.williamButtonImages}
+                                />
+                            </Button>
                         </div>
                     </div>
                 </div>
@@ -336,15 +333,21 @@ export default function Page({
                     </div>
 
                     <div className="absolute left-[40vw] top-[77vw] z-10 w-[25vw] invert md:left-[394px] md:top-[362px] md:w-[146px]">
-                        <Media src={william.signature} mode="width" />
+                        <Media src={aboutPage.william.signature} mode="width" />
                     </div>
 
                     <div className="absolute left-[53vw] top-[-3vw] z-10 w-[40vw] md:left-[520px] md:top-0 md:w-[250px]">
-                        <Media src={william.actionShot} mode="width" />
+                        <Media
+                            src={aboutPage.william.actionShot}
+                            mode="width"
+                        />
                     </div>
 
                     <div className="absolute left-[55vw] top-[-31vw] z-10 w-[31vw] md:left-[467px] md:top-[-190px] md:w-[215px]">
-                        <Media src={william.actionShotExtra} mode="width" />
+                        <Media
+                            src={aboutPage.william.actionShotExtra}
+                            mode="width"
+                        />
                     </div>
                 </div>
             </div>
