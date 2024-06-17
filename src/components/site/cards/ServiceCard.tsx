@@ -42,7 +42,7 @@ export default function ServiceCard({ src, className }: ServiceCardProps) {
 
                 <Slash
                     direction="left"
-                    className="absolute left-full top-0 z-10 h-full bg-white"
+                    className="absolute left-full top-0 z-10 h-full scale-105 bg-white"
                 />
             </div>
 
