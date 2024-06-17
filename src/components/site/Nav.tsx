@@ -110,6 +110,11 @@ export default function Nav({
                             src={companyInfo.logo}
                             alt={companyInfo.name}
                             mode="cover"
+                            size={{
+                                img: 300,
+                                video: "low",
+                            }}
+                            className="!h-auto !w-[150px]"
                         />
                     </Link>
                 </BaseNav.Logo>
