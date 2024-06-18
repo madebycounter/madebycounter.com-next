@@ -1,5 +1,6 @@
 export const assetFragment = `
     _id,
+    _key,
     _type,
     asset-> {
         ...

@@ -25,7 +25,10 @@ function BlogPostCard({ post }: { post: BlogPost }) {
                     <Media
                         src={post.author.profile}
                         size={{
-                            img: 50,
+                            img:
+                                post.author.slug.current === "counter-llc"
+                                    ? 40
+                                    : 50,
                             video: "low",
                         }}
                     />
