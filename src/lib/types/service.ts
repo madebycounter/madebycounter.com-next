@@ -14,6 +14,7 @@ import {
     portfolioItemGroupFragment,
 } from "./groups/portfolioItemGroup";
 import { RichText } from "./richText";
+import { PageSeoData, pageSeoDataFragment } from "./singletons/seoData";
 
 export type ServiceContent = {
     references: { _id: string; _type: string }[];
@@ -36,6 +37,7 @@ export interface Service {
     content: ServiceContent;
     callToAction: string;
     offerings: string[];
+    seoData: PageSeoData;
     slug: { current: string };
 }
 
@@ -78,6 +80,9 @@ export const serviceFragment = `
     },
     callToAction,
     offerings[],
+    seoData {
+        ${pageSeoDataFragment}
+    },
     slug,
 `;
 

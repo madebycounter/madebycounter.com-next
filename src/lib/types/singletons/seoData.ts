@@ -20,45 +20,31 @@ export interface SeoData {
     blogPageSeo: PageSeoData;
 }
 
+export const pageSeoDataFragment = `
+    _id,
+    _type,
+    title,
+    description,
+    image {
+        ${assetFragment}
+    },
+`;
+
 export const seoDataFragment = `
     _id,
     _type,
     companyName,
     aboutPageSeo {
-        _id,
-        _type,
-        title,
-        description,
-        image {
-            ${assetFragment}
-        },
+        ${pageSeoDataFragment}
     },
     servicesPageSeo {
-        _id,
-        _type,
-        title,
-        description,
-        image {
-            ${assetFragment}
-        },
+        ${pageSeoDataFragment}
     },
     portfolioPageSeo {
-        _id,
-        _type,
-        title,
-        description,
-        image {
-            ${assetFragment}
-        },
+        ${pageSeoDataFragment}
     },
     blogPageSeo {
-        _id,
-        _type,
-        title,
-        description,
-        image {
-            ${assetFragment}
-        },
+        ${pageSeoDataFragment}
     },
 `;
 
