@@ -84,7 +84,7 @@ export default function Slideshow({
                         playing={i === index}
                         mode="cover"
                         size={size}
-                        onClick={() => onClick?.(item._key)}
+                        onClick={onClick}
                     />
                 </div>
             ))}
