@@ -2,6 +2,7 @@ export * from "./assets";
 export * from "./portfolioItem";
 export * from "./richText";
 export * from "./service";
+export * from "./blogPost";
 
 export * from "./singletons/companyInfo";
 export * from "./singletons/aboutPage";
