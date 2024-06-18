@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import Link from "next/link";
 
 import Nav from "@/components/site/Nav";
 import Action from "@/components/util/Action";
