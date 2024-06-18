@@ -21,6 +21,5 @@ export function makeSeoData(
                 },
             ],
         },
-        manifest: "/site.webmanifest",
     };
 }
