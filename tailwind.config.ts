@@ -27,6 +27,10 @@ const config: Config = {
             },
             dropShadow: {
                 counter: ["0px 0px 5px rgba(0, 0, 0, 0.5)"],
+                hero: [
+                    "0px 0px 10px rgba(0, 0, 0, 1)",
+                    "0px 0px 10px rgba(0, 0, 0, 0.2)",
+                ],
             },
         },
     },

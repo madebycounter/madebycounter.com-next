@@ -7,3 +7,21 @@
         width: calc(100vw - 54vw - 2rem);
     }
 }
+
+.gradient::before {
+    --stretch: 100vw;
+    content: "";
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% + var(--stretch));
+    transform: translateX(calc(var(--stretch) / -2));
+    height: 100%;
+    background: radial-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 70%);
+}
+
+.bfc {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}

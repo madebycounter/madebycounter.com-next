@@ -8,7 +8,7 @@ import Nav from "@/components/site/Nav";
 import PrettyCoolRight from "@/components/site/PrettyCoolRight";
 import PortfolioCard from "@/components/site/cards/PortfolioCard";
 import Media from "@/components/util/Media";
-import { Large } from "@/components/util/MediaSize";
+import { Large, Small } from "@/components/util/MediaSize";
 import Slideshow, { filterMedia } from "@/components/util/Slideshow";
 
 import { AboutPage, CompanyInfo } from "@/lib/types";
@@ -22,33 +22,51 @@ export default function Page({
     companyInfo: CompanyInfo;
     aboutPage: AboutPage;
 }) {
-    const buttonSpeed = 30;
+    const gallery = [
+        aboutPage.henrySlideshow2,
+        aboutPage.lukeSlideshow2,
+        [...aboutPage.henrySlideshow1, ...aboutPage.henrySlideshow1],
+        [...aboutPage.williamSlideshow1, ...aboutPage.williamSlideshow1],
+        aboutPage.lukeSlideshow1,
+        [...aboutPage.williamSlideshow2, aboutPage.williamSlideshow2[0]],
+        [...aboutPage.henrySlideshow1, ...aboutPage.henrySlideshow1],
+    ];
+
+    console.log(gallery.map((r) => r.length).reduce((a, b) => a + b, 0));
 
     return (
         <div className="bg-black">
             <Nav companyInfo={companyInfo} active="about" />
 
-            <div className="relative h-screen w-full">
-                <Media
-                    src={aboutPage.henryService.slideshow[0]}
-                    mode="cover"
-                    size={Large}
-                />
-
-                <div className="absolute bottom-0 left-0 z-10 max-w-[900px] p-4 text-white">
-                    <h1 className="font-counter text-9xl font-normal tracking-tighter">
-                        We make cool
-                        <br />
-                        stuff, see?
+            <div
+                className={clsx(
+                    "relative h-screen w-full overflow-hidden",
+                    styles.gradient,
+                )}
+            >
+                <div className="absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center">
+                    <h1 className="drop-shadow-hero text-center font-counter text-[15vw] leading-[1em] tracking-tighter text-white md:text-9xl">
+                        We make cool stuff, see?
                     </h1>
+                </div>
 
-                    <p className="mt-4 text-3xl font-light">
-                        Counter, your local media production company from San
-                        Jose, CA, is a team of skilled professionals across
-                        numerous creative disciplines. Hailed as a “one-stop
-                        shop”, we pride ourselves on providing everything
-                        necessary for your project&apos;s success.
-                    </p>
+                <div className="h-full brightness-90">
+                    {gallery.map((row, i) => (
+                        <div
+                            key={i}
+                            className="flex h-[161px] origin-top-left translate-x-[-32px] rotate-[-12deg] gap-2 md:h-[212px] md:translate-x-[-42px]"
+                        >
+                            {row.map((item, j) => (
+                                <Media
+                                    key={j}
+                                    src={item}
+                                    size={Small}
+                                    mode="height"
+                                    className="h-[150px] shrink-0 md:h-[200px]"
+                                />
+                            ))}
+                        </div>
+                    ))}
                 </div>
             </div>
 
