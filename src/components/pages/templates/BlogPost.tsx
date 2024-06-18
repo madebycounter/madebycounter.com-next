@@ -3,10 +3,7 @@
 import { getImageDimensions } from "@sanity/asset-utils";
 import clsx from "clsx";
 import { PortableText } from "next-sanity";
-import Prism from "prismjs";
-import "prismjs/components/prism-typescript";
-import "prismjs/themes/prism.css";
-import { useEffect } from "react";
+import Highlight from "react-highlight";
 
 import Nav from "@/components/site/Nav";
 import Lightbox, {
@@ -17,6 +14,8 @@ import Media from "@/components/util/Media";
 import { Large, Medium } from "@/components/util/MediaSize";
 
 import { BlogPost, CompanyInfo, SanityImage } from "@/lib/types";
+
+import "@/../node_modules/highlight.js/styles/xcode.css";
 
 function BlogPostGallery({
     items,
@@ -63,12 +62,6 @@ export default function Page({
     blogPost: BlogPost;
 }) {
     const [lightboxOpen, lightboxCurrent, setLightbox] = useLightboxState();
-
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            Prism.highlightAll();
-        }
-    }, []);
 
     return (
         <div>
@@ -238,9 +231,14 @@ export default function Page({
                                     </div>
                                 ),
                                 code: ({ value }) => (
-                                    <pre className="language-typescript my-4 w-full !text-sm md:!text-xl">
-                                        <code>{value.code}</code>
-                                    </pre>
+                                    <Highlight
+                                        className={clsx(
+                                            "text-base",
+                                            value.language,
+                                        )}
+                                    >
+                                        {value.code}
+                                    </Highlight>
                                 ),
                             },
                         }}
