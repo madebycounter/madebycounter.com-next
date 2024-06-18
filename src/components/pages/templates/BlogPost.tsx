@@ -3,6 +3,10 @@
 import { getImageDimensions } from "@sanity/asset-utils";
 import clsx from "clsx";
 import { PortableText } from "next-sanity";
+import Prism from "prismjs";
+import "prismjs/components/prism-typescript";
+import "prismjs/themes/prism.css";
+import { useEffect } from "react";
 
 import Nav from "@/components/site/Nav";
 import Lightbox, {
@@ -59,7 +63,12 @@ export default function Page({
     blogPost: BlogPost;
 }) {
     const [lightboxOpen, lightboxCurrent, setLightbox] = useLightboxState();
-    console.log(blogPost.content);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            Prism.highlightAll();
+        }
+    }, []);
 
     return (
         <div>
@@ -133,7 +142,7 @@ export default function Page({
                 </div>
 
                 {/* CONTENT */}
-                <div className="my-8 text-2xl font-light">
+                <div className="my-8 text-xl font-light md:text-2xl">
                     <PortableText
                         value={blogPost.content}
                         components={{
@@ -227,6 +236,11 @@ export default function Page({
                                             }
                                         />
                                     </div>
+                                ),
+                                code: ({ value }) => (
+                                    <pre className="language-typescript my-4 w-full !text-sm md:!text-xl">
+                                        <code>{value.code}</code>
+                                    </pre>
                                 ),
                             },
                         }}
