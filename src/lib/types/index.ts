@@ -6,6 +6,7 @@ export * from "./service";
 export * from "./singletons/companyInfo";
 export * from "./singletons/aboutPage";
 export * from "./singletons/servicesPage";
+export * from "./singletons/seoData";
 
 export * from "./components/funFact";
 export * from "./components/testimonial";
