@@ -4,7 +4,7 @@ import { makeSeoData } from "@/util/seo";
 
 import BlogPage from "@/components/pages/Blog";
 
-import { useSeoData } from "@/lib/types";
+import { useCompanyInfo, useSeoData } from "@/lib/types";
 
 export async function generateMetadata(): Promise<Metadata> {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -18,5 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-    return <BlogPage />;
+    const companyInfo = await useCompanyInfo();
+
+    return <BlogPage companyInfo={companyInfo} />;
 }
