@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ReactNode } from "react";
 
 export interface ActionProps {
@@ -13,10 +14,10 @@ export default function Action({
     className,
     children,
 }: ActionProps) {
-    const Action = href ? "a" : onClick ? "button" : "div";
+    const Action = href ? Link : onClick ? "button" : "div";
 
     return (
-        <Action href={href} onClick={onClick} className={className}>
+        <Action href={href as string} onClick={onClick} className={className}>
             {children}
         </Action>
     );
