@@ -1,5 +1,6 @@
 import clsx from "clsx";
 
+import Footer from "@/components/site/Footer";
 import Nav from "@/components/site/Nav";
 import Action from "@/components/util/Action";
 import Media from "@/components/util/Media";
@@ -75,6 +76,8 @@ export default function Blog({
                     </div>
                 ))}
             </div>
+
+            <Footer companyInfo={companyInfo} />
         </div>
     );
 }

@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { PortableText } from "next-sanity";
 import Highlight from "react-highlight";
 
+import Footer from "@/components/site/Footer";
 import Nav from "@/components/site/Nav";
 import Lightbox, {
     mapToSlides,
@@ -96,7 +97,7 @@ export default function Page({
             </div>
 
             <div className="m-auto max-w-screen-lg p-4">
-                <h1 className="font-counter text-7xl font-normal leading-[1em] tracking-tighter">
+                <h1 className="font-counter text-5xl font-normal leading-[1em] tracking-tighter md:text-7xl">
                     {blogPost.title}
                 </h1>
 
@@ -245,6 +246,8 @@ export default function Page({
                     />
                 </div>
             </div>
+
+            <Footer companyInfo={companyInfo} />
         </div>
     );
 }

@@ -312,7 +312,7 @@ export default function Page({
                 </div>
             </div>
 
-            <Footer inverted />
+            <Footer companyInfo={companyInfo} inverted className="mt-12" />
         </div>
     );
 }

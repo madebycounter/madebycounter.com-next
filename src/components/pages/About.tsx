@@ -3,6 +3,7 @@
 import clsx from "clsx";
 
 import Button from "@/components/site/Button";
+import Footer from "@/components/site/Footer";
 import Nav from "@/components/site/Nav";
 import PrettyCoolRight from "@/components/site/PrettyCoolRight";
 import PortfolioCard from "@/components/site/cards/PortfolioCard";
@@ -365,6 +366,8 @@ export default function Page({
             <div className="m-auto max-w-screen-lg px-4 py-32 sm:px-8">
                 <PrettyCoolRight />
             </div>
+
+            <Footer companyInfo={companyInfo} inverted />
         </div>
     );
 }

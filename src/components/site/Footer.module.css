@@ -1,0 +1,27 @@
+.Footer {
+    @apply grid md:flex;
+
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 1rem;
+
+    grid-template-areas:
+        "newsletter newsletter newsletter"
+        "quick services recent";
+}
+
+.Newsletter {
+    grid-area: newsletter;
+}
+
+.Quick {
+    grid-area: quick;
+}
+
+.Services {
+    grid-area: services;
+}
+
+.Recent {
+    grid-area: recent;
+}

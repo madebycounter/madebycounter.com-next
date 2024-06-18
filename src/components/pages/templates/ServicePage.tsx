@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { useContainerSize, useWindowSize } from "@/util/hooks";
 
 import Button from "@/components/site/Button";
+import Footer from "@/components/site/Footer";
 import HeroMedia from "@/components/site/HeroMedia";
 import Nav, { NavSpacer } from "@/components/site/Nav";
 import PrettyCoolRight from "@/components/site/PrettyCoolRight";
@@ -218,6 +219,8 @@ export default function Page({
             <div className="m-auto max-w-[900px] px-4">
                 <PrettyCoolRight className="mb-32" inverted />
             </div>
+
+            <Footer companyInfo={companyInfo} />
         </>
     );
 }

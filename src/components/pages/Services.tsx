@@ -7,6 +7,7 @@ import { IoCaretForwardSharp } from "react-icons/io5";
 import { useScrollPosition } from "@/util/hooks";
 import "@/util/scrollSnap.css";
 
+import Footer from "@/components/site/Footer";
 import Nav from "@/components/site/Nav";
 import Media from "@/components/util/Media";
 
@@ -57,7 +58,7 @@ export default function Page({
                         className={clsx(
                             "block cursor-pointer font-counter text-9xl leading-[1.2em] tracking-tighter text-white transition-all duration-300",
                             {
-                                "drop-shadow-counter text-[10rem]":
+                                "text-[10rem] drop-shadow-counter":
                                     active === idx,
                             },
                         )}
@@ -101,6 +102,8 @@ export default function Page({
                     </div>
                 ))}
             </div>
+
+            <Footer companyInfo={companyInfo} />
         </>
     );
 }

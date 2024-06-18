@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import Link from "next/link";
 
+import Footer from "@/components/site/Footer";
 import Nav from "@/components/site/Nav";
 import Media from "@/components/util/Media";
 
@@ -62,6 +63,8 @@ export default function Page({
                         </div>
                     ))}
             </div>
+
+            <Footer companyInfo={companyInfo} />
         </div>
     );
 }
