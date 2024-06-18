@@ -140,7 +140,7 @@ export default function Page({
 
             <NavSpacer />
 
-            <div className="m-auto max-w-screen-2xl px-4 pt-2">
+            <div className="m-auto max-w-screen-2xl px-4 pt-2 md:mb-24">
                 <div className="grid grid-rows-[auto_auto] gap-8 lg:grid-cols-2 lg:grid-rows-1">
                     <div className="relative order-2 lg:order-1">
                         <PortableText
