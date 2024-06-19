@@ -5,9 +5,20 @@ import { MultiMedia, assetFragment } from "../assets";
 import { TeamMember, teamMemberFragment } from "../components/teamMember";
 import { PortfolioItem, portfolioItemFragment } from "../portfolioItem";
 
+export interface AboutPageHero {
+    row1: MultiMedia[];
+    row2: MultiMedia[];
+    row3: MultiMedia[];
+    row4: MultiMedia[];
+    row5: MultiMedia[];
+    row6: MultiMedia[];
+    row7: MultiMedia[];
+}
+
 export interface AboutPage {
     _id: string;
     _type: "aboutPage";
+    hero: AboutPageHero;
     luke: TeamMember;
     henry: TeamMember;
     william: TeamMember;
@@ -28,6 +39,29 @@ export interface AboutPage {
 export const aboutPageFragment = `
     _id,
     _type,
+    hero {
+        row1[] {
+            ${assetFragment}
+        },
+        row2[] {
+            ${assetFragment}
+        },
+        row3[] {
+            ${assetFragment}
+        },
+        row4[] {
+            ${assetFragment}
+        },
+        row5[] {
+            ${assetFragment}
+        },
+        row6[] {
+            ${assetFragment}
+        },
+        row7[] {
+            ${assetFragment}
+        }
+    },
     "luke": *[_type=="teamMember" && slug.current == "luke-a-makinson"][0] {
         ${teamMemberFragment}
     },

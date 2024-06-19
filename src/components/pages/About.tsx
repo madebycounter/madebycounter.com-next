@@ -23,16 +23,14 @@ export default function Page({
     aboutPage: AboutPage;
 }) {
     const gallery = [
-        aboutPage.henrySlideshow2,
-        aboutPage.lukeSlideshow2,
-        [...aboutPage.henrySlideshow1, ...aboutPage.henrySlideshow1],
-        [...aboutPage.williamSlideshow1, ...aboutPage.williamSlideshow1],
-        aboutPage.lukeSlideshow1,
-        [...aboutPage.williamSlideshow2, aboutPage.williamSlideshow2[0]],
-        [...aboutPage.henrySlideshow1, ...aboutPage.henrySlideshow1],
+        aboutPage.hero.row1 || [],
+        aboutPage.hero.row2 || [],
+        aboutPage.hero.row3 || [],
+        aboutPage.hero.row4 || [],
+        aboutPage.hero.row5 || [],
+        aboutPage.hero.row6 || [],
+        aboutPage.hero.row7 || [],
     ];
-
-    console.log(gallery.map((r) => r.length).reduce((a, b) => a + b, 0));
 
     return (
         <div className="bg-black">
