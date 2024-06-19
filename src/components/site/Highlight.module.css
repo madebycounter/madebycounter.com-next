@@ -1,0 +1,29 @@
+.Highlight {
+    position: relative;
+    transition: color ease-in-out 500ms 100ms;
+    z-index: 1;
+    color: white;
+}
+
+.Highlight__visible {
+    color: black;
+}
+
+.Highlight::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 102%;
+    height: 100%;
+    transition: transform ease-in-out 500ms 100ms;
+    transform-origin: left;
+
+    transform: scaleX(0);
+    background-color: white;
+}
+
+.Highlight__visible::after {
+    transform: scaleX(1);
+}

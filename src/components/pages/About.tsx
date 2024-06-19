@@ -4,6 +4,7 @@ import clsx from "clsx";
 
 import Button from "@/components/site/Button";
 import Footer from "@/components/site/Footer";
+import Highlight from "@/components/site/Highlight";
 import Nav from "@/components/site/Nav";
 import PrettyCoolRight from "@/components/site/PrettyCoolRight";
 import PortfolioCard from "@/components/site/cards/PortfolioCard";
@@ -43,8 +44,10 @@ export default function Page({
                 )}
             >
                 <div className="absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center">
-                    <h1 className="drop-shadow-hero text-center font-counter text-[15vw] leading-[1em] tracking-tighter text-white md:text-9xl">
-                        We make cool stuff, see?
+                    <h1 className="drop-shadow-hero text-nowrap text-center font-counter text-[15vw] leading-[1em] tracking-tighter text-white lg:text-[8vw]">
+                        We make cool&nbsp;
+                        <br className="block lg:hidden" />
+                        stuff, <Highlight>see?</Highlight>
                     </h1>
                 </div>
 
@@ -379,7 +382,7 @@ export default function Page({
                 </div>
             </div>
 
-            <div className="m-auto max-w-screen-lg px-4 py-32 sm:px-8">
+            <div className="m-auto max-w-screen-lg pb-32 md:pt-16">
                 <PrettyCoolRight />
             </div>
 
