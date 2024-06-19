@@ -22,9 +22,9 @@ export default function PortfolioCard({ src, className }: PortfolioCardProps) {
                 <Media src={src.thumbnail} mode="cover" />
             </div>
 
-            <h3 className="absolute bottom-0 left-0 z-10 m-2 mr-4 font-counter text-3xl font-normal leading-[0.9em] tracking-tight text-white drop-shadow-sm">
+            <p className="absolute bottom-0 left-0 z-10 m-2 mr-4 font-counter text-3xl font-normal leading-[0.9em] tracking-tight text-white drop-shadow-sm">
                 {src.title}
-            </h3>
+            </p>
 
             <p className="absolute left-0 top-0 z-10 w-full p-2 text-right font-light leading-[0.9em] text-white drop-shadow-sm">
                 {src.tags.map((tag, i) => (

@@ -8,6 +8,7 @@ export interface ActionProps {
     children?: ReactNode;
     className?: string;
     target?: string;
+    label?: string;
 }
 
 export default function Action({
@@ -16,6 +17,7 @@ export default function Action({
     className,
     children,
     target,
+    label,
 }: ActionProps) {
     const Action = href ? Link : onClick ? "button" : "div";
 
@@ -25,6 +27,7 @@ export default function Action({
             target={target}
             onClick={onClick}
             className={className}
+            aria-label={label}
         >
             {children}
         </Action>

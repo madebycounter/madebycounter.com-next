@@ -131,7 +131,7 @@ export default function Footer({
 
                 <div className="my-4">
                     <ul className="flex items-center justify-center text-3xl">
-                        <div
+                        <li
                             className={clsx("mr-4 flex-grow border-t sm:mr-8", {
                                 "border-white": !inverted,
                                 "border-black": inverted,
@@ -139,7 +139,11 @@ export default function Footer({
                         />
                         {companyInfo.socials.map((social, idx) => (
                             <li key={idx}>
-                                <Action href={social.link} target="_blank">
+                                <Action
+                                    label={social.platform}
+                                    href={social.link}
+                                    target="_blank"
+                                >
                                     <SocialIcon
                                         platform={social.platform}
                                         className="m-[0.3em] h-[1em] w-[1em] md:m-[0.8em]"
@@ -147,7 +151,7 @@ export default function Footer({
                                 </Action>
                             </li>
                         ))}
-                        <div
+                        <li
                             className={clsx("ml-4 flex-grow border-t sm:ml-8", {
                                 "border-white": !inverted,
                                 "border-black": inverted,
