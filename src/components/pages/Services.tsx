@@ -28,7 +28,7 @@ export default function Page({
     useEffect(() => {
         if (!boxRef.current) return;
 
-        let index = scrollPosition / window.innerHeight;
+        let index = scrollPosition / (window.innerHeight * 1.2);
         boxRef.current.style.transform = `translateY(${-index * 128}px)`;
 
         setActive(Math.round(index));
@@ -42,7 +42,10 @@ export default function Page({
                 scrollBehavior={false}
             />
 
-            <div ref={boxRef} className="fixed bottom-0 z-50 h-[50vh] w-full">
+            <div
+                ref={boxRef}
+                className="fixed bottom-0 z-50 hidden h-[50vh] w-full lg:block"
+            >
                 {services.map((service, idx) => (
                     <h1
                         key={idx}
@@ -86,7 +89,7 @@ export default function Page({
                 {services.map((_, idx) => (
                     <div
                         key={idx}
-                        className="h-screen w-full snap-center"
+                        className="h-[120vh] w-full snap-center"
                         ref={(el) => {
                             imagesRef.current[idx] = el as HTMLDivElement;
                         }}
@@ -102,8 +105,6 @@ export default function Page({
                     </div>
                 ))}
             </div>
-
-            <Footer companyInfo={companyInfo} />
         </>
     );
 }
