@@ -32,6 +32,9 @@ const config: Config = {
                     "0px 0px 10px rgba(0, 0, 0, 0.2)",
                 ],
             },
+            blur: {
+                xs: "2px",
+            },
         },
     },
 };
