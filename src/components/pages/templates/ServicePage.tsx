@@ -169,7 +169,7 @@ export default function Page({
             <Modal open={modalOpen} setOpen={setModalOpen}>
                 <div className="flex w-full max-w-[1150px] items-stretch overflow-hidden bg-white md:max-h-[508px]">
                     <div className="relative grow basis-[800px] p-4 md:p-4">
-                        <p className="mb-4 font-counter text-7xl leading-[0.8em] tracking-tighter">
+                        <p className="my-4 font-counter text-7xl leading-[0.8em] tracking-tighter">
                             Get in touch:
                         </p>
 
