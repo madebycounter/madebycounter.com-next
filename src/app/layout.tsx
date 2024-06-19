@@ -1,3 +1,5 @@
+import Hotjar from "@/components/util/Hotjar";
+
 import "./globals.css";
 
 export default function RootLayout({
@@ -7,6 +9,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
+            <Hotjar />
             <body>{children}</body>
         </html>
     );
