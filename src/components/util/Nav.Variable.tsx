@@ -13,7 +13,7 @@ export default function VariableNav({
     classNameScrolled = "",
     threshold = 300,
 }: NavVariableProps) {
-    const scrollPosition = useScrollPosition();
+    const scrollPosition = useScrollPosition(25);
 
     return (
         <Nav

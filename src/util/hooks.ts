@@ -1,13 +1,13 @@
-import { debounce as db, throttle as th } from "lodash";
+import { debounce as db, debounce, throttle as th } from "lodash";
 import { RefObject, useEffect, useRef, useState } from "react";
 
-export function useScrollPosition() {
+export function useScrollPosition(db: number = 0) {
     const [scrollPosition, setScrollPosition] = useState(0);
 
     useEffect(() => {
-        var handleScroll = () => {
+        var handleScroll = debounce(() => {
             setScrollPosition(window.scrollY);
-        };
+        }, db);
 
         window.addEventListener("scroll", handleScroll);
         handleScroll();
