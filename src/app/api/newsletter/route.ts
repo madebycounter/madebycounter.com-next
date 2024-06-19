@@ -1,25 +1,36 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { submitForm } from "@/lib/hubspot";
+
 export async function POST(request: NextRequest) {
+    if (!process.env.HUBSPOT_NEWSLETTER_FORM) {
+        return NextResponse.error();
+    }
+
     const data = await request.json();
+    const hsResp = await submitForm(
+        process.env.HUBSPOT_NEWSLETTER_FORM,
+        [
+            {
+                name: "firstname",
+                value: data.fname || "",
+            },
+            {
+                name: "lastname",
+                value: data.lname || "",
+            },
+            {
+                name: "email",
+                value: data.email,
+            },
+        ],
+        request.headers.get("Referer") || "",
+    );
 
-    // const resp = await sendInquiryEmail(property.recipient, template_data);
-
-    // if (resp.status !== 202) {
-    //     return NextResponse.json(
-    //         { message: "Failed to send email", status: "error" },
-    //         { status: 500 },
-    //     );
-    // } else {
-    //     return NextResponse.json(
-    //         { message: "Email sent", status: "ok", data: template_data },
-    //         { status: 200 },
-    //     );
-    // }
+    console.log(await hsResp.json());
 
     return NextResponse.json(
         {
-            message: "Email sent",
             status: "ok",
         },
         {
