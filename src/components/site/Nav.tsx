@@ -224,8 +224,10 @@ export default function Nav({
                     </Action>
                     <div
                         className={clsx("origin-top transition-all", {
-                            "mb-0 h-0 scale-y-50 opacity-0": !servicesOpen,
-                            "mb-2 h-auto scale-y-100 opacity-100": servicesOpen,
+                            "pointer-events-none mb-0 h-0 scale-y-50 opacity-0":
+                                !servicesOpen,
+                            "pointer-events-auto mb-2 h-auto scale-y-100 opacity-100":
+                                servicesOpen,
                         })}
                     >
                         {companyInfo.services.map((service, idx) => (
