@@ -1,5 +1,7 @@
 import { Analytics } from "@vercel/analytics/react";
+import { draftMode } from "next/headers";
 
+import DraftModeTool from "@/components/util/DraftModeTool";
 import Hotjar from "@/components/util/Hotjar";
 
 import "./globals.css";
@@ -22,6 +24,7 @@ export default function RootLayout({
             </head>
             <Hotjar />
             <body>
+                {draftMode().isEnabled && <DraftModeTool />}
                 {children}
                 <Analytics />
             </body>

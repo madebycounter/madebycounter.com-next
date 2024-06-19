@@ -1,4 +1,4 @@
-import { client } from "@/lib/sanity";
+import { query } from "@/lib/sanity";
 
 import { SanityImage, assetFragment } from "../assets";
 import { PortfolioItem } from "../portfolioItem";
@@ -60,7 +60,11 @@ export const companyInfoFragment = `
 `;
 
 export async function useCompanyInfo(): Promise<CompanyInfo> {
-    return await client.fetch(`*[_type == "companyInfo"][0] {
+    return await query(
+        `*[_type == "companyInfo"][0] {
         ${companyInfoFragment}
-    }`);
+    }`,
+        {},
+        ["companyInfo", "service", "portfolioItem"],
+    );
 }

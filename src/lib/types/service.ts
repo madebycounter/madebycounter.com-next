@@ -1,4 +1,4 @@
-import { client } from "@/lib/sanity";
+import { query } from "@/lib/sanity";
 
 import { MultiMedia, MuxVideo, assetFragment } from "./assets";
 import { FunFact, funFactFragment } from "./components/funFact";
@@ -87,7 +87,8 @@ export const serviceFragment = `
 `;
 
 export async function useServices(): Promise<Service[]> {
-    return await client.fetch(`*[_type == "service"] {
+    return await query(
+        `*[_type == "service"] {
         _id,
         _type,
         title,
@@ -104,14 +105,18 @@ export async function useServices(): Promise<Service[]> {
         },
         offerings[],
         slug,
-    }`);
+    }`,
+        {},
+        ["service"],
+    );
 }
 
 export async function useService(slug: string): Promise<Service> {
-    return await client.fetch(
+    return await query(
         `*[_type == "service" && slug.current == $slug][0] {
             ${serviceFragment}
         }`,
         { slug },
+        ["service"],
     );
 }

@@ -1,4 +1,4 @@
-import { client } from "@/lib/sanity";
+import { query } from "@/lib/sanity";
 import { Service } from "@/lib/types/service";
 
 import { MultiMedia, assetFragment } from "../assets";
@@ -125,9 +125,11 @@ export const aboutPageFragment = `
 `;
 
 export async function useAboutPage(): Promise<AboutPage> {
-    return await client.fetch(
+    return await query(
         `*[_type == "aboutPage"][0] {
             ${aboutPageFragment}
         }`,
+        {},
+        ["aboutPage", "service", "teamMember"],
     );
 }

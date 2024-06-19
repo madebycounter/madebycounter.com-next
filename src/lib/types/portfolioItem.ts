@@ -1,4 +1,4 @@
-import { client } from "@/lib/sanity";
+import { query } from "@/lib/sanity";
 
 import { MultiMedia, SanityImage, assetFragment } from "./assets";
 import { Testimonial, testimonialFragment } from "./components/testimonial";
@@ -65,7 +65,8 @@ export const portfolioItemFragment = `
 `;
 
 export async function usePortfolioItems(): Promise<PortfolioItem[]> {
-    return await client.fetch(`*[_type == "portfolioItem"] | order(date desc) {
+    return await query(
+        `*[_type == "portfolioItem"] | order(date desc) {
         _id,
         _type,
         title,
@@ -76,14 +77,18 @@ export async function usePortfolioItems(): Promise<PortfolioItem[]> {
         },
         slug,
         hidden
-    }`);
+    }`,
+        {},
+        ["portfolioItem"],
+    );
 }
 
 export async function usePortfolioItem(slug: string): Promise<PortfolioItem> {
-    return await client.fetch(
+    return await query(
         `*[_type == "portfolioItem" && slug.current == $slug][0] {
             ${portfolioItemFragment}
         }`,
         { slug },
+        ["portfolioItem"],
     );
 }

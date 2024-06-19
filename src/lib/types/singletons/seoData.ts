@@ -1,4 +1,4 @@
-import { client } from "@/lib/sanity";
+import { query } from "@/lib/sanity";
 
 import { SanityImage, assetFragment } from "../assets";
 
@@ -49,9 +49,13 @@ export const seoDataFragment = `
 `;
 
 export async function useSeoData(): Promise<SeoData> {
-    return await client.fetch(`
+    return await query(
+        `
         *[_type == "seoData"][0] {
             ${seoDataFragment}
         }
-    `);
+    `,
+        {},
+        ["seoData"],
+    );
 }

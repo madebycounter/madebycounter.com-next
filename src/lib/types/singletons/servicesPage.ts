@@ -1,4 +1,4 @@
-import { client } from "@/lib/sanity";
+import { query } from "@/lib/sanity";
 
 import { Service, serviceFragment } from "../service";
 
@@ -17,9 +17,13 @@ export const servicesPageFragment = `
 `;
 
 export async function useServicesPage(): Promise<ServicesPage> {
-    return await client.fetch(`
+    return await query(
+        `
         *[_type == "servicesPage"][0] {
             ${servicesPageFragment}
         }
-    `);
+    `,
+        {},
+        ["servicesPage"],
+    );
 }

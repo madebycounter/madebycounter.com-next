@@ -1,6 +1,6 @@
-import { client } from "@/lib/sanity";
+import { query } from "@/lib/sanity";
 
-import { MultiMedia, MuxVideo, SanityImage, assetFragment } from "./assets";
+import { MuxVideo, SanityImage, assetFragment } from "./assets";
 import { TeamMember, teamMemberFragment } from "./components/teamMember";
 
 export interface BlogPost {
@@ -45,17 +45,18 @@ export const blogPostFragment = `
 `;
 
 export async function useBlogPost(slug: string): Promise<BlogPost> {
-    return await client.fetch(
+    return await query(
         `
         *[_type == "blogPost" && slug.current == $slug] {
             ${blogPostFragment}
         }[0]`,
         { slug },
+        ["teamMember", "blogPost"],
     );
 }
 
 export async function useBlogPosts(): Promise<BlogPost[]> {
-    return await client.fetch(
+    return await query(
         `*[_type == "blogPost"] | order(date desc) {
             _id,
             _type,
@@ -73,5 +74,7 @@ export async function useBlogPosts(): Promise<BlogPost[]> {
             seoDescription,
             slug
         }`,
+        {},
+        ["teamMember", "blogPost"],
     );
 }
