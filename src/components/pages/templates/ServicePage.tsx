@@ -2,15 +2,17 @@
 
 import clsx from "clsx";
 import { PortableText } from "next-sanity";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import { useContainerSize, useWindowSize } from "@/util/hooks";
 
 import Button from "@/components/site/Button";
+import Contact from "@/components/site/Contact";
 import Footer from "@/components/site/Footer";
 import HeroMedia from "@/components/site/HeroMedia";
 import Nav, { NavSpacer } from "@/components/site/Nav";
 import PrettyCoolRight from "@/components/site/PrettyCoolRight";
+import Slash from "@/components/site/Slash";
 import FunFactCard from "@/components/site/cards/FunFactCard";
 import MiniServiceCard from "@/components/site/cards/MiniServiceCard";
 import PortfolioCard from "@/components/site/cards/PortfolioCard";
@@ -19,6 +21,7 @@ import Carousel from "@/components/util/Carousel";
 import Gallery from "@/components/util/Gallery";
 import Media, { getAspectRatio } from "@/components/util/Media";
 import { Medium, Small } from "@/components/util/MediaSize";
+import Modal from "@/components/util/Modal";
 import Scroller from "@/components/util/Scroller";
 
 import {
@@ -41,11 +44,16 @@ function makeContent(
     content: ServiceContent,
     gallery: MultiMedia[],
     windowSize: { width: number },
+    onClick: () => void,
 ) {
     return content.references.map((ref, idx) => (
         <div className="my-16 lg:my-16" key={idx}>
             {ref._type === "funFact" &&
-                makeFunFact(findItem(content.funFacts, ref._id), gallery)}
+                makeFunFact(
+                    findItem(content.funFacts, ref._id),
+                    gallery,
+                    onClick,
+                )}
             {ref._type === "testimonial" &&
                 makeTestimonial(findItem(content.testimonials, ref._id))}
             {ref._type === "mediaGroup" &&
@@ -54,7 +62,10 @@ function makeContent(
                     windowSize,
                 )}
             {ref._type === "miniServiceGroup" &&
-                makeServiceGroup(findItem(content.miniServiceGroups, ref._id))}
+                makeServiceGroup(
+                    findItem(content.miniServiceGroups, ref._id),
+                    onClick,
+                )}
             {ref._type === "portfolioItemGroup" &&
                 makePortfolioGroup(
                     findItem(content.portfolioItemGroups, ref._id),
@@ -63,10 +74,14 @@ function makeContent(
     ));
 }
 
-function makeFunFact(funFact: FunFact, gallery: MultiMedia[]) {
+function makeFunFact(
+    funFact: FunFact,
+    gallery: MultiMedia[],
+    onClick: () => void,
+) {
     return (
         <div className="m-auto max-w-[900px]">
-            <FunFactCard src={funFact} gallery={gallery} />
+            <FunFactCard src={funFact} gallery={gallery} onClick={onClick} />
         </div>
     );
 }
@@ -94,7 +109,10 @@ function makeMediaGroup(mediaGroup: MediaGroup, windowSize: { width: number }) {
     );
 }
 
-function makeServiceGroup(servicesGroup: MiniServiceGroup) {
+function makeServiceGroup(
+    servicesGroup: MiniServiceGroup,
+    onClick: () => void,
+) {
     return (
         <div className="m-auto max-w-[900px]">
             <Scroller className="flex gap-4">
@@ -103,6 +121,7 @@ function makeServiceGroup(servicesGroup: MiniServiceGroup) {
                         className="min-w-[280px] shrink-0 grow basis-1"
                         src={service}
                         key={idx}
+                        onClick={onClick}
                     />
                 ))}
             </Scroller>
@@ -134,6 +153,7 @@ export default function Page({
     service: Service;
 }) {
     const windowSize = useWindowSize();
+    const [modalOpen, setModalOpen] = useState(true);
 
     return (
         <>
@@ -145,6 +165,27 @@ export default function Page({
             />
 
             <NavSpacer />
+
+            <Modal open={modalOpen} setOpen={setModalOpen}>
+                <div className="flex w-full max-w-[1150px] items-stretch overflow-hidden bg-white md:max-h-[508px]">
+                    <div className="relative grow basis-[800px] p-4 md:p-4">
+                        <p className="mb-4 font-counter text-7xl leading-[0.8em] tracking-tighter">
+                            Get in touch:
+                        </p>
+
+                        <Contact inverted />
+
+                        <Slash
+                            direction="right"
+                            className="absolute left-full top-0 z-10 h-full rotate-180 scale-105 bg-white"
+                        />
+                    </div>
+
+                    <div className="hidden md:block">
+                        <Media src={service.slideshow[0]} />
+                    </div>
+                </div>
+            </Modal>
 
             <div className="m-auto max-w-screen-2xl px-4 pt-2 md:mb-24">
                 <div className="grid grid-rows-[auto_auto] gap-8 lg:grid-cols-2 lg:grid-rows-1">
@@ -168,7 +209,10 @@ export default function Page({
                         />
 
                         <div>
-                            <Button className="my-4">
+                            <Button
+                                className="my-4"
+                                onClick={() => setModalOpen(true)}
+                            >
                                 <Button.Label className="bg-black pb-1 text-3xl text-white">
                                     {service.callToAction}
                                 </Button.Label>
@@ -214,7 +258,9 @@ export default function Page({
                 </div>
             </div>
 
-            {makeContent(service.content, service.slideshow, windowSize)}
+            {makeContent(service.content, service.slideshow, windowSize, () => {
+                setModalOpen(true);
+            })}
 
             <div className="m-auto max-w-[900px] px-4">
                 <PrettyCoolRight className="mb-32" inverted />

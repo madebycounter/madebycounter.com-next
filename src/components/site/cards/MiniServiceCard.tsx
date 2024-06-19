@@ -12,7 +12,7 @@ import { MiniService } from "@/lib/types";
 export interface MiniServiceCardProps {
     src: MiniService;
     className?: string;
-    onClick?: (src: MiniService) => void;
+    onClick?: () => void;
 }
 
 export default function MiniServiceCard({
@@ -45,12 +45,8 @@ export default function MiniServiceCard({
                 />
             </div>
 
-            <Button
-                onClick={() => {
-                    onClick?.(src);
-                }}
-            >
-                <Button.Label className="grow bg-black !py-0 text-right text-2xl text-white">
+            <Button onClick={onClick}>
+                <Button.Label className="grow bg-black !py-1 text-right text-2xl text-white">
                     {src.buttonText}
                 </Button.Label>
                 <Button.Arrow className="bg-black" />

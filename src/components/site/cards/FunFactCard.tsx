@@ -13,9 +13,14 @@ import styles from "./FunFactCard.module.css";
 export interface FunFactCardProps {
     src: FunFact;
     gallery: MultiMedia[];
+    onClick?: () => void;
 }
 
-export default function FunFactCard({ src, gallery }: FunFactCardProps) {
+export default function FunFactCard({
+    src,
+    gallery,
+    onClick,
+}: FunFactCardProps) {
     return (
         <div className={clsx(styles.FunFactCard)}>
             <div className={clsx(styles.Portrait)}>
@@ -68,7 +73,7 @@ export default function FunFactCard({ src, gallery }: FunFactCardProps) {
             </div>
 
             <div className={clsx(styles.ButtonBox, "min-w-0")}>
-                <Button direction="right">
+                <Button direction="right" onClick={onClick}>
                     <Button.Label
                         className={clsx(styles.Button, "bg-white text-black")}
                     >
