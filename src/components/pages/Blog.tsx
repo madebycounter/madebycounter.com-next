@@ -13,7 +13,7 @@ import styles from "./Blog.module.css";
 function BlogPostCard({ post }: { post: BlogPost }) {
     return (
         <Action href={`/blog/${post.slug.current}`}>
-            <div className="aspect-video">
+            <div className="aspect-4/3">
                 <Media src={post.heroVideo || post.heroImage} size={Small} />
             </div>
 
