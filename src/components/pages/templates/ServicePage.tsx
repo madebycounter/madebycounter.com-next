@@ -153,7 +153,7 @@ export default function Page({
     service: Service;
 }) {
     const windowSize = useWindowSize();
-    const [modalOpen, setModalOpen] = useState(true);
+    const [modalOpen, setModalOpen] = useState(false);
 
     return (
         <>
