@@ -195,7 +195,7 @@ export default function Page({
                             components={{
                                 block: {
                                     h1: ({ children }) => (
-                                        <h1 className="mb-4 font-counter text-[15vw] leading-[0.8em] tracking-tighter md:text-8xl lg:text-7xl xl:text-8xl 2xl:text-9xl">
+                                        <h1 className="mb-4 font-counter text-[14vw] leading-[0.9em] tracking-tighter md:text-8xl lg:text-7xl xl:text-8xl 2xl:text-9xl">
                                             {children}
                                         </h1>
                                     ),
