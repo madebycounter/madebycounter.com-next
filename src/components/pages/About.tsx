@@ -1,6 +1,7 @@
 "use client";
 
 import clsx from "clsx";
+import Image from "next/image";
 
 import Button from "@/components/site/Button";
 import Footer from "@/components/site/Footer";
@@ -8,6 +9,7 @@ import Highlight from "@/components/site/Highlight";
 import Nav from "@/components/site/Nav";
 import PrettyCoolRight from "@/components/site/PrettyCoolRight";
 import PortfolioCard from "@/components/site/cards/PortfolioCard";
+import Action from "@/components/util/Action";
 import Media from "@/components/util/Media";
 import { Large, Small } from "@/components/util/MediaSize";
 import Slideshow, { filterMedia } from "@/components/util/Slideshow";
@@ -51,6 +53,27 @@ export default function Page({
                     </h1>
                 </div>
 
+                <div className="absolute bottom-0 left-0 z-10 w-full">
+                    <div className="mb-[10vh] flex items-center justify-center">
+                        <Action
+                            href="#content"
+                            label="jump to content"
+                            className="hover:brightness-75"
+                        >
+                            <Image
+                                src="/caret.png"
+                                width={100}
+                                height={100}
+                                alt=""
+                                className={clsx(
+                                    "drop-shadow-hero aspect-square w-[10vw] invert lg:w-[4vw]",
+                                    styles.bounce,
+                                )}
+                            />
+                        </Action>
+                    </div>
+                </div>
+
                 <div className="h-full brightness-90">
                     {gallery.map((row, i) => (
                         <div
@@ -70,6 +93,8 @@ export default function Page({
                     ))}
                 </div>
             </div>
+
+            <div id="content" />
 
             <div className="flex w-full flex-col-reverse items-center gap-12 overflow-x-clip py-32 sm:gap-32 xl:flex-row-reverse xl:gap-0">
                 <div className="flex w-full flex-col gap-4 bg-white p-4 sm:flex-row xl:w-[450px] xl:flex-col 2xl:w-[750px]">

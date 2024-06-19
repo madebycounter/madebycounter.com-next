@@ -21,7 +21,20 @@
     background: radial-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 70%);
 }
 
-.bfc {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+.bounce {
+    animation: bounce 2s ease infinite;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    25% {
+        transform: translateY(-10px);
+    }
+
+    50% {
+        transform: translateY(0);
+    }
 }
