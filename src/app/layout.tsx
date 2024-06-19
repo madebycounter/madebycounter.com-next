@@ -1,3 +1,5 @@
+import { Analytics } from "@vercel/analytics/react";
+
 import Hotjar from "@/components/util/Hotjar";
 
 import "./globals.css";
@@ -10,7 +12,10 @@ export default function RootLayout({
     return (
         <html lang="en">
             <Hotjar />
-            <body>{children}</body>
+            <body>
+                {children}
+                <Analytics />
+            </body>
         </html>
     );
 }
