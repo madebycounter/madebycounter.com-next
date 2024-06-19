@@ -12,6 +12,8 @@ import BaseNav from "@/components/util/Nav";
 
 import { CompanyInfo } from "@/lib/types";
 
+import styles from "./Nav.module.css";
+
 export interface NavItemProps {
     children: React.ReactNode;
     href: string;
@@ -60,6 +62,7 @@ export default function Nav({
     solid = false,
 }: NavProps) {
     const [navOpen, setNavOpen] = useState(false);
+    const [servicesOpen, setServicesOpen] = useState(false);
 
     return (
         <>
@@ -67,10 +70,10 @@ export default function Nav({
                 className={clsx(
                     "z-30 h-16 px-4 py-2 transition-all duration-300 md:px-8",
                     {
-                        "bg-gradient-to-b from-black/60 to-transparent":
+                        "bg-gradient-to-b from-black/60 to-transparent hover:bg-black":
                             !inverted && !solid,
-                        "bg-black": inverted || solid,
-                        "bg-white": inverted,
+                        "bg-black hover:bg-black": inverted || solid,
+                        "bg-white hover:bg-white": inverted,
                     },
                 )}
                 classNameScrolled={
@@ -124,13 +127,38 @@ export default function Nav({
                             About
                         </NavItem>
 
-                        <NavItem
-                            href="/services"
-                            active={active === "services"}
-                            inverted={inverted}
+                        <li
+                            className={clsx(
+                                "text-md relative font-counter uppercase tracking-wide",
+                                {
+                                    underline: active === "services",
+                                    "text-white": !inverted,
+                                    "text-black": inverted,
+                                },
+                                styles.dropdown,
+                            )}
                         >
                             Services
-                        </NavItem>
+                            <div
+                                className={clsx(styles.content, {
+                                    "bg-black": !inverted,
+                                    "bg-white": inverted,
+                                })}
+                            >
+                                {companyInfo.services.map((service, idx) => (
+                                    <Action
+                                        key={idx}
+                                        className={clsx("block text-nowrap", {
+                                            "text-white": !inverted,
+                                            "text-black": inverted,
+                                        })}
+                                        href={`/services/${service.slug.current}`}
+                                    >
+                                        {service.title}
+                                    </Action>
+                                ))}
+                            </div>
+                        </li>
 
                         <NavItem
                             href="/portfolio"
@@ -179,34 +207,52 @@ export default function Nav({
                             },
                         )}
                     />
-
-                    <div className="m-4 mt-12 flex flex-col items-start gap-2">
-                        <Link
-                            className="font-counter text-4xl uppercase tracking-tight text-white hover:brightness-75"
-                            href="/"
-                        >
-                            About
-                        </Link>
-                        <Link
-                            className="font-counter text-4xl uppercase tracking-tight text-white hover:brightness-75"
-                            href="/services"
-                        >
-                            Services
-                        </Link>
-                        <Link
-                            className="font-counter text-4xl uppercase tracking-tight text-white hover:brightness-75"
-                            href="/portfolio"
-                        >
-                            Portfolio
-                        </Link>
-                        <Link
-                            className="font-counter text-4xl uppercase tracking-tight text-white hover:brightness-75"
-                            href="/blog"
-                        >
-                            Blog
-                        </Link>
-                    </div>
                 </Action>
+
+                <div className="m-4 mt-12">
+                    <Action
+                        className="mb-2 block font-counter text-4xl uppercase tracking-tight text-white hover:brightness-75"
+                        href="/"
+                    >
+                        About
+                    </Action>
+                    <Action
+                        onClick={() => setServicesOpen(!servicesOpen)}
+                        className="mb-2 block font-counter text-4xl uppercase tracking-tight text-white hover:brightness-75"
+                    >
+                        Services
+                    </Action>
+                    <div
+                        className={clsx("origin-top transition-all", {
+                            "mb-0 h-0 scale-y-50 opacity-0": !servicesOpen,
+                            "mb-2 h-auto scale-y-100 opacity-100": servicesOpen,
+                        })}
+                    >
+                        {companyInfo.services.map((service, idx) => (
+                            <Action
+                                key={idx}
+                                className={clsx(
+                                    "ml-4 block text-nowrap font-counter text-2xl uppercase tracking-tight text-white hover:brightness-75",
+                                )}
+                                href={`/services/${service.slug.current}`}
+                            >
+                                {service.title}
+                            </Action>
+                        ))}
+                    </div>
+                    <Action
+                        className="mb-2 block font-counter text-4xl uppercase tracking-tight text-white hover:brightness-75"
+                        href="/portfolio"
+                    >
+                        Portfolio
+                    </Action>
+                    <Action
+                        className="mb-2 block font-counter text-4xl uppercase tracking-tight text-white hover:brightness-75"
+                        href="/blog"
+                    >
+                        Blog
+                    </Action>
+                </div>
             </div>
         </>
     );

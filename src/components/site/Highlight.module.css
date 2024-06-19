@@ -17,7 +17,7 @@
     left: 0;
     width: 102%;
     height: 100%;
-    transition: transform ease-in-out 500ms 100ms;
+    transition: transform ease-in-out 50ms 100ms;
     transform-origin: left;
 
     transform: scaleX(0);
