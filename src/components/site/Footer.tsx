@@ -111,6 +111,7 @@ export default function Footer({
                                 placeholder="Email"
                                 name="email"
                                 type="email"
+                                autoComplete="email"
                             />
 
                             <button

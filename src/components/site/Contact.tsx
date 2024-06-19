@@ -34,6 +34,7 @@ export default function Contact({ className, inverted = false }: ContactProps) {
                     placeholder="First Name*"
                     size={1}
                     required
+                    autoComplete="given-name"
                 />
                 <Form.Input
                     className={clsx(
@@ -43,6 +44,7 @@ export default function Contact({ className, inverted = false }: ContactProps) {
                     name="lname"
                     placeholder="Last Name"
                     size={1}
+                    autoComplete="family-name"
                 />
             </div>
             <Form.Input
@@ -51,6 +53,7 @@ export default function Contact({ className, inverted = false }: ContactProps) {
                 placeholder="Email*"
                 type="email"
                 required
+                autoComplete="email"
             />
             <Form.TextArea
                 className={clsx("min-h-[200px] border-2 p-2", themeStyles)}
