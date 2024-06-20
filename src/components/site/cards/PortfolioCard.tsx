@@ -18,11 +18,11 @@ export default function PortfolioCard({ src, className }: PortfolioCardProps) {
             )}
             href={`/portfolio/${src.slug.current}`}
         >
-            <div className="blur-xs h-full w-full scale-100 brightness-75 transition-all group-hover:scale-105 group-hover:brightness-100">
+            <div className="h-full w-full scale-100 blur-xs brightness-75 transition-all group-hover:scale-105 group-hover:brightness-100">
                 <Media src={src.thumbnail} mode="cover" />
             </div>
 
-            <p className="absolute bottom-0 left-0 z-10 m-2 mr-4 font-counter text-5xl font-normal leading-[0.9em] tracking-tight text-white drop-shadow-counter">
+            <p className="absolute bottom-0 left-0 z-10 m-2 mr-4 font-counter text-4xl font-normal leading-[0.9em] tracking-tight text-white drop-shadow-counter">
                 {src.title}
             </p>
 
