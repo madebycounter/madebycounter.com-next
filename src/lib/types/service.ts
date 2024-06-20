@@ -107,7 +107,7 @@ export async function useServices(): Promise<Service[]> {
         slug,
     }`,
         {},
-        ["service"],
+        ["service", "teamMember"],
     );
 }
 
@@ -117,6 +117,14 @@ export async function useService(slug: string): Promise<Service> {
             ${serviceFragment}
         }`,
         { slug },
-        ["service"],
+        [
+            "service",
+            "teamMember",
+            "funFact",
+            "testimonial",
+            "mediaGroup",
+            "miniServiceGroup",
+            "portfolioItemGroup",
+        ],
     );
 }
