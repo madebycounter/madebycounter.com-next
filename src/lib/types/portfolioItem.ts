@@ -89,6 +89,6 @@ export async function usePortfolioItem(slug: string): Promise<PortfolioItem> {
             ${portfolioItemFragment}
         }`,
         { slug },
-        ["portfolioItem"],
+        ["portfolioItem", "service", "testimonial"],
     );
 }
