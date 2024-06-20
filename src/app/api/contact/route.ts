@@ -13,19 +13,19 @@ export async function POST(request: NextRequest) {
         [
             {
                 name: "firstname",
-                value: data.fname,
+                value: data.fname || "",
             },
             {
                 name: "lastname",
-                value: data.lname,
+                value: data.lname || "",
             },
             {
                 name: "email",
-                value: data.email,
+                value: data.email || "",
             },
             {
                 name: "message",
-                value: data.message,
+                value: data.message || "",
             },
         ],
         request.headers.get("Referer") || "",

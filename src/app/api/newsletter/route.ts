@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
             },
             {
                 name: "email",
-                value: data.email,
+                value: data.email || "",
             },
         ],
         request.headers.get("Referer") || "",
