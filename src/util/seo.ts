@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
-import { SanityImage } from "@/lib/types";
+import { MultiMedia } from "@/lib/types";
 
 export function makeSeoData(
     title: string,
     description: string,
-    image: SanityImage,
+    image: MultiMedia,
 ): Metadata {
     return {
         title,
@@ -15,7 +15,10 @@ export function makeSeoData(
             description,
             images: [
                 {
-                    url: `${image.asset.url}?w=600&h=315&q=50&fm=jpg`,
+                    url:
+                        image._type === "image"
+                            ? `${image.asset.url}?w=600&h=315&q=50&fm=jpg`
+                            : `https://image.mux.com/${image.asset.playbackId}/thumbnail.jpg?width=600&height=315`,
                     width: 600,
                     height: 315,
                 },
