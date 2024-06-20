@@ -6,17 +6,7 @@ export function makeSeoData(
     title: string,
     description: string,
     image: MultiMedia,
-    videoEmbed?: string,
 ): Metadata {
-    var youtubeId = null;
-
-    if (videoEmbed) {
-        const id = /[/=]([\w_-]{11})\b/.exec(videoEmbed);
-        if (id) {
-            youtubeId = id[1];
-        }
-    }
-
     return {
         title,
         description,
@@ -33,9 +23,6 @@ export function makeSeoData(
                     height: 315,
                 },
             ],
-            videos: youtubeId
-                ? `https://www.youtube.com/v/${youtubeId}`
-                : undefined,
         },
     };
 }
