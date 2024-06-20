@@ -30,7 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         {
             url: baseUrl,
             lastModified: new Date(),
-            changeFrequency: "monthly",
+            changeFrequency: "yearly",
             priority: 1,
         },
         {
@@ -50,7 +50,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                 ({
                     url: `${baseUrl}/portfolio/${item.slug.current}`,
                     lastModified: new Date(item._updatedAt),
-                    changeFrequency: "monthly",
+                    changeFrequency: "yearly",
                     priority: 0.8,
                 }) as SitemapItem,
         ),
@@ -68,7 +68,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                 ({
                     url: `${baseUrl}/blog/${post.slug.current}`,
                     lastModified: new Date(post._updatedAt),
-                    changeFrequency: "monthly",
+                    changeFrequency: "yearly",
                     priority: 0.5,
                 }) as SitemapItem,
         ),
