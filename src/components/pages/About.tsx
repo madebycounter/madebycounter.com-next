@@ -46,7 +46,7 @@ export default function Page({
                 )}
             >
                 <div className="absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center">
-                    <h1 className="drop-shadow-hero text-nowrap text-center font-counter text-[15vw] leading-[1em] tracking-tighter text-white lg:text-[8vw]">
+                    <h1 className="text-nowrap text-center font-counter text-[15vw] leading-[1em] tracking-tighter text-white drop-shadow-hero lg:text-[8vw]">
                         We make cool&nbsp;
                         <br className="block lg:hidden" />
                         stuff, <Highlight>see?</Highlight>
@@ -66,7 +66,7 @@ export default function Page({
                                 height={100}
                                 alt=""
                                 className={clsx(
-                                    "drop-shadow-hero aspect-square w-[10vw] invert lg:w-[4vw]",
+                                    "aspect-square w-[10vw] drop-shadow-hero invert lg:w-[4vw]",
                                     styles.bounce,
                                 )}
                             />
@@ -128,6 +128,7 @@ export default function Page({
                                 href={`/services/${aboutPage.lukeService.slug.current}`}
                                 direction="right"
                                 className="mt-8"
+                                label={aboutPage.lukeService.title}
                             >
                                 <Button.Label className="bg-white text-3xl text-black lg:text-5xl">
                                     Learn More
@@ -226,6 +227,7 @@ export default function Page({
                                 href={`/services/${aboutPage.henryService.slug.current}`}
                                 direction="left"
                                 className="mt-8"
+                                label={aboutPage.henryService.title}
                             >
                                 <Button.Label className="bg-white text-3xl text-black lg:text-5xl">
                                     Learn More
@@ -329,6 +331,7 @@ export default function Page({
                                 href={`/services/${aboutPage.williamService.slug.current}`}
                                 direction="right"
                                 className="mt-8"
+                                label={aboutPage.williamService.title}
                             >
                                 <Button.Label className="bg-white text-3xl text-black lg:text-5xl">
                                     Learn More
