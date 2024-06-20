@@ -8,6 +8,7 @@ import { Service, serviceFragment } from "./service";
 export interface PortfolioItem {
     _id: string;
     _type: "portfolioItem";
+    _updatedAt: string;
     title: string;
     date: string;
     tags: string[];
@@ -26,6 +27,7 @@ export interface PortfolioItem {
 export const portfolioItemFragment = `
     _id,
     _type,
+    _updatedAt,
     title,
     description,
     date,
@@ -69,6 +71,7 @@ export async function usePortfolioItems(): Promise<PortfolioItem[]> {
         `*[_type == "portfolioItem"] | order(date desc) {
         _id,
         _type,
+        _updatedAt,
         title,
         date,
         tags,

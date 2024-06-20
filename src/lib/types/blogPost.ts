@@ -6,6 +6,7 @@ import { TeamMember, teamMemberFragment } from "./components/teamMember";
 export interface BlogPost {
     _id: string;
     _type: "blogPost";
+    _updatedAt: string;
     title: string;
     date: string;
     author: TeamMember;
@@ -22,6 +23,7 @@ export interface BlogPost {
 export const blogPostFragment = `
     _id,
     _type,
+    _updatedAt,
     title,
     date,
     author->{
@@ -60,6 +62,7 @@ export async function useBlogPosts(): Promise<BlogPost[]> {
         `*[_type == "blogPost"] | order(date desc) {
             _id,
             _type,
+            _updatedAt,
             title,
             date,
             author->{

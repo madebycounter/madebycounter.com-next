@@ -28,6 +28,7 @@ export type ServiceContent = {
 export interface Service {
     _id: string;
     _type: "service";
+    _updatedAt: string;
     title: string;
     slideshow: MultiMedia[];
     videoSnippet: MuxVideo;
@@ -44,6 +45,7 @@ export interface Service {
 export const serviceFragment = `
     _id,
     _type,
+    _updatedAt,
     title,
     slideshow[] {
         _key,
@@ -91,6 +93,7 @@ export async function useServices(): Promise<Service[]> {
         `*[_type == "service"] {
         _id,
         _type,
+        _updatedAt,
         title,
         slideshow[] {
             _key,
