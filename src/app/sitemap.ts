@@ -30,7 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         {
             url: baseUrl,
             lastModified: new Date(),
-            changeFrequency: "yearly",
+            changeFrequency: "monthly",
             priority: 1,
         },
         {
@@ -68,7 +68,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                 ({
                     url: `${baseUrl}/blog/${post.slug.current}`,
                     lastModified: new Date(post._updatedAt),
-                    changeFrequency: "weekly",
+                    changeFrequency: "monthly",
                     priority: 0.5,
                 }) as SitemapItem,
         ),
