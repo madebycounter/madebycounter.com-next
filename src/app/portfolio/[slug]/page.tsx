@@ -21,6 +21,7 @@ export async function generateMetadata({
         `${companyName} | ${portfolioItem.title}`,
         blocksToText(portfolioItem.description),
         portfolioItem.thumbnail,
+        portfolioItem.heroEmbed,
     );
 }
 
