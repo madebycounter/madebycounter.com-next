@@ -17,9 +17,16 @@ export async function generateMetadata({
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const blogPost = await useBlogPost(params.slug);
 
+    const seoDescription =
+        blocksToText(blogPost.content)
+            .slice(0, 160)
+            .split(" ")
+            .slice(0, -1)
+            .join(" ") + "...";
+
     return makeSeoData(
         `${companyName} | ${blogPost.title}`,
-        blocksToText(blogPost.content),
+        seoDescription,
         blogPost.heroImage || blogPost.heroVideo,
     );
 }
