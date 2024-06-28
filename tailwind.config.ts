@@ -19,7 +19,7 @@ const config: Config = {
         },
         extend: {
             fontFamily: {
-                counter: ["Counter Arial", "Arial"],
+                counter: ["Counter Arial", "Arial", "sans-serif"],
             },
             aspectRatio: {
                 "4kdci": "4096 / 2160",
