@@ -1,7 +1,9 @@
-// route handler enabling draft mode
+// ./app/api/disable-draft/route.ts
 import { draftMode } from "next/headers";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export function GET(request: NextRequest) {
     draftMode().disable();
-    return new Response("Draft mode is disabled");
+    const url = new URL(request.nextUrl);
+    return NextResponse.redirect(new URL("/", url.origin));
 }
