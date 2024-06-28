@@ -26,8 +26,8 @@ export default function RootLayout({
             <Hotjar />
             <body>
                 {draftMode().isEnabled && <VisualEditing />}
+                {!draftMode().isEnabled && <Analytics />}
                 {children}
-                <Analytics />
             </body>
         </html>
     );

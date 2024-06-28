@@ -20,10 +20,14 @@ export async function query<T>(
         token: process.env.SANITY_READ_TOKEN,
         ...(preview && {
             perspective: "previewDrafts",
+            stega: {
+                enabled: true,
+                studioUrl: "https://madebycounter.sanity.studio",
+            },
         }),
         next: {
             ...(preview && {
-                revalidate: 10,
+                revalidate: 0,
             }),
             tags,
         },
