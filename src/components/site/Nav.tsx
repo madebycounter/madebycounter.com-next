@@ -155,7 +155,7 @@ export default function Nav({
                                         })}
                                         href={`/services/${service.slug.current}`}
                                     >
-                                        {service.title}
+                                        {stegaClean(service.title)}
                                     </Action>
                                 ))}
                             </div>
