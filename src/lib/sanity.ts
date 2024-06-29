@@ -28,7 +28,7 @@ export async function query<T>(
         }),
         next: {
             ...(preview && {
-                revalidate: 0,
+                revalidate: 1,
             }),
             tags,
         },

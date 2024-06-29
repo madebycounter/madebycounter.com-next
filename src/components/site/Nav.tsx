@@ -1,5 +1,6 @@
 "use client";
 
+import { stegaClean } from "@sanity/client/stega";
 import clsx from "clsx";
 import Link from "next/link";
 import { useState } from "react";
@@ -238,7 +239,7 @@ export default function Nav({
                                 )}
                                 href={`/services/${service.slug.current}`}
                             >
-                                {service.title}
+                                {stegaClean(service.title)}
                             </Action>
                         ))}
                     </div>

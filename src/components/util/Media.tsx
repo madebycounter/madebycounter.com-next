@@ -170,7 +170,7 @@ export function Image({ src, className, size, onReady, alt = "" }: ImageProps) {
         <img
             ref={imgRef}
             src={makeImageUrl(src, size)}
-            alt={alt}
+            alt={stegaClean(alt)}
             className={className}
             onLoad={onImgLoad}
             style={{
