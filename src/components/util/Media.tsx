@@ -2,6 +2,7 @@
 
 import MuxVideoPlayer from "@mux/mux-video-react";
 import { getImageDimensions } from "@sanity/asset-utils";
+import { stegaClean } from "@sanity/client/stega";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 
@@ -25,15 +26,15 @@ export function getAspectRatio(src: MultiMedia) {
 }
 
 export function getVideoThumbnail(src: MuxVideo, size: number = 100) {
-    return `https://image.mux.com/${src.asset.playbackId}/thumbnail.webp?width=${size}`;
+    return `https://image.mux.com/${stegaClean(src.asset.playbackId)}/thumbnail.webp?width=${size}`;
 }
 
 function makeVideoUrl(src: MuxVideo, size: MediaSize) {
-    return `https://stream.mux.com/${src.asset.playbackId}/${size.video}.mp4`;
+    return `https://stream.mux.com/${stegaClean(src.asset.playbackId)}/${size.video}.mp4`;
 }
 
 function makeImageUrl(src: SanityImage, size: MediaSize) {
-    return `${src.asset.url}?w=${size.img}&q=70&sharp=10&fm=webp`;
+    return `${stegaClean(src.asset.url)}?w=${size.img}&q=70&sharp=10&fm=webp`;
 }
 
 function useImageLoaded(): [
@@ -72,7 +73,7 @@ export function MediaPreview({ src, className }: MediaPreviewProps) {
             {src._type === "mux.video" && (
                 <img
                     className={className}
-                    src={`https://image.mux.com/${src.asset.playbackId}/thumbnail.webp?width=200`}
+                    src={`https://image.mux.com/${stegaClean(src.asset.playbackId)}/thumbnail.webp?width=200`}
                     alt=""
                 />
             )}

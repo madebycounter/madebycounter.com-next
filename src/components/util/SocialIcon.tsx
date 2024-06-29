@@ -1,3 +1,4 @@
+import { stegaClean } from "@sanity/client/stega";
 import { FaGithub } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa6";
@@ -29,7 +30,7 @@ export default function SocialIcon({ platform, className }: SocialIconProps) {
         github: FaGithub,
     };
 
-    const Icon = iconMap[platform];
+    const Icon = iconMap[stegaClean(platform)];
 
     return <Icon className={className} />;
 }
