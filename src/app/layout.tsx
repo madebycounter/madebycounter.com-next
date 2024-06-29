@@ -1,9 +1,8 @@
 import { Analytics } from "@vercel/analytics/react";
-import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
 
-import DraftModeTool from "@/components/util/DraftModeTool";
 import Hotjar from "@/components/util/Hotjar";
+import { VisualEditingTool } from "@/components/util/VisualEditingTool";
 
 import "./globals.css";
 
@@ -25,7 +24,7 @@ export default function RootLayout({
             </head>
             <Hotjar />
             <body>
-                {draftMode().isEnabled && <VisualEditing />}
+                {draftMode().isEnabled && <VisualEditingTool />}
                 {!draftMode().isEnabled && <Analytics />}
                 {children}
             </body>
