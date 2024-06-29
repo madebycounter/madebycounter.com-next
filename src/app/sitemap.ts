@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-import { useBlogPosts, usePortfolioItems, useServices } from "@/lib/types";
+import { usePortfolioItems, useServices, useBlogPosts } from "@/lib/query";
 
 type SitemapItem = {
     url: string;

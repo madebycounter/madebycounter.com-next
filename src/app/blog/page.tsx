@@ -4,7 +4,7 @@ import { makeSeoData } from "@/util/seo";
 
 import BlogPage from "@/components/pages/Blog";
 
-import { useBlogPosts, useCompanyInfo, useSeoData } from "@/lib/types";
+import { useSeoData, useBlogPosts, useCompanyInfo } from "@/lib/query";
 
 export async function generateMetadata(): Promise<Metadata> {
     // eslint-disable-next-line react-hooks/rules-of-hooks

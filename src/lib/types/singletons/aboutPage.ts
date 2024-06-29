@@ -1,9 +1,167 @@
-import { query } from "@/lib/sanity";
+import { defineType } from "sanity";
+
 import { Service } from "@/lib/types/service";
 
 import { MultiMedia, assetFragment } from "../assets";
 import { TeamMember, teamMemberFragment } from "../components/teamMember";
 import { PortfolioItem, portfolioItemPartialFragment } from "../portfolioItem";
+
+export const aboutPageSchema = defineType({
+    name: "aboutPage",
+    title: "About Page",
+    type: "document",
+    fields: [
+        {
+            name: "hero",
+            title: "Hero",
+            type: "object",
+            fields: [
+                {
+                    name: "row1",
+                    title: "Row 1",
+                    type: "array",
+                    of: [
+                        { type: "image", title: "Image" },
+                        { type: "mux.video", title: "Video" },
+                    ],
+                },
+                {
+                    name: "row2",
+                    title: "Row 2",
+                    type: "array",
+                    of: [
+                        { type: "image", title: "Image" },
+                        { type: "mux.video", title: "Video" },
+                    ],
+                },
+                {
+                    name: "row3",
+                    title: "Row 3",
+                    type: "array",
+                    of: [
+                        { type: "image", title: "Image" },
+                        { type: "mux.video", title: "Video" },
+                    ],
+                },
+                {
+                    name: "row4",
+                    title: "Row 4",
+                    type: "array",
+                    of: [
+                        { type: "image", title: "Image" },
+                        { type: "mux.video", title: "Video" },
+                    ],
+                },
+                {
+                    name: "row5",
+                    title: "Row 5",
+                    type: "array",
+                    of: [
+                        { type: "image", title: "Image" },
+                        { type: "mux.video", title: "Video" },
+                    ],
+                },
+                {
+                    name: "row6",
+                    title: "Row 6",
+                    type: "array",
+                    of: [
+                        { type: "image", title: "Image" },
+                        { type: "mux.video", title: "Video" },
+                    ],
+                },
+                {
+                    name: "row7",
+                    title: "Row 7",
+                    type: "array",
+                    of: [
+                        { type: "image", title: "Image" },
+                        { type: "mux.video", title: "Video" },
+                    ],
+                },
+            ],
+        },
+        {
+            name: "lukeSlideshow1",
+            title: "Luke Slideshow 1",
+            type: "array",
+            of: [
+                { type: "image", title: "Image" },
+                { type: "mux.video", title: "Video" },
+            ],
+        },
+        {
+            name: "lukeSlideshow2",
+            title: "Luke Slideshow 2",
+            type: "array",
+            of: [
+                { type: "image", title: "Image" },
+                { type: "mux.video", title: "Video" },
+            ],
+        },
+        {
+            name: "lukeReferences",
+            title: "Luke References",
+            type: "array",
+            of: [{ type: "reference", to: [{ type: "portfolioItem" }] }],
+        },
+        {
+            name: "henrySlideshow1",
+            title: "Henry Slideshow 1",
+            type: "array",
+            of: [
+                { type: "image", title: "Image" },
+                { type: "mux.video", title: "Video" },
+            ],
+        },
+        {
+            name: "henrySlideshow2",
+            title: "Henry Slideshow 2",
+            type: "array",
+            of: [
+                { type: "image", title: "Image" },
+                { type: "mux.video", title: "Video" },
+            ],
+        },
+        {
+            name: "henryReferences",
+            title: "Henry References",
+            type: "array",
+            of: [{ type: "reference", to: [{ type: "portfolioItem" }] }],
+        },
+        {
+            name: "williamSlideshow1",
+            title: "William Slideshow 1",
+            type: "array",
+            of: [
+                { type: "image", title: "Image" },
+                { type: "mux.video", title: "Video" },
+            ],
+        },
+        {
+            name: "williamSlideshow2",
+            title: "William Slideshow 2",
+            type: "array",
+            of: [
+                { type: "image", title: "Image" },
+                { type: "mux.video", title: "Video" },
+            ],
+        },
+        {
+            name: "williamReferences",
+            title: "William References",
+            type: "array",
+            of: [{ type: "reference", to: [{ type: "portfolioItem" }] }],
+        },
+    ],
+    preview: {
+        prepare() {
+            return {
+                title: "About Page",
+            };
+        },
+    },
+});
 
 export interface AboutPageHero {
     row1: MultiMedia[];
@@ -123,13 +281,3 @@ export const aboutPageFragment = `
         ${portfolioItemPartialFragment}
     }
 `;
-
-export async function useAboutPage(): Promise<AboutPage> {
-    return await query(
-        `*[_type == "aboutPage"][0] {
-            ${aboutPageFragment}
-        }`,
-        {},
-        ["aboutPage", "service", "teamMember"],
-    );
-}

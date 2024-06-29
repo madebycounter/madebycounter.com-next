@@ -1,8 +1,122 @@
-import { query } from "@/lib/sanity";
+import { ReactNode } from "react";
+import { FaGithub } from "react-icons/fa";
+import { FaYoutube } from "react-icons/fa6";
+import { FaInstagram } from "react-icons/fa6";
+import { FaLinkedinIn } from "react-icons/fa6";
+import { FaRegEnvelope } from "react-icons/fa6";
+import { FaFacebook } from "react-icons/fa6";
+import { FaXTwitter } from "react-icons/fa6";
+import { defineType } from "sanity";
 
 import { SanityImage, assetFragment } from "../assets";
 import { PortfolioItem } from "../portfolioItem";
 import { Service } from "../service";
+
+export const companyInfoSchema = defineType({
+    name: "companyInfo",
+    title: "Company Info",
+    type: "document",
+    fields: [
+        {
+            name: "name",
+            title: "Name",
+            type: "string",
+        },
+        {
+            name: "logo",
+            title: "Logo",
+            type: "image",
+        },
+        {
+            name: "socials",
+            title: "Socials",
+            type: "array",
+            of: [
+                {
+                    type: "object",
+                    fields: [
+                        {
+                            name: "name",
+                            title: "Name",
+                            type: "string",
+                        },
+                        {
+                            name: "link",
+                            title: "Link",
+                            type: "string",
+                        },
+                        {
+                            name: "platform",
+                            title: "Platform",
+                            type: "string",
+                            options: {
+                                list: [
+                                    { title: "Instagram", value: "instagram" },
+                                    { title: "Facebook", value: "facebook" },
+                                    { title: "Twitter", value: "twitter" },
+                                    { title: "LinkedIn", value: "linkedin" },
+                                    { title: "E-Mail", value: "email" },
+                                    { title: "YouTube", value: "youtube" },
+                                    { title: "GitHub", value: "github" },
+                                ],
+                            },
+                        },
+                    ],
+                    preview: {
+                        select: {
+                            title: "name",
+                            platform: "platform",
+                        },
+                        prepare({ title, platform }) {
+                            var icon = FaInstagram;
+
+                            if (platform === "facebook") icon = FaFacebook;
+                            else if (platform === "twitter") icon = FaXTwitter;
+                            else if (platform === "linkedin")
+                                icon = FaLinkedinIn;
+                            else if (platform === "youtube") icon = FaYoutube;
+                            else if (platform === "email") icon = FaRegEnvelope;
+                            else if (platform === "github") icon = FaGithub;
+
+                            return {
+                                title,
+                                icon,
+                            };
+                        },
+                    },
+                },
+            ],
+        },
+        {
+            name: "footerLinks",
+            title: "Footer Links",
+            type: "array",
+            of: [
+                {
+                    type: "object",
+                    fields: [
+                        {
+                            name: "text",
+                            title: "Link Text",
+                            type: "string",
+                        },
+                        {
+                            name: "url",
+                            title: "URL",
+                            type: "string",
+                        },
+                        {
+                            name: "external",
+                            title: "External",
+                            type: "boolean",
+                            initialValue: true,
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
+});
 
 export interface Social {
     platform:
@@ -58,13 +172,3 @@ export const companyInfoFragment = `
         slug
     }[0...5]
 `;
-
-export async function useCompanyInfo(): Promise<CompanyInfo> {
-    return await query(
-        `*[_type == "companyInfo"][0] {
-        ${companyInfoFragment}
-    }`,
-        {},
-        ["companyInfo", "service", "portfolioItem"],
-    );
-}

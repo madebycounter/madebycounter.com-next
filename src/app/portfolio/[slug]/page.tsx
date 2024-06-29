@@ -5,7 +5,7 @@ import { makeSeoData } from "@/util/seo";
 
 import PortfolioItemPage from "@/components/pages/templates/PortfolioItem";
 
-import { useCompanyInfo, usePortfolioItem, useSeoData } from "@/lib/types";
+import { useSeoData, usePortfolioItem, useCompanyInfo } from "@/lib/query";
 
 export async function generateMetadata({
     params,

@@ -1,6 +1,52 @@
-import { client } from "@/lib/sanity";
+import { defineType } from "sanity";
 
 import { SanityImage, assetFragment } from "../assets";
+
+export const teamMemberSchema = defineType({
+    title: "Team Member",
+    name: "teamMember",
+    type: "document",
+    fields: [
+        {
+            title: "Name",
+            name: "name",
+            type: "string",
+        },
+        {
+            title: "Profile",
+            name: "profile",
+            type: "image",
+        },
+        {
+            title: "Action Shot",
+            name: "actionShot",
+            type: "image",
+        },
+        {
+            title: "Action Shot Extra",
+            name: "actionShotExtra",
+            type: "image",
+        },
+        {
+            title: "Fun Fact",
+            name: "funFact",
+            type: "image",
+        },
+        {
+            title: "Signature",
+            name: "signature",
+            type: "image",
+        },
+        {
+            title: "Slug",
+            name: "slug",
+            type: "slug",
+            options: {
+                source: "name",
+            },
+        },
+    ],
+});
 
 export type TeamMemberSlug =
     | "luke-a-makinson"
@@ -43,12 +89,3 @@ export const teamMemberFragment = `
     },
     slug
 `;
-
-export async function useTeamMember(slug: TeamMemberSlug): Promise<TeamMember> {
-    return await client.fetch(
-        `*[_type == "teamMember" && slug.current == $slug][0] {
-            ${teamMemberFragment}
-        }`,
-        { slug },
-    );
-}

@@ -1,4 +1,4 @@
-import { useAboutPage, useCompanyInfo, useService } from "@/lib/types";
+import { useCompanyInfo, useAboutPage } from "@/lib/query";
 
 import NewsletterPage from "./Newsletter";
 

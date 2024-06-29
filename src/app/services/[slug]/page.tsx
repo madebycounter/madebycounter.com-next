@@ -5,12 +5,7 @@ import { makeSeoData } from "@/util/seo";
 
 import ServicePage from "@/components/pages/templates/ServicePage";
 
-import {
-    SanityImage,
-    useCompanyInfo,
-    useSeoData,
-    useService,
-} from "@/lib/types";
+import { useCompanyInfo, useSeoData, useService } from "@/lib/query";
 
 export async function generateMetadata({
     params,

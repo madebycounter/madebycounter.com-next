@@ -1,3 +1,5 @@
+import { defineType } from "sanity";
+
 import { query } from "@/lib/sanity";
 
 import { MultiMedia, MuxVideo, assetFragment } from "./assets";
@@ -15,6 +17,111 @@ import {
 } from "./groups/portfolioItemGroup";
 import { RichText } from "./richText";
 import { PageSeoData, pageSeoDataFragment } from "./singletons/seoData";
+
+export const serviceSchema = defineType({
+    name: "service",
+    title: "Service",
+    type: "document",
+    fields: [
+        {
+            name: "title",
+            title: "Title",
+            type: "string",
+        },
+        {
+            name: "slideshow",
+            title: "Slideshow",
+            type: "array",
+            of: [
+                { type: "image", title: "Image" },
+                { type: "mux.video", title: "Video" },
+            ],
+        },
+        {
+            name: "videoSnippet",
+            title: "Video Snippet",
+            type: "mux.video",
+        },
+        {
+            name: "videoEmbed",
+            title: "Video Embed",
+            type: "url",
+        },
+        {
+            name: "heroText",
+            title: "Hero Text",
+            type: "richText",
+        },
+        {
+            name: "teamMember",
+            title: "Team Member",
+            type: "reference",
+            to: [{ type: "teamMember" }],
+        },
+        {
+            name: "content",
+            title: "Content",
+            type: "array",
+            of: [
+                {
+                    type: "reference",
+                    to: [
+                        { type: "testimonial", title: "Testimonial" },
+                        { type: "funFact", title: "Fun Fact" },
+                        {
+                            type: "miniServiceGroup",
+                            title: "Mini Service Group",
+                        },
+                        { type: "mediaGroup", title: "Media Group" },
+                        {
+                            type: "portfolioItemGroup",
+                            title: "Portfolio Group",
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            name: "callToAction",
+            title: "Call to Action",
+            type: "string",
+        },
+        {
+            name: "offerings",
+            title: "Offerings",
+            type: "array",
+            of: [{ type: "string" }],
+        },
+        {
+            name: "seoData",
+            title: "SEO Data",
+            type: "pageSeoData",
+        },
+        {
+            name: "slug",
+            title: "Slug",
+            type: "slug",
+            options: {
+                source: "title",
+            },
+        },
+    ],
+    preview: {
+        select: {
+            title: "title",
+            slideshow: "slideshow",
+        },
+        prepare(selection) {
+            const { title, slideshow } = selection;
+            return {
+                title,
+                media: slideshow.filter(
+                    (slide: any) => slide._type === "image",
+                )[0],
+            };
+        },
+    },
+});
 
 export type ServiceContent = {
     references: { _id: string; _type: string }[];
@@ -87,47 +194,3 @@ export const serviceFragment = `
     },
     slug,
 `;
-
-export async function useServices(): Promise<Service[]> {
-    return await query(
-        `*[_type == "service"] {
-        _id,
-        _type,
-        _updatedAt,
-        title,
-        slideshow[] {
-            _key,
-            ${assetFragment}
-        },
-        videoSnippet {
-            ${assetFragment}
-        },
-        videoEmbed,
-        teamMember->{
-            ${teamMemberFragment}
-        },
-        offerings[],
-        slug,
-    }`,
-        {},
-        ["service", "teamMember"],
-    );
-}
-
-export async function useService(slug: string): Promise<Service> {
-    return await query(
-        `*[_type == "service" && slug.current == $slug][0] {
-            ${serviceFragment}
-        }`,
-        { slug },
-        [
-            "service",
-            "teamMember",
-            "funFact",
-            "testimonial",
-            "mediaGroup",
-            "miniServiceGroup",
-            "portfolioItemGroup",
-        ],
-    );
-}

@@ -1,6 +1,62 @@
-import { query } from "@/lib/sanity";
+import { defineType } from "sanity";
 
 import { SanityImage, assetFragment } from "../assets";
+
+export const pageSeoDataSchema = defineType({
+    name: "pageSeoData",
+    title: "Page SEO Data",
+    type: "object",
+    fields: [
+        {
+            name: "title",
+            title: "Title",
+            type: "string",
+        },
+        {
+            name: "description",
+            title: "Description",
+            type: "text",
+        },
+        {
+            name: "image",
+            title: "Image",
+            type: "image",
+        },
+    ],
+});
+
+export const seoDataSchema = defineType({
+    name: "seoData",
+    title: "SEO Data",
+    type: "document",
+    fields: [
+        {
+            name: "companyName",
+            title: "Company Name",
+            type: "string",
+        },
+        {
+            name: "aboutPageSeo",
+            title: "About Page",
+            type: "pageSeoData",
+        },
+        {
+            name: "servicesPageSeo",
+            title: "Services Page",
+            type: "pageSeoData",
+        },
+        {
+            name: "portfolioPageSeo",
+            title: "Portfolio Page",
+            type: "pageSeoData",
+        },
+        {
+            name: "blogPageSeo",
+            title: "Blog Page",
+            type: "pageSeoData",
+        },
+    ],
+});
 
 export interface PageSeoData {
     _id: string;
@@ -47,15 +103,3 @@ export const seoDataFragment = `
         ${pageSeoDataFragment}
     },
 `;
-
-export async function useSeoData(): Promise<SeoData> {
-    return await query(
-        `
-        *[_type == "seoData"][0] {
-            ${seoDataFragment}
-        }
-    `,
-        {},
-        ["seoData"],
-    );
-}

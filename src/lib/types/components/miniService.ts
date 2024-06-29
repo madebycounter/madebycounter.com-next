@@ -1,5 +1,36 @@
+import { defineType } from "sanity";
+
 import { SanityImage, assetFragment } from "../assets";
 import { RichText } from "../richText";
+
+export const miniServiceSchema = defineType({
+    name: "miniService",
+    title: "Mini Service",
+    type: "document",
+    fields: [
+        {
+            name: "title",
+            title: "Title",
+            type: "string",
+        },
+        {
+            name: "photo",
+            title: "Photo",
+            type: "image",
+        },
+        {
+            name: "description",
+            title: "Description",
+            type: "richText",
+        },
+        {
+            name: "buttonText",
+            title: "Button Text",
+            type: "string",
+            initialValue: "Learn More",
+        },
+    ],
+});
 
 export const miniServiceFragment = `
     _id,

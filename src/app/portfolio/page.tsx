@@ -4,8 +4,7 @@ import { makeSeoData } from "@/util/seo";
 
 import PortfolioPage from "@/components/pages/Portfolio";
 
-import { useCompanyInfo, usePortfolioItems } from "@/lib/types";
-import { useSeoData } from "@/lib/types";
+import { useCompanyInfo, usePortfolioItems, useSeoData } from "@/lib/query";
 
 export async function generateMetadata(): Promise<Metadata> {
     // eslint-disable-next-line react-hooks/rules-of-hooks

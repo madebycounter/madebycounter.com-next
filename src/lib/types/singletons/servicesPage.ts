@@ -1,6 +1,36 @@
-import { query } from "@/lib/sanity";
+import { defineType } from "sanity";
 
 import { Service, serviceFragment } from "../service";
+
+export const servicesPageSchema = defineType({
+    name: "servicesPage",
+    title: "Services Page",
+    type: "document",
+    fields: [
+        {
+            type: "array",
+            name: "services",
+            title: "Services",
+            of: [
+                {
+                    type: "reference",
+                    to: [
+                        {
+                            type: "service",
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
+    preview: {
+        prepare() {
+            return {
+                title: "Services Page",
+            };
+        },
+    },
+});
 
 export interface ServicesPage {
     _id: string;
@@ -15,15 +45,3 @@ export const servicesPageFragment = `
         ${serviceFragment}
     },
 `;
-
-export async function useServicesPage(): Promise<ServicesPage> {
-    return await query(
-        `
-        *[_type == "servicesPage"][0] {
-            ${servicesPageFragment}
-        }
-    `,
-        {},
-        ["servicesPage"],
-    );
-}

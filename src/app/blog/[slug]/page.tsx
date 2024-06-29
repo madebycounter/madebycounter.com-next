@@ -5,7 +5,7 @@ import { makeSeoData } from "@/util/seo";
 
 import BlogPostPage from "@/components/pages/templates/BlogPost";
 
-import { useBlogPost, useCompanyInfo, useSeoData } from "@/lib/types";
+import { useSeoData, useBlogPost, useCompanyInfo } from "@/lib/query";
 
 export async function generateMetadata({
     params,
