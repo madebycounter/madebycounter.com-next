@@ -3,7 +3,16 @@ export const assetFragment = `
     _key,
     _type,
     asset-> {
-        ...
+        playbackId,
+        url,
+        data {
+            aspect_ratio
+        },
+        metadata {
+            palette {
+                dominant
+            }
+        }
     },
     hotspot {
         x,
