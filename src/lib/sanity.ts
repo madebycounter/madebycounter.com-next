@@ -7,6 +7,10 @@ export const client = createClient({
     dataset: process.env.SANITY_DATASET,
     useCdn: false,
     perspective: "published",
+    stega: {
+        enabled: false,
+        studioUrl: "https://madebycounter.sanity.studio",
+    },
 });
 
 export async function query<T>(
@@ -20,10 +24,7 @@ export async function query<T>(
         token: process.env.SANITY_READ_TOKEN,
         ...(preview && {
             perspective: "previewDrafts",
-            stega: {
-                enabled: true,
-                studioUrl: "https://madebycounter.sanity.studio",
-            },
+            stega: true,
         }),
         next: {
             ...(preview && {
