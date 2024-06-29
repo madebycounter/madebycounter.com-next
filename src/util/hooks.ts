@@ -15,7 +15,7 @@ export function useScrollPosition(db: number = 0) {
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-    }, []);
+    }, [db]);
 
     return scrollPosition;
 }
