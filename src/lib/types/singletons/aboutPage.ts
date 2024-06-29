@@ -3,7 +3,7 @@ import { Service } from "@/lib/types/service";
 
 import { MultiMedia, assetFragment } from "../assets";
 import { TeamMember, teamMemberFragment } from "../components/teamMember";
-import { PortfolioItem, portfolioItemFragment } from "../portfolioItem";
+import { PortfolioItem, portfolioItemPartialFragment } from "../portfolioItem";
 
 export interface AboutPageHero {
     row1: MultiMedia[];
@@ -98,7 +98,7 @@ export const aboutPageFragment = `
         ${assetFragment}
     },
     lukeReferences[]->{
-        ${portfolioItemFragment}
+        ${portfolioItemPartialFragment}
     },
     henrySlideshow1[] {
         _key,
@@ -109,7 +109,7 @@ export const aboutPageFragment = `
         ${assetFragment}
     },
     henryReferences[]->{
-        ${portfolioItemFragment}
+        ${portfolioItemPartialFragment}
     },
     williamSlideshow1[] {
         _key,
@@ -120,7 +120,7 @@ export const aboutPageFragment = `
         ${assetFragment}
     },
     williamReferences[]->{
-        ${portfolioItemFragment}
+        ${portfolioItemPartialFragment}
     }
 `;
 

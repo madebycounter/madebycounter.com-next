@@ -24,6 +24,20 @@ export interface PortfolioItem {
     slug: { current: string };
 }
 
+export const portfolioItemPartialFragment = `
+    _id,
+    _type,
+    _updatedAt,
+    title,
+    date,
+    tags,
+    thumbnail {
+        ${assetFragment}
+    },
+    slug,
+    hidden
+`;
+
 export const portfolioItemFragment = `
     _id,
     _type,
@@ -69,18 +83,8 @@ export const portfolioItemFragment = `
 export async function usePortfolioItems(): Promise<PortfolioItem[]> {
     return await query(
         `*[_type == "portfolioItem"] | order(date desc) {
-        _id,
-        _type,
-        _updatedAt,
-        title,
-        date,
-        tags,
-        thumbnail {
-            ${assetFragment}
-        },
-        slug,
-        hidden
-    }`,
+            ${portfolioItemPartialFragment}
+        }`,
         {},
         ["portfolioItem"],
     );
