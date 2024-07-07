@@ -1,19 +1,22 @@
 import { Metadata } from "next";
 
+import formatTitle from "@/util/formatTitle";
 import { makeSeoData } from "@/util/seo";
 
 import BlogPage from "@/components/pages/Blog";
 
-import { useSeoData, useBlogPosts, useCompanyInfo } from "@/lib/query";
+import { useBlogPosts, useCompanyInfo, useBlogPage } from "@/lib/query";
 
 export async function generateMetadata(): Promise<Metadata> {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { companyName, blogPageSeo } = await useSeoData();
+    const companyInfo = await useCompanyInfo();
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const blogPage = await useBlogPage();
 
     return makeSeoData(
-        `${companyName} | ${blogPageSeo.title}`,
-        blogPageSeo.description,
-        blogPageSeo.image,
+        formatTitle(companyInfo.titleFormat, blogPage.title),
+        blogPage.description,
+        blogPage.image,
     );
 }
 

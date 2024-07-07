@@ -13,7 +13,14 @@ export const companyInfoSchema = defineType({
     fields: [
         {
             name: "name",
-            title: "Name",
+            title: "Company Name",
+            type: "string",
+        },
+        {
+            name: "titleFormat",
+            title: "Title Format",
+            description:
+                "The format for the page title. Use {title} to insert the page title.",
             type: "string",
         },
         {
@@ -40,6 +47,7 @@ export interface CompanyInfo {
     _id: string;
     _type: "companyInfo";
     name: string;
+    titleFormat: string;
     logo: SanityImage;
     socials: SocialLink[];
     footerLinks: FooterLink[];
@@ -51,6 +59,7 @@ export const companyInfoFragment = `
     _id,
     _type,
     name,
+    titleFormat,
     logo {
         ${assetFragment}
     },

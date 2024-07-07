@@ -4,7 +4,7 @@ import { defineType } from "sanity";
 import { Service } from "@/lib/types/service";
 
 import { TeamMember, teamMemberFragment } from "../components/teamMember";
-import { MultiMedia, assetFragment } from "../objects/assets";
+import { MultiMedia, SanityImage, assetFragment } from "../objects/assets";
 import { PortfolioItem, portfolioItemPartialFragment } from "../portfolioItem";
 
 export const aboutPageSchema = defineType({
@@ -288,6 +288,9 @@ export interface AboutPage {
     williamSlideshow1: MultiMedia[];
     williamSlideshow2: MultiMedia[];
     williamReferences: PortfolioItem[];
+    title: string;
+    description: string;
+    image: SanityImage;
 }
 
 export const aboutPageFragment = `
@@ -375,5 +378,10 @@ export const aboutPageFragment = `
     },
     williamReferences[]->{
         ${portfolioItemPartialFragment}
+    },
+    title,
+    description,
+    image {
+        ${assetFragment}
     }
 `;

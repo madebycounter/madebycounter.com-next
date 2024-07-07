@@ -1,11 +1,12 @@
 import { Metadata } from "next";
 
 import blocksToText from "@/util/blocksToText";
+import formatTitle from "@/util/formatTitle";
 import { makeSeoData } from "@/util/seo";
 
 import PortfolioItemPage from "@/components/pages/templates/PortfolioItem";
 
-import { useSeoData, usePortfolioItem, useCompanyInfo } from "@/lib/query";
+import { usePortfolioItem, useCompanyInfo } from "@/lib/query";
 
 export async function generateMetadata({
     params,
@@ -13,12 +14,12 @@ export async function generateMetadata({
     params: { slug: string };
 }): Promise<Metadata> {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { companyName } = await useSeoData();
+    const companyInfo = await useCompanyInfo();
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const portfolioItem = await usePortfolioItem(params.slug);
 
     return makeSeoData(
-        `${companyName} | ${portfolioItem.title}`,
+        formatTitle(companyInfo.titleFormat, portfolioItem.title),
         blocksToText(portfolioItem.description),
         portfolioItem.thumbnail,
     );

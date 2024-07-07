@@ -1,11 +1,12 @@
 import { Metadata } from "next";
 
 import blocksToText from "@/util/blocksToText";
+import formatTitle from "@/util/formatTitle";
 import { makeSeoData } from "@/util/seo";
 
 import BlogPostPage from "@/components/pages/templates/BlogPost";
 
-import { useSeoData, useBlogPost, useCompanyInfo } from "@/lib/query";
+import { useBlogPost, useCompanyInfo } from "@/lib/query";
 
 export async function generateMetadata({
     params,
@@ -13,7 +14,7 @@ export async function generateMetadata({
     params: { slug: string };
 }): Promise<Metadata> {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { companyName } = await useSeoData();
+    const companyInfo = await useCompanyInfo();
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const blogPost = await useBlogPost(params.slug);
 
@@ -25,7 +26,7 @@ export async function generateMetadata({
             .join(" ") + "...";
 
     return makeSeoData(
-        `${companyName} | ${blogPost.title}`,
+        formatTitle(companyInfo.titleFormat, blogPost.title),
         seoDescription,
         blogPost.heroImage || blogPost.heroVideo,
     );
