@@ -9,7 +9,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 export interface SocialIconProps {
     className?: string;
-    platform:
+    platform?:
         | "instagram"
         | "facebook"
         | "twitter"
@@ -30,7 +30,7 @@ export default function SocialIcon({ platform, className }: SocialIconProps) {
         github: FaGithub,
     };
 
-    const Icon = iconMap[stegaClean(platform)];
+    const Icon = iconMap[stegaClean(platform) || "instagram"];
 
     return <Icon className={className} />;
 }
