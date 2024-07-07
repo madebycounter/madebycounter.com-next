@@ -19,7 +19,7 @@ export async function generateMetadata({
     const service = await useService(params.slug);
 
     return makeSeoData(
-        formatTitle(companyInfo.titleFormat, service.title),
+        formatTitle(companyInfo.titleFormat, service.seoData.title),
         service.seoData.description,
         service.seoData.image,
     );
