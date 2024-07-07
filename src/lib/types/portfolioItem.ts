@@ -1,3 +1,9 @@
+import {
+    ComposeIcon,
+    LaunchIcon,
+    PresentationIcon,
+    CogIcon,
+} from "@sanity/icons";
 import { defineType } from "sanity";
 
 import { MultiMedia, SanityImage, assetFragment } from "./assets";
@@ -9,51 +15,60 @@ export const portfolioItemSchema = defineType({
     name: "portfolioItem",
     title: "Portfolio Item",
     type: "document",
+    groups: [
+        {
+            name: "content",
+            title: "Content",
+            default: true,
+            icon: ComposeIcon,
+        },
+        {
+            name: "hero",
+            title: "Hero",
+            icon: PresentationIcon,
+        },
+        {
+            name: "references",
+            title: "References",
+            icon: LaunchIcon,
+        },
+        {
+            name: "settings",
+            title: "Settings",
+            icon: CogIcon,
+        },
+    ],
     fields: [
         {
             name: "title",
             title: "Title",
             type: "string",
+            group: "content",
         },
         {
             name: "shortTitle",
             title: "Short Title",
             type: "string",
+            group: "content",
         },
         {
             name: "date",
             title: "Date",
             type: "date",
+            group: "content",
         },
         {
             name: "tags",
             title: "Tags",
             type: "array",
             of: [{ type: "string" }],
+            group: "content",
         },
         {
             name: "description",
             title: "Description",
             type: "richText",
-        },
-        {
-            name: "thumbnail",
-            title: "Thumbnail",
-            type: "image",
-        },
-        {
-            name: "heroMedia",
-            title: "Hero Media",
-            type: "array",
-            of: [
-                { type: "image", title: "Image" },
-                { type: "mux.video", title: "Video" },
-            ],
-        },
-        {
-            name: "heroEmbed",
-            title: "Hero Video Embed",
-            type: "url",
+            group: "content",
         },
         {
             name: "gallery",
@@ -63,18 +78,59 @@ export const portfolioItemSchema = defineType({
                 { type: "image", title: "Image" },
                 { type: "mux.video", title: "Video" },
             ],
+            options: {
+                layout: "grid",
+            },
+            group: "content",
+        },
+        {
+            name: "heroType",
+            title: "Hero Type",
+            type: "string",
+            options: {
+                list: [
+                    { title: "Media", value: "media" },
+                    { title: "Video Embed", value: "embed" },
+                ],
+                layout: "radio",
+            },
+            initialValue: "media",
+            group: "hero",
+        },
+        {
+            name: "heroMedia",
+            title: "Media",
+            type: "array",
+            of: [
+                { type: "image", title: "Image" },
+                { type: "mux.video", title: "Video" },
+            ],
+            options: {
+                layout: "grid",
+            },
+            group: "hero",
+            hidden: ({ parent }) => parent?.heroType !== "media",
+        },
+        {
+            name: "heroEmbed",
+            title: "Video Embed",
+            type: "url",
+            group: "hero",
+            hidden: ({ parent }) => parent?.heroType !== "embed",
         },
         {
             name: "serviceReference",
             title: "Service Reference",
             type: "reference",
             to: [{ type: "service" }],
+            group: "references",
         },
         {
             name: "testimonial",
             title: "Testimonial",
             type: "reference",
             to: [{ type: "testimonial" }],
+            group: "references",
         },
         {
             name: "relatedProjects",
@@ -86,11 +142,19 @@ export const portfolioItemSchema = defineType({
                     to: [{ type: "portfolioItem" }],
                 },
             ],
+            group: "references",
+        },
+        {
+            name: "thumbnail",
+            title: "Thumbnail",
+            type: "image",
+            group: "settings",
         },
         {
             name: "hidden",
             title: "Hidden",
             type: "boolean",
+            group: "settings",
         },
         {
             name: "slug",
@@ -99,6 +163,7 @@ export const portfolioItemSchema = defineType({
             options: {
                 source: "title",
             },
+            group: "settings",
         },
     ],
     preview: {

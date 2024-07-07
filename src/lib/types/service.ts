@@ -1,6 +1,7 @@
+import { ComposeIcon, CogIcon, PresentationIcon } from "@sanity/icons";
 import { defineType } from "sanity";
 
-import { query } from "@/lib/sanity";
+import videoThumbnail from "@/lib/sanity/preview/videoThumbnail";
 
 import { MultiMedia, MuxVideo, assetFragment } from "./assets";
 import { FunFact, funFactFragment } from "./components/funFact";
@@ -22,41 +23,37 @@ export const serviceSchema = defineType({
     name: "service",
     title: "Service",
     type: "document",
+    groups: [
+        {
+            name: "content",
+            title: "Content",
+            default: true,
+            icon: ComposeIcon,
+        },
+        {
+            name: "hero",
+            title: "Hero",
+            icon: PresentationIcon,
+        },
+        {
+            name: "settings",
+            title: "Settings",
+            icon: CogIcon,
+        },
+    ],
     fields: [
         {
             name: "title",
             title: "Title",
             type: "string",
-        },
-        {
-            name: "slideshow",
-            title: "Slideshow",
-            type: "array",
-            of: [
-                { type: "image", title: "Image" },
-                { type: "mux.video", title: "Video" },
-            ],
-        },
-        {
-            name: "videoSnippet",
-            title: "Video Snippet",
-            type: "mux.video",
-        },
-        {
-            name: "videoEmbed",
-            title: "Video Embed",
-            type: "url",
-        },
-        {
-            name: "heroText",
-            title: "Hero Text",
-            type: "richText",
+            group: "content",
         },
         {
             name: "teamMember",
             title: "Team Member",
             type: "reference",
             to: [{ type: "teamMember" }],
+            group: "content",
         },
         {
             name: "content",
@@ -80,22 +77,46 @@ export const serviceSchema = defineType({
                     ],
                 },
             ],
+            group: "content",
+        },
+        {
+            name: "slideshow",
+            title: "Gallery",
+            description:
+                "Used in various places requiring media related to this service.",
+            type: "array",
+            of: [
+                { type: "image", title: "Image" },
+                { type: "mux.video", title: "Video" },
+            ],
+            options: {
+                layout: "grid",
+            },
+            group: "content",
+        },
+        {
+            name: "heroText",
+            title: "Hero Text",
+            type: "richText",
+            group: "hero",
         },
         {
             name: "callToAction",
             title: "Call to Action",
             type: "string",
+            group: "hero",
         },
         {
-            name: "offerings",
-            title: "Offerings",
-            type: "array",
-            of: [{ type: "string" }],
+            name: "videoEmbed",
+            title: "Hero Video",
+            type: "url",
+            group: "hero",
         },
         {
             name: "seoData",
             title: "SEO Data",
             type: "pageSeoData",
+            group: "settings",
         },
         {
             name: "slug",
@@ -104,20 +125,23 @@ export const serviceSchema = defineType({
             options: {
                 source: "title",
             },
+            group: "settings",
         },
     ],
     preview: {
         select: {
             title: "title",
-            slideshow: "slideshow",
+            media: "slideshow.0",
+            mediaVid: "slideshow.0.asset.playbackId",
         },
         prepare(selection) {
-            const { title, slideshow } = selection;
+            const { title, media, mediaVid } = selection;
             return {
                 title,
-                media: slideshow.filter(
-                    (slide: any) => slide._type === "image",
-                )[0],
+                media:
+                    media._type === "mux.video"
+                        ? videoThumbnail(mediaVid)
+                        : media,
             };
         },
     },
@@ -138,13 +162,11 @@ export interface Service {
     _updatedAt: string;
     title: string;
     slideshow: MultiMedia[];
-    videoSnippet: MuxVideo;
     videoEmbed: string;
     heroText: RichText;
     teamMember: TeamMember;
     content: ServiceContent;
     callToAction: string;
-    offerings: string[];
     seoData: PageSeoData;
     slug: { current: string };
 }
@@ -156,9 +178,6 @@ export const serviceFragment = `
     title,
     slideshow[] {
         _key,
-        ${assetFragment}
-    },
-    videoSnippet {
         ${assetFragment}
     },
     videoEmbed,
@@ -188,7 +207,6 @@ export const serviceFragment = `
         }
     },
     callToAction,
-    offerings[],
     seoData {
         ${pageSeoDataFragment}
     },

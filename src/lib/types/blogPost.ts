@@ -1,4 +1,7 @@
+import { ComposeIcon, PresentationIcon, CogIcon } from "@sanity/icons";
 import { defineType } from "sanity";
+
+import videoThumbnail from "@/lib/sanity/preview/videoThumbnail";
 
 import { MuxVideo, SanityImage, assetFragment } from "./assets";
 import { TeamMember, teamMemberFragment } from "./components/teamMember";
@@ -30,35 +33,43 @@ export const blogPostSchema = defineType({
     name: "blogPost",
     title: "Blog Post",
     type: "document",
+    groups: [
+        {
+            name: "content",
+            title: "Content",
+            default: true,
+            icon: ComposeIcon,
+        },
+        {
+            name: "hero",
+            title: "Hero",
+            icon: PresentationIcon,
+        },
+        {
+            name: "settings",
+            title: "Settings",
+            icon: CogIcon,
+        },
+    ],
     fields: [
         {
             name: "title",
             title: "Title",
             type: "string",
+            group: "content",
         },
         {
             name: "date",
             title: "Date",
             type: "date",
+            group: "content",
         },
         {
             name: "author",
             title: "Author",
             type: "reference",
             to: [{ type: "teamMember" }],
-        },
-        {
-            name: "heroImage",
-            title: "Hero Image",
-            type: "image",
-            options: {
-                hotspot: true,
-            },
-        },
-        {
-            name: "heroVideo",
-            title: "Hero Video",
-            type: "mux.video",
+            group: "content",
         },
         {
             name: "content",
@@ -85,11 +96,44 @@ export const blogPostSchema = defineType({
                     title: "Code",
                 },
             ],
+            group: "content",
+        },
+        {
+            name: "heroType",
+            title: "Hero Type",
+            type: "string",
+            options: {
+                list: [
+                    { title: "Image", value: "image" },
+                    { title: "Video", value: "video" },
+                ],
+                layout: "radio",
+            },
+            initialValue: "image",
+            group: "hero",
+        },
+        {
+            name: "heroImage",
+            title: "Hero Image",
+            type: "image",
+            options: {
+                hotspot: true,
+            },
+            group: "hero",
+            hidden: ({ parent }) => parent?.heroType !== "image",
+        },
+        {
+            name: "heroVideo",
+            title: "Hero Video",
+            type: "mux.video",
+            group: "hero",
+            hidden: ({ parent }) => parent?.heroType !== "video",
         },
         {
             name: "seoDescription",
             title: "SEO Description",
             type: "text",
+            group: "settings",
         },
         {
             name: "slug",
@@ -98,6 +142,7 @@ export const blogPostSchema = defineType({
             options: {
                 source: "title",
             },
+            group: "settings",
         },
     ],
     preview: {
@@ -105,12 +150,13 @@ export const blogPostSchema = defineType({
             title: "title",
             date: "date",
             media: "heroImage",
+            mediaVid: "heroVideo.asset.playbackId",
         },
-        prepare({ title, date, media }) {
+        prepare({ title, date, media, mediaVid }) {
             return {
                 title,
                 subtitle: date,
-                media,
+                media: media ? media : videoThumbnail(mediaVid),
             };
         },
     },

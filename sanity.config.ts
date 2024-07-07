@@ -6,6 +6,7 @@ import { muxInput } from "sanity-plugin-mux-input";
 import { presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
 
+import "@/lib/sanity/removeAllFields.css";
 import {
     aboutPageSchema,
     blogPostGallerySchema,

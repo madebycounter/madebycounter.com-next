@@ -1,0 +1,3 @@
+div[data-testid="field-group-tabs"] > div:has(#all-fields-tab) {
+    display: none;
+}
