@@ -33,8 +33,8 @@ import {
     Service,
     ServiceContent,
     Testimonial,
+    PortfolioItemGroup,
 } from "@/lib/types";
-import { PortfolioItemGroup } from "@/lib/types/groups/portfolioItemGroup";
 
 function findItem<T extends { _id: string }>(items: T[] = [], id: string) {
     return items.find((item) => item._id === id) as T;

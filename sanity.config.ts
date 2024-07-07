@@ -9,23 +9,26 @@ import { structureTool } from "sanity/structure";
 import "@/lib/sanity/removeAllFields.css";
 import {
     aboutPageSchema,
+    blogPageSchema,
     blogPostGallerySchema,
     blogPostSchema,
     companyInfoSchema,
+    footerLinkSchema,
     funFactSchema,
     mediaGroupSchema,
     miniServiceGroupSchema,
     miniServiceSchema,
     pageSeoDataSchema,
+    portfolioItemGroupSchema,
     portfolioItemSchema,
+    portfolioPageSchema,
     richTextSchema,
     seoDataSchema,
     serviceSchema,
-    servicesPageSchema,
+    socialLinkSchema,
     teamMemberSchema,
     testimonialSchema,
 } from "@/lib/types";
-import { portfolioItemGroupSchema } from "@/lib/types/groups/portfolioItemGroup";
 
 import structure from "./sanity.structure";
 
@@ -70,11 +73,14 @@ export default defineConfig({
             miniServiceSchema,
             miniServiceGroupSchema,
             portfolioItemGroupSchema,
-            servicesPageSchema,
             seoDataSchema,
             pageSeoDataSchema,
             blogPostSchema,
             blogPostGallerySchema,
+            socialLinkSchema,
+            footerLinkSchema,
+            portfolioPageSchema,
+            blogPageSchema,
         ],
     },
 });

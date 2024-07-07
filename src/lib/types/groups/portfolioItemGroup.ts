@@ -1,6 +1,6 @@
 import { defineType } from "sanity";
 
-import { assetFragment } from "../assets";
+import { assetFragment } from "../objects/assets";
 import { PortfolioItem } from "../portfolioItem";
 
 export const portfolioItemGroupSchema = defineType({

@@ -1,6 +1,6 @@
 import { defineType } from "sanity";
 
-import { SanityImage, assetFragment } from "../assets";
+import { SanityImage, assetFragment } from "../objects/assets";
 
 export const pageSeoDataSchema = defineType({
     name: "pageSeoData",

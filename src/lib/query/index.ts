@@ -6,3 +6,5 @@ export * from "./servicesPage";
 export * from "./blogPost";
 export * from "./portfolioItem";
 export * from "./service";
+export * from "./blogPage";
+export * from "./portfolioPage";

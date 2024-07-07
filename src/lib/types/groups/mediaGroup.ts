@@ -1,6 +1,6 @@
 import { defineType } from "sanity";
 
-import { MultiMedia, assetFragment } from "../assets";
+import { MultiMedia, assetFragment } from "../objects/assets";
 
 export const mediaGroupSchema = defineType({
     name: "mediaGroup",

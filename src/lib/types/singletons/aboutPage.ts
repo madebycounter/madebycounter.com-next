@@ -1,15 +1,44 @@
+import { UserIcon, PresentationIcon, CogIcon } from "@sanity/icons";
 import { defineType } from "sanity";
 
 import { Service } from "@/lib/types/service";
 
-import { MultiMedia, assetFragment } from "../assets";
 import { TeamMember, teamMemberFragment } from "../components/teamMember";
+import { MultiMedia, assetFragment } from "../objects/assets";
 import { PortfolioItem, portfolioItemPartialFragment } from "../portfolioItem";
 
 export const aboutPageSchema = defineType({
     name: "aboutPage",
     title: "About Page",
     type: "document",
+    groups: [
+        {
+            name: "luke",
+            title: "Luke",
+            default: true,
+            icon: UserIcon,
+        },
+        {
+            name: "henry",
+            title: "Henry",
+            icon: UserIcon,
+        },
+        {
+            name: "william",
+            title: "William",
+            icon: UserIcon,
+        },
+        {
+            name: "hero",
+            title: "Hero",
+            icon: PresentationIcon,
+        },
+        {
+            name: "settings",
+            title: "Settings",
+            icon: CogIcon,
+        },
+    ],
     fields: [
         {
             name: "hero",
@@ -24,6 +53,9 @@ export const aboutPageSchema = defineType({
                         { type: "image", title: "Image" },
                         { type: "mux.video", title: "Video" },
                     ],
+                    options: {
+                        layout: "grid",
+                    },
                 },
                 {
                     name: "row2",
@@ -33,6 +65,9 @@ export const aboutPageSchema = defineType({
                         { type: "image", title: "Image" },
                         { type: "mux.video", title: "Video" },
                     ],
+                    options: {
+                        layout: "grid",
+                    },
                 },
                 {
                     name: "row3",
@@ -42,6 +77,9 @@ export const aboutPageSchema = defineType({
                         { type: "image", title: "Image" },
                         { type: "mux.video", title: "Video" },
                     ],
+                    options: {
+                        layout: "grid",
+                    },
                 },
                 {
                     name: "row4",
@@ -51,6 +89,9 @@ export const aboutPageSchema = defineType({
                         { type: "image", title: "Image" },
                         { type: "mux.video", title: "Video" },
                     ],
+                    options: {
+                        layout: "grid",
+                    },
                 },
                 {
                     name: "row5",
@@ -60,6 +101,9 @@ export const aboutPageSchema = defineType({
                         { type: "image", title: "Image" },
                         { type: "mux.video", title: "Video" },
                     ],
+                    options: {
+                        layout: "grid",
+                    },
                 },
                 {
                     name: "row6",
@@ -69,6 +113,9 @@ export const aboutPageSchema = defineType({
                         { type: "image", title: "Image" },
                         { type: "mux.video", title: "Video" },
                     ],
+                    options: {
+                        layout: "grid",
+                    },
                 },
                 {
                     name: "row7",
@@ -78,8 +125,12 @@ export const aboutPageSchema = defineType({
                         { type: "image", title: "Image" },
                         { type: "mux.video", title: "Video" },
                     ],
+                    options: {
+                        layout: "grid",
+                    },
                 },
             ],
+            group: "hero",
         },
         {
             name: "lukeSlideshow1",
@@ -89,6 +140,10 @@ export const aboutPageSchema = defineType({
                 { type: "image", title: "Image" },
                 { type: "mux.video", title: "Video" },
             ],
+            options: {
+                layout: "grid",
+            },
+            group: "luke",
         },
         {
             name: "lukeSlideshow2",
@@ -98,12 +153,17 @@ export const aboutPageSchema = defineType({
                 { type: "image", title: "Image" },
                 { type: "mux.video", title: "Video" },
             ],
+            options: {
+                layout: "grid",
+            },
+            group: "luke",
         },
         {
             name: "lukeReferences",
             title: "Luke References",
             type: "array",
             of: [{ type: "reference", to: [{ type: "portfolioItem" }] }],
+            group: "luke",
         },
         {
             name: "henrySlideshow1",
@@ -113,6 +173,10 @@ export const aboutPageSchema = defineType({
                 { type: "image", title: "Image" },
                 { type: "mux.video", title: "Video" },
             ],
+            options: {
+                layout: "grid",
+            },
+            group: "henry",
         },
         {
             name: "henrySlideshow2",
@@ -122,12 +186,17 @@ export const aboutPageSchema = defineType({
                 { type: "image", title: "Image" },
                 { type: "mux.video", title: "Video" },
             ],
+            options: {
+                layout: "grid",
+            },
+            group: "henry",
         },
         {
             name: "henryReferences",
             title: "Henry References",
             type: "array",
             of: [{ type: "reference", to: [{ type: "portfolioItem" }] }],
+            group: "henry",
         },
         {
             name: "williamSlideshow1",
@@ -137,6 +206,10 @@ export const aboutPageSchema = defineType({
                 { type: "image", title: "Image" },
                 { type: "mux.video", title: "Video" },
             ],
+            options: {
+                layout: "grid",
+            },
+            group: "william",
         },
         {
             name: "williamSlideshow2",
@@ -146,12 +219,35 @@ export const aboutPageSchema = defineType({
                 { type: "image", title: "Image" },
                 { type: "mux.video", title: "Video" },
             ],
+            options: {
+                layout: "grid",
+            },
+            group: "william",
         },
         {
             name: "williamReferences",
             title: "William References",
             type: "array",
             of: [{ type: "reference", to: [{ type: "portfolioItem" }] }],
+            group: "william",
+        },
+        {
+            name: "title",
+            title: "Page Title",
+            type: "string",
+            group: "settings",
+        },
+        {
+            name: "description",
+            title: "SEO Description",
+            type: "text",
+            group: "settings",
+        },
+        {
+            name: "image",
+            title: "SEO Image",
+            type: "image",
+            group: "settings",
         },
     ],
     preview: {

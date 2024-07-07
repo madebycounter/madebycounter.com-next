@@ -3,8 +3,8 @@ import { defineType } from "sanity";
 
 import videoThumbnail from "@/lib/sanity/preview/videoThumbnail";
 
-import { MuxVideo, SanityImage, assetFragment } from "./assets";
 import { TeamMember, teamMemberFragment } from "./components/teamMember";
+import { MuxVideo, SanityImage, assetFragment } from "./objects/assets";
 
 export const blogPostGallerySchema = defineType({
     name: "blogPostGallery",

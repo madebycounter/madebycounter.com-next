@@ -1,7 +1,7 @@
 import { defineType } from "sanity";
 
-import { SanityImage, assetFragment } from "../assets";
-import { RichText } from "../richText";
+import { SanityImage, assetFragment } from "../objects/assets";
+import { RichText } from "../objects/richText";
 import { TeamMember, teamMemberFragment } from "./teamMember";
 
 export const funFactSchema = defineType({

@@ -3,7 +3,6 @@ import { defineType } from "sanity";
 
 import videoThumbnail from "@/lib/sanity/preview/videoThumbnail";
 
-import { MultiMedia, MuxVideo, assetFragment } from "./assets";
 import { FunFact, funFactFragment } from "./components/funFact";
 import { TeamMember, teamMemberFragment } from "./components/teamMember";
 import { Testimonial, testimonialFragment } from "./components/testimonial";
@@ -16,7 +15,8 @@ import {
     PortfolioItemGroup,
     portfolioItemGroupFragment,
 } from "./groups/portfolioItemGroup";
-import { RichText } from "./richText";
+import { MultiMedia, MuxVideo, assetFragment } from "./objects/assets";
+import { RichText } from "./objects/richText";
 import { PageSeoData, pageSeoDataFragment } from "./singletons/seoData";
 
 export const serviceSchema = defineType({

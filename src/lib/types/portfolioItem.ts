@@ -6,9 +6,9 @@ import {
 } from "@sanity/icons";
 import { defineType } from "sanity";
 
-import { MultiMedia, SanityImage, assetFragment } from "./assets";
 import { Testimonial, testimonialFragment } from "./components/testimonial";
-import { RichText } from "./richText";
+import { MultiMedia, SanityImage, assetFragment } from "./objects/assets";
+import { RichText } from "./objects/richText";
 import { Service, serviceFragment } from "./service";
 
 export const portfolioItemSchema = defineType({
@@ -154,6 +154,7 @@ export const portfolioItemSchema = defineType({
             name: "hidden",
             title: "Hidden",
             type: "boolean",
+            initialValue: false,
             group: "settings",
         },
         {
