@@ -45,32 +45,38 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             changeFrequency: "weekly",
             priority: 0.5,
         },
-        ...portfolioItems.map(
-            (item) =>
-                ({
-                    url: `${baseUrl}/portfolio/${item.slug.current}`,
-                    lastModified: new Date(item._updatedAt),
-                    changeFrequency: "yearly",
-                    priority: 0.8,
-                }) as SitemapItem,
-        ),
-        ...services.map(
-            (service) =>
-                ({
-                    url: `${baseUrl}/services/${service.slug.current}`,
-                    lastModified: new Date(service._updatedAt),
-                    changeFrequency: "monthly",
-                    priority: 1,
-                }) as SitemapItem,
-        ),
-        ...blogPosts.map(
-            (post) =>
-                ({
-                    url: `${baseUrl}/blog/${post.slug.current}`,
-                    lastModified: new Date(post._updatedAt),
-                    changeFrequency: "yearly",
-                    priority: 0.5,
-                }) as SitemapItem,
-        ),
+        ...portfolioItems
+            .filter((item) => item.slug !== undefined)
+            .map(
+                (item) =>
+                    ({
+                        url: `${baseUrl}/portfolio/${item.slug?.current}`,
+                        lastModified: new Date(item._updatedAt),
+                        changeFrequency: "yearly",
+                        priority: 0.8,
+                    }) as SitemapItem,
+            ),
+        ...services
+            .filter((service) => service.slug !== undefined)
+            .map(
+                (service) =>
+                    ({
+                        url: `${baseUrl}/services/${service.slug?.current}`,
+                        lastModified: new Date(service._updatedAt),
+                        changeFrequency: "monthly",
+                        priority: 1,
+                    }) as SitemapItem,
+            ),
+        ...blogPosts
+            .filter((post) => post.slug !== undefined)
+            .map(
+                (post) =>
+                    ({
+                        url: `${baseUrl}/blog/${post.slug?.current}`,
+                        lastModified: new Date(post._updatedAt),
+                        changeFrequency: "yearly",
+                        priority: 0.5,
+                    }) as SitemapItem,
+            ),
     ];
 }
