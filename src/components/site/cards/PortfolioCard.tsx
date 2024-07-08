@@ -16,7 +16,7 @@ export default function PortfolioCard({ src, className }: PortfolioCardProps) {
                 className,
                 "group relative block w-full cursor-pointer overflow-hidden",
             )}
-            href={`/portfolio/${src.slug.current}`}
+            href={`/portfolio/${src.slug?.current}`}
         >
             <div className="h-full w-full scale-100 blur-xs brightness-75 transition-all group-hover:scale-105 group-hover:brightness-100">
                 <Media src={src.thumbnail} mode="cover" />
@@ -27,7 +27,7 @@ export default function PortfolioCard({ src, className }: PortfolioCardProps) {
             </p>
 
             <p className="absolute left-0 top-0 z-10 w-full p-2 text-right font-light leading-[0.9em] text-white drop-shadow-counter">
-                {src.tags.map((tag, i) => (
+                {src.tags?.map((tag, i) => (
                     <span key={i}>
                         {tag}
                         <br />

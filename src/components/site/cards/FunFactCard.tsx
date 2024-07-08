@@ -21,6 +21,8 @@ export default function FunFactCard({
     gallery,
     onClick,
 }: FunFactCardProps) {
+    if (!src.teamMember) return null;
+
     return (
         <div className={clsx(styles.FunFactCard)}>
             <div className={clsx(styles.Portrait)}>

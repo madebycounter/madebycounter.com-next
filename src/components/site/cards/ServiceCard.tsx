@@ -25,7 +25,7 @@ export default function ServiceCard({ src, className }: ServiceCardProps) {
 
     return (
         <Action
-            href={`/services/${src.slug.current}`}
+            href={`/services/${src.slug?.current}`}
             className={clsx(className, "flex")}
         >
             <div className="relative flex basis-[210px] flex-col justify-between">
@@ -47,7 +47,7 @@ export default function ServiceCard({ src, className }: ServiceCardProps) {
             </div>
 
             <div className="aspect-video grow">
-                <Slideshow items={filterMedia(src.slideshow)} />
+                <Slideshow items={filterMedia(src.slideshow || [])} />
             </div>
         </Action>
     );

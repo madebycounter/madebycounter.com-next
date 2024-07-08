@@ -66,7 +66,7 @@ export default function PortfolioTestimonial({
                     </p>
 
                     <>
-                        {src.jobTitle.map((title, idx) => (
+                        {src.jobTitle?.map((title, idx) => (
                             <p
                                 key={idx}
                                 className="text-[1rem] font-light leading-[1.2em]"

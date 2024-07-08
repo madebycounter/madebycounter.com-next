@@ -53,7 +53,9 @@ export default function TestimonialCard({
                         </span>
 
                         <span className={clsx(styles.ReviewerTitle)}>
-                            , {src.jobTitle[src.jobTitle.length - 1]}
+                            ,{" "}
+                            {src.jobTitle &&
+                                src.jobTitle[src.jobTitle.length - 1]}
                         </span>
                     </p>
                 </div>
@@ -77,7 +79,7 @@ export default function TestimonialCard({
                         <br />
                     </span>
 
-                    {src.jobTitle.map((title, idx) => (
+                    {src.jobTitle?.map((title, idx) => (
                         <span key={idx} className={clsx(styles.ReviewerTitle)}>
                             {title}
                             <br />
