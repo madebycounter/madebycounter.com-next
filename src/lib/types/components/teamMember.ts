@@ -57,13 +57,13 @@ export type TeamMemberSlug =
 export interface TeamMember {
     _id: string;
     _type: "teamMember";
-    name: string;
-    profile: SanityImage;
-    actionShot: SanityImage;
-    actionShotExtra: SanityImage;
-    funFact: SanityImage;
-    signature: SanityImage;
-    slug: {
+    name?: string;
+    profile?: SanityImage;
+    actionShot?: SanityImage;
+    actionShotExtra?: SanityImage;
+    funFact?: SanityImage;
+    signature?: SanityImage;
+    slug?: {
         current: TeamMemberSlug;
     };
 }

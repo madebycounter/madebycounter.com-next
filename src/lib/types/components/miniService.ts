@@ -46,8 +46,8 @@ export const miniServiceFragment = `
 export interface MiniService {
     _id: string;
     _type: "miniService";
-    title: string;
-    photo: SanityImage;
-    description: RichText;
-    buttonText: string;
+    title?: string;
+    photo?: SanityImage;
+    description?: RichText;
+    buttonText?: string;
 }

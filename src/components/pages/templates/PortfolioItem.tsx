@@ -50,14 +50,14 @@ export default function Page({
     const [lightboxOpen, lightboxCurrent, setLightbox] = useLightboxState();
 
     return (
-        <div>
+        <div className="bg-white">
             <Lightbox
                 open={lightboxOpen}
                 setLightbox={setLightbox}
                 currentSlide={lightboxCurrent}
                 slides={mapToSlides([
                     ...(portfolioItem.heroMedia || []),
-                    ...portfolioItem.gallery,
+                    ...(portfolioItem.gallery || []),
                 ])}
             />
 
@@ -85,18 +85,20 @@ export default function Page({
                         />
 
                         <Gallery.Vertical
-                            items={portfolioItem.gallery.map((item) => ({
-                                component: (
-                                    <Media
-                                        src={item}
-                                        onClick={(key) =>
-                                            setLightbox(true, key)
-                                        }
-                                        size={Medium}
-                                    />
-                                ),
-                                aspectRatio: getAspectRatio(item),
-                            }))}
+                            items={
+                                portfolioItem.gallery?.map((item) => ({
+                                    component: (
+                                        <Media
+                                            src={item}
+                                            onClick={(key) =>
+                                                setLightbox(true, key)
+                                            }
+                                            size={Medium}
+                                        />
+                                    ),
+                                    aspectRatio: getAspectRatio(item),
+                                })) || []
+                            }
                             className="my-2 gap-2"
                             columns={2}
                         />
@@ -123,7 +125,7 @@ export default function Page({
                                     <span className="font-counter tracking-tighter">
                                         /tags&nbsp;
                                     </span>
-                                    {portfolioItem.tags.join(", ")}
+                                    {portfolioItem.tags?.join(", ")}
                                 </p>
 
                                 <p className="m-0 text-[1.6rem] font-light leading-[1.2em]">
@@ -206,7 +208,7 @@ export default function Page({
                             <span className="font-counter tracking-tighter">
                                 /tags&nbsp;
                             </span>
-                            {portfolioItem.tags.join(", ")}
+                            {portfolioItem.tags?.join(", ")}
                         </p>
 
                         <p className="m-0 text-xl font-light leading-[1.2em] md:text-3xl">
@@ -250,14 +252,16 @@ export default function Page({
                                         {portfolioItem.testimonial.name}
                                     </span>
 
+                                    {/* AAAAAAAAAAAAA */}
                                     <span>
                                         ,{" "}
-                                        {
+                                        {portfolioItem.testimonial &&
+                                            portfolioItem.testimonial
+                                                .jobTitle &&
                                             portfolioItem.testimonial.jobTitle[
                                                 portfolioItem.testimonial
                                                     .jobTitle.length - 1
-                                            ]
-                                        }
+                                            ]}
                                     </span>
                                 </p>
                             </div>
@@ -266,7 +270,7 @@ export default function Page({
                 </div>
 
                 <div className="my-4 flex flex-col gap-2">
-                    {arrangeImageScrollers(portfolioItem.gallery).map(
+                    {arrangeImageScrollers(portfolioItem.gallery || []).map(
                         (row, i) => (
                             <Scroller
                                 key={i}

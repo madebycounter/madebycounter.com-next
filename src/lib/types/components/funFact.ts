@@ -80,9 +80,9 @@ export const funFactFragment = `
 export interface FunFact {
     _id: string;
     _type: "funFact";
-    title: string;
-    fact: RichText;
-    teamMember: TeamMember;
-    buttonText: string;
-    buttonImages: SanityImage[];
+    title?: string;
+    fact?: RichText;
+    teamMember?: TeamMember;
+    buttonText?: string;
+    buttonImages?: SanityImage[];
 }

@@ -146,14 +146,14 @@ export default function Nav({
                                     "bg-white": inverted,
                                 })}
                             >
-                                {companyInfo.services.map((service, idx) => (
+                                {companyInfo.services?.map((service, idx) => (
                                     <Action
                                         key={idx}
                                         className={clsx("block text-nowrap", {
                                             "text-white": !inverted,
                                             "text-black": inverted,
                                         })}
-                                        href={`/services/${service.slug.current}`}
+                                        href={`/services/${service.slug?.current}`}
                                     >
                                         {stegaClean(service.title)}
                                     </Action>
@@ -231,13 +231,13 @@ export default function Nav({
                                 servicesOpen,
                         })}
                     >
-                        {companyInfo.services.map((service, idx) => (
+                        {companyInfo.services?.map((service, idx) => (
                             <Action
                                 key={idx}
                                 className={clsx(
                                     "ml-4 block text-nowrap font-counter text-2xl uppercase tracking-tight text-white hover:brightness-75",
                                 )}
-                                href={`/services/${service.slug.current}`}
+                                href={`/services/${service.slug?.current}`}
                             >
                                 {stegaClean(service.title)}
                             </Action>

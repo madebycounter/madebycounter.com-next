@@ -84,7 +84,7 @@ export default function Footer({
                             <p className="my-3 text-sm font-bold sm:text-base">
                                 Quick Links
                             </p>
-                            {companyInfo.footerLinks.map((fl, idx) => (
+                            {companyInfo.footerLinks?.map((fl, idx) => (
                                 <p
                                     key={idx}
                                     className="my-2 text-xs sm:text-sm"
@@ -108,13 +108,13 @@ export default function Footer({
                             <p className="my-3 text-sm font-bold sm:text-base">
                                 Our Services
                             </p>
-                            {companyInfo.services.map((s, idx) => (
+                            {companyInfo.services?.map((s, idx) => (
                                 <p
                                     key={idx}
                                     className="my-2 text-xs sm:text-sm"
                                 >
                                     <Action
-                                        href={`/services/${s.slug.current}`}
+                                        href={`/services/${s.slug?.current}`}
                                     >
                                         {s.title}
                                     </Action>
@@ -131,13 +131,13 @@ export default function Footer({
                             <p className="my-3 text-sm font-bold sm:text-base">
                                 Recent Work
                             </p>
-                            {companyInfo.recent.map((r, idx) => (
+                            {companyInfo.recent?.map((r, idx) => (
                                 <p
                                     key={idx}
                                     className="my-2 text-xs sm:text-sm"
                                 >
                                     <Action
-                                        href={`/portfolio/${r.slug.current}`}
+                                        href={`/portfolio/${r.slug?.current}`}
                                     >
                                         {r.title}
                                     </Action>
@@ -219,7 +219,7 @@ export default function Footer({
                                     },
                                 )}
                             />
-                            {companyInfo.socials.map((social, idx) => (
+                            {companyInfo.socials?.map((social, idx) => (
                                 <li key={idx}>
                                     <Action
                                         label={social.platform}

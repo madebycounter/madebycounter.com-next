@@ -187,19 +187,19 @@ export interface PortfolioItem {
     _id: string;
     _type: "portfolioItem";
     _updatedAt: string;
-    title: string;
-    date: string;
-    tags: string[];
-    description: RichText;
-    thumbnail: SanityImage;
-    heroMedia: MultiMedia[];
-    heroEmbed: string;
-    gallery: MultiMedia[];
-    serviceReference: Service;
-    testimonial: Testimonial;
-    relatedProjects: PortfolioItem[];
-    hidden: boolean;
-    slug: { current: string };
+    title?: string;
+    date?: string;
+    tags?: string[];
+    description?: RichText;
+    thumbnail?: SanityImage;
+    heroMedia?: MultiMedia[];
+    heroEmbed?: string;
+    gallery?: MultiMedia[];
+    serviceReference?: Service;
+    testimonial?: Testimonial;
+    relatedProjects?: PortfolioItem[];
+    hidden?: boolean;
+    slug?: { current: string };
 }
 
 export const portfolioItemPartialFragment = `

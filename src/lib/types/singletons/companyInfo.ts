@@ -46,13 +46,13 @@ export const companyInfoSchema = defineType({
 export interface CompanyInfo {
     _id: string;
     _type: "companyInfo";
-    name: string;
-    titleFormat: string;
-    logo: SanityImage;
-    socials: SocialLink[];
-    footerLinks: FooterLink[];
-    services: Service[];
-    recent: PortfolioItem[];
+    name?: string;
+    titleFormat?: string;
+    logo?: SanityImage;
+    socials?: SocialLink[];
+    footerLinks?: FooterLink[];
+    services?: Service[];
+    recent?: PortfolioItem[];
 }
 
 export const companyInfoFragment = `

@@ -14,13 +14,15 @@ export default function RootLayout({
     return (
         <html lang="en">
             <head>
-                <script
-                    type="text/javascript"
-                    id="hs-script-loader"
-                    async
-                    defer
-                    src={process.env.NEXT_PUBLIC_HUBSPOT_SCRIPT_URL}
-                ></script>
+                {!draftMode().isEnabled && (
+                    <script
+                        type="text/javascript"
+                        id="hs-script-loader"
+                        async
+                        defer
+                        src={process.env.NEXT_PUBLIC_HUBSPOT_SCRIPT_URL}
+                    ></script>
+                )}
             </head>
             <Hotjar />
             <body>

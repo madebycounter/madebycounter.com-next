@@ -183,7 +183,7 @@ export function Image({ src, className, size, onReady, alt = "" }: ImageProps) {
 }
 
 export interface MediaProps {
-    src: MultiMedia;
+    src?: MultiMedia;
     alt?: string;
     onClick?: (key: string) => void;
     onEnded?: () => void;
@@ -206,6 +206,8 @@ export default function Media({
     className,
 }: MediaProps) {
     const [ready, setReady] = useState(false);
+
+    if (!src) return null;
 
     return (
         <div

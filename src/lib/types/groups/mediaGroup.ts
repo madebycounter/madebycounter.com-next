@@ -51,6 +51,6 @@ export const mediaGroupFragment = `
 export interface MediaGroup {
     _id: string;
     _type: "mediaGroup";
-    title: string;
-    items: MultiMedia[];
+    title?: string;
+    items?: MultiMedia[];
 }

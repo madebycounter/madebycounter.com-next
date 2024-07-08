@@ -61,9 +61,9 @@ export const seoDataSchema = defineType({
 export interface PageSeoData {
     _id: string;
     _type: "pageSeoData";
-    title: string;
-    description: string;
-    image: SanityImage;
+    title?: string;
+    description?: string;
+    image?: SanityImage;
 }
 
 export interface SeoData {

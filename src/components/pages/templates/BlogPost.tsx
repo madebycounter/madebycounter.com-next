@@ -65,7 +65,7 @@ export default function Page({
     const [lightboxOpen, lightboxCurrent, setLightbox] = useLightboxState();
 
     return (
-        <div>
+        <div className="bg-white">
             <Nav companyInfo={companyInfo} active="blog" />
 
             <Lightbox
@@ -104,10 +104,10 @@ export default function Page({
                 <div className="flex items-end gap-2">
                     <div className="grow-0">
                         <Media
-                            src={blogPost.author.profile}
+                            src={blogPost.author?.profile}
                             size={{
                                 img:
-                                    blogPost.author.slug.current ===
+                                    blogPost.author?.slug?.current ===
                                     "counter-llc"
                                         ? 40
                                         : 50,
@@ -119,18 +119,19 @@ export default function Page({
 
                     <div>
                         <p className="mb-1 font-light leading-[1em]">
-                            Written by {blogPost.author.name.split(" ")[0]}
+                            Written by {blogPost.author?.name?.split(" ")[0]}
                         </p>
 
                         <p className="font-light leading-[1em]">
-                            {new Date(blogPost.date).toLocaleDateString(
-                                "en-US",
-                                {
-                                    month: "long",
-                                    day: "numeric",
-                                    year: "numeric",
-                                },
-                            )}
+                            {blogPost.date &&
+                                new Date(blogPost.date).toLocaleDateString(
+                                    "en-US",
+                                    {
+                                        month: "long",
+                                        day: "numeric",
+                                        year: "numeric",
+                                    },
+                                )}
                         </p>
                     </div>
                 </div>

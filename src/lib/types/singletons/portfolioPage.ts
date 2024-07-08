@@ -58,7 +58,7 @@ export const portfolioPageFragment = `
 `;
 
 export type PortfolioPage = {
-    title: string;
-    description: string;
-    image: SanityImage;
+    title?: string;
+    description?: string;
+    image?: SanityImage;
 };

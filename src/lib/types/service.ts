@@ -160,15 +160,15 @@ export interface Service {
     _id: string;
     _type: "service";
     _updatedAt: string;
-    title: string;
-    slideshow: MultiMedia[];
-    videoEmbed: string;
-    heroText: RichText;
-    teamMember: TeamMember;
-    content: ServiceContent;
-    callToAction: string;
+    title?: string;
+    slideshow?: MultiMedia[];
+    videoEmbed?: string;
+    heroText?: RichText;
+    teamMember?: TeamMember;
+    content?: ServiceContent;
+    callToAction?: string;
     seoData: PageSeoData;
-    slug: { current: string };
+    slug?: { current: string };
 }
 
 export const serviceFragment = `

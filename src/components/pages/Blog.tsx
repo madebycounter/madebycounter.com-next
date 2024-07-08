@@ -12,7 +12,7 @@ import styles from "./Blog.module.css";
 
 function BlogPostCard({ post }: { post: BlogPost }) {
     return (
-        <Action href={`/blog/${post.slug.current}`}>
+        <Action href={`/blog/${post.slug?.current}`}>
             <div className="aspect-4/3">
                 <Media src={post.heroVideo || post.heroImage} size={Small} />
             </div>
@@ -24,10 +24,10 @@ function BlogPostCard({ post }: { post: BlogPost }) {
             <div className="flex items-end gap-2">
                 <div className="grow-0">
                     <Media
-                        src={post.author.profile}
+                        src={post.author?.profile}
                         size={{
                             img:
-                                post.author.slug.current === "counter-llc"
+                                post.author?.slug?.current === "counter-llc"
                                     ? 40
                                     : 50,
                             video: "low",
@@ -37,15 +37,16 @@ function BlogPostCard({ post }: { post: BlogPost }) {
 
                 <div>
                     <p className="mb-1 font-light leading-[1em]">
-                        Written by {post.author.name.split(" ")[0]}
+                        Written by {post.author?.name?.split(" ")[0]}
                     </p>
 
                     <p className="font-light leading-[1em]">
-                        {new Date(post.date).toLocaleDateString("en-US", {
-                            month: "long",
-                            day: "numeric",
-                            year: "numeric",
-                        })}
+                        {post.date &&
+                            new Date(post.date).toLocaleDateString("en-US", {
+                                month: "long",
+                                day: "numeric",
+                                year: "numeric",
+                            })}
                     </p>
                 </div>
             </div>
@@ -61,7 +62,7 @@ export default function Blog({
     blogPosts: BlogPost[];
 }) {
     return (
-        <div>
+        <div className="bg-white">
             <Nav companyInfo={companyInfo} active="blog" inverted />
 
             <div

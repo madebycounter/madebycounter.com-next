@@ -61,7 +61,7 @@ export default function Page({
                         </Button.Label>
                         <Button.Arrow className="bg-white" />
                         <Button.Carousel
-                            items={aboutPage.lukeService.slideshow}
+                            items={aboutPage.lukeService?.slideshow}
                         />
                     </Button>
                 </div>

@@ -64,6 +64,6 @@ export const portfolioItemGroupFragment = `
 export interface PortfolioItemGroup {
     _id: string;
     _type: "portfolioItemGroup";
-    title: string;
-    items: PortfolioItem[];
+    title?: string;
+    items?: PortfolioItem[];
 }

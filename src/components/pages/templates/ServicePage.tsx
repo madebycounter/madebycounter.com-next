@@ -41,13 +41,15 @@ function findItem<T extends { _id: string }>(items: T[] = [], id: string) {
 }
 
 function makeContent(
-    content: ServiceContent,
-    gallery: MultiMedia[],
+    content: ServiceContent | undefined,
+    gallery: MultiMedia[] = [],
     windowSize: { width: number },
     onClick: () => void,
 ) {
+    if (!content) return null;
+
     return content.references.map((ref, idx) => (
-        <div className="my-16 lg:my-16" key={idx}>
+        <div className="my-16 bg-white lg:my-16" key={idx}>
             {ref._type === "funFact" &&
                 makeFunFact(
                     findItem(content.funFacts, ref._id),
@@ -116,7 +118,7 @@ function makeServiceGroup(
     return (
         <div className="m-auto max-w-[900px]">
             <Scroller className="flex gap-4">
-                {servicesGroup.items.map((service, idx) => (
+                {servicesGroup.items?.map((service, idx) => (
                     <MiniServiceCard
                         className="min-w-[280px] shrink-0 grow basis-1"
                         src={service}
@@ -133,7 +135,7 @@ function makePortfolioGroup(portfolioGroup: PortfolioItemGroup) {
     return (
         <div className="m-auto max-w-[900px]">
             <Scroller className="flex gap-4">
-                {portfolioGroup.items.map((item, idx) => (
+                {portfolioGroup.items?.map((item, idx) => (
                     <PortfolioCard
                         className="aspect-4/3 min-w-[280px] shrink-0 grow basis-1"
                         src={item}
@@ -182,7 +184,9 @@ export default function Page({
                     </div>
 
                     <div className="hidden md:block">
-                        <Media src={service.slideshow[0]} />
+                        <Media
+                            src={service.slideshow && service.slideshow[0]}
+                        />
                     </div>
                 </div>
             </Modal>
@@ -226,19 +230,19 @@ export default function Page({
                                 "absolute right-0 hidden md:block",
                                 {
                                     "top-[-10px] h-[110%] lg:right-[-70px]":
-                                        service.teamMember.slug.current ===
+                                        service.teamMember?.slug?.current ===
                                         "william-gardner",
                                     "top-[-13px] h-[115%] lg:right-[-100px]":
-                                        service.teamMember.slug.current ===
+                                        service.teamMember?.slug?.current ===
                                         "luke-a-makinson",
                                     "top-[-10px] h-[110%] lg:right-[-71px]":
-                                        service.teamMember.slug.current ===
+                                        service.teamMember?.slug?.current ===
                                         "henry-buck",
                                 },
                             )}
                         >
                             <Media
-                                src={service.teamMember.actionShot}
+                                src={service.teamMember?.actionShot}
                                 size={Small}
                                 mode="contain"
                                 className="float-right"

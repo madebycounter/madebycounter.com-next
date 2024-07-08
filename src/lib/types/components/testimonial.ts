@@ -113,10 +113,10 @@ export const testimonialFragment = `
 export interface Testimonial {
     _id: string;
     _type: "testimonial";
-    name: string;
-    jobTitle: string[];
-    quote: RichText;
-    photo: SanityImage;
-    photoBackground: SanityImage;
+    name?: string;
+    jobTitle?: string[];
+    quote?: RichText;
+    photo?: SanityImage;
+    photoBackground?: SanityImage;
     rating: 1 | 2 | 3 | 4 | 5;
 }

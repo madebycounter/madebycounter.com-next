@@ -54,6 +54,6 @@ export const miniServiceGroupFragment = `
 export interface MiniServiceGroup {
     _id: string;
     _type: "miniServiceGroup";
-    title: string;
-    items: MiniService[];
+    title?: string;
+    items?: MiniService[];
 }

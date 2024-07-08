@@ -125,7 +125,7 @@ export default function Page({
 
                         <div className="z-0">
                             <Button
-                                href={`/services/${aboutPage.lukeService.slug.current}`}
+                                href={`/services/${aboutPage.lukeService.slug?.current}`}
                                 direction="right"
                                 className="mt-8"
                                 label={aboutPage.lukeService.title}
@@ -224,7 +224,7 @@ export default function Page({
 
                         <div className="z-0">
                             <Button
-                                href={`/services/${aboutPage.henryService.slug.current}`}
+                                href={`/services/${aboutPage.henryService.slug?.current}`}
                                 direction="left"
                                 className="mt-8"
                                 label={aboutPage.henryService.title}
@@ -328,7 +328,7 @@ export default function Page({
 
                         <div className="z-0">
                             <Button
-                                href={`/services/${aboutPage.williamService.slug.current}`}
+                                href={`/services/${aboutPage.williamService.slug?.current}`}
                                 direction="right"
                                 className="mt-8"
                                 label={aboutPage.williamService.title}

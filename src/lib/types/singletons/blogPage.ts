@@ -58,7 +58,7 @@ export const blogPageFragment = `
 `;
 
 export type BlogPage = {
-    title: string;
-    description: string;
-    image: SanityImage;
+    title?: string;
+    description?: string;
+    image?: SanityImage;
 };

@@ -11,7 +11,7 @@ import styles from "./Portfolio.module.css";
 
 function PortfolioCard({ portfolioItem }: { portfolioItem: PortfolioItem }) {
     return (
-        <Link href={`/portfolio/${portfolioItem.slug.current}`}>
+        <Link href={`/portfolio/${portfolioItem.slug?.current}`}>
             <div className="aspect-video">
                 <Media
                     src={portfolioItem.thumbnail}
@@ -25,7 +25,7 @@ function PortfolioCard({ portfolioItem }: { portfolioItem: PortfolioItem }) {
                 </h2>
 
                 <p className="whitespace-nowrap text-right text-base font-light leading-[1em]">
-                    {portfolioItem.tags.map((tag, i) => (
+                    {portfolioItem.tags?.map((tag, i) => (
                         <span key={i}>
                             {tag}
                             <br />

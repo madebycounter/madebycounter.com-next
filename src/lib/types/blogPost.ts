@@ -166,15 +166,14 @@ export interface BlogPost {
     _id: string;
     _type: "blogPost";
     _updatedAt: string;
-    title: string;
-    date: string;
-    author: TeamMember;
-    heroImage: SanityImage;
-    heroVideo: MuxVideo;
-    content: any;
-    seoDescription: string;
-    allContent: any;
-    slug: {
+    title?: string;
+    date?: string;
+    author?: TeamMember;
+    heroImage?: SanityImage;
+    heroVideo?: MuxVideo;
+    content?: any;
+    seoDescription?: string;
+    slug?: {
         current: string;
     };
 }

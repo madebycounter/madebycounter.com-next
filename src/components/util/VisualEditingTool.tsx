@@ -8,7 +8,8 @@ export function VisualEditingTool() {
         // If not an iframe or a Vercel Preview deployment, turn off Draft Mode
         if (
             process.env.NEXT_PUBLIC_VERCEL_ENV !== "preview" &&
-            window === parent
+            window === parent &&
+            !location.pathname.startsWith("/studio")
         ) {
             location.href = "/api/draft/disable";
         }
