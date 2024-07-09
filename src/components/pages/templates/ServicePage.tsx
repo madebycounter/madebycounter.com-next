@@ -42,7 +42,7 @@ function findItem<T extends { _id: string }>(items: T[] = [], id: string) {
 
 function makeContent(
     content: ServiceContent | undefined,
-    gallery: MultiMedia[] = [],
+    gallery: MultiMedia[],
     windowSize: { width: number },
     onClick: () => void,
 ) {
@@ -262,9 +262,14 @@ export default function Page({
                 </div>
             </div>
 
-            {makeContent(service.content, service.slideshow, windowSize, () => {
-                setModalOpen(true);
-            })}
+            {makeContent(
+                service.content,
+                service.slideshow || [],
+                windowSize,
+                () => {
+                    setModalOpen(true);
+                },
+            )}
 
             <div className="m-auto max-w-[900px] px-4">
                 <PrettyCoolRight className="mb-32" inverted />
