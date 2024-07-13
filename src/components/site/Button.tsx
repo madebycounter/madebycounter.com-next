@@ -144,12 +144,16 @@ function Spacer({ children, className }: ButtonSpacerProps) {
 }
 
 export interface ButtonCarouselProps {
-    items: MultiMedia[];
+    items?: MultiMedia[];
     className?: string;
     speed?: number;
 }
 
-function CarouselSpacer({ items, speed = 30, className }: ButtonCarouselProps) {
+function CarouselSpacer({
+    items = [],
+    speed = 30,
+    className,
+}: ButtonCarouselProps) {
     const ctx = useContext(ButtonContext);
 
     return (
