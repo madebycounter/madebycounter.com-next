@@ -152,8 +152,6 @@ export interface ButtonCarouselProps {
 function CarouselSpacer({ items, speed = 30, className }: ButtonCarouselProps) {
     const ctx = useContext(ButtonContext);
 
-    console.log(items.length);
-
     return (
         <div
             className={clsx(className, "-z-10 grow overflow-hidden")}

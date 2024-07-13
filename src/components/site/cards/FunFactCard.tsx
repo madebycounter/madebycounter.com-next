@@ -22,7 +22,6 @@ export default function FunFactCard({
     onClick,
 }: FunFactCardProps) {
     if (!src.teamMember) return null;
-    console.log(gallery);
 
     return (
         <div className={clsx(styles.FunFactCard)}>

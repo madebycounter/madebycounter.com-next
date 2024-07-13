@@ -1,8 +1,6 @@
 "use client";
 
 export default function Hubspot() {
-    console.log(location.pathname, location.pathname.startsWith("/studio"));
-
     return (
         !location.pathname.startsWith("/studio") && (
             <script
