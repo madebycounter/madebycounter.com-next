@@ -64,10 +64,14 @@ function Button({
                 href={href}
                 onClick={onClick}
                 label={label}
-                className={clsx("z-0 flex w-full items-start", className, {
-                    "flex-row": direction === "right",
-                    "flex-row-reverse": direction === "left",
-                })}
+                className={clsx(
+                    "relative z-0 flex w-full items-start",
+                    className,
+                    {
+                        "flex-row": direction === "right",
+                        "flex-row-reverse": direction === "left",
+                    },
+                )}
             >
                 {children}
             </Action>
@@ -140,17 +144,15 @@ function Spacer({ children, className }: ButtonSpacerProps) {
 }
 
 export interface ButtonCarouselProps {
-    items?: MultiMedia[];
+    items: MultiMedia[];
     className?: string;
     speed?: number;
 }
 
-function CarouselSpacer({
-    items = [],
-    speed = 30,
-    className,
-}: ButtonCarouselProps) {
+function CarouselSpacer({ items, speed = 30, className }: ButtonCarouselProps) {
     const ctx = useContext(ButtonContext);
+
+    console.log(items.length);
 
     return (
         <div
