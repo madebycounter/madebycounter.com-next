@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 import blocksToText from "@/util/blocksToText";
 import formatTitle from "@/util/formatTitle";
@@ -18,6 +19,8 @@ export async function generateMetadata({
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const portfolioItem = await usePortfolioItem(params.slug);
 
+    if (!portfolioItem) return {};
+
     return makeSeoData(
         formatTitle(companyInfo.titleFormat, portfolioItem.title),
         blocksToText(portfolioItem.description),
@@ -28,6 +31,8 @@ export async function generateMetadata({
 export default async function Page({ params }: { params: { slug: string } }) {
     const portfolioItem = await usePortfolioItem(params.slug);
     const companyInfo = await useCompanyInfo();
+
+    if (!portfolioItem) return notFound();
 
     return (
         <PortfolioItemPage

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 import blocksToText from "@/util/blocksToText";
 import formatTitle from "@/util/formatTitle";
@@ -18,6 +19,8 @@ export async function generateMetadata({
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const blogPost = await useBlogPost(params.slug);
 
+    if (!blogPost) return {};
+
     const seoDescription =
         blocksToText(blogPost.content)
             .slice(0, 160)
@@ -34,6 +37,8 @@ export async function generateMetadata({
 export default async function Page({ params }: { params: { slug: string } }) {
     const blogPost = await useBlogPost(params.slug);
     const companyInfo = await useCompanyInfo();
+
+    if (!blogPost) return notFound();
 
     return <BlogPostPage companyInfo={companyInfo} blogPost={blogPost} />;
 }

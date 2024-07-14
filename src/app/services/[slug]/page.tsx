@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 import blocksToText from "@/util/blocksToText";
 import formatTitle from "@/util/formatTitle";
@@ -18,6 +19,8 @@ export async function generateMetadata({
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const service = await useService(params.slug);
 
+    if (!service) return {};
+
     return makeSeoData(
         formatTitle(companyInfo.titleFormat, service.seoData.title),
         service.seoData.description,
@@ -28,6 +31,8 @@ export async function generateMetadata({
 export default async function Page({ params }: { params: { slug: string } }) {
     const companyInfo = await useCompanyInfo();
     const service = await useService(params.slug);
+
+    if (!service) return notFound();
 
     return <ServicePage companyInfo={companyInfo} service={service} />;
 }
