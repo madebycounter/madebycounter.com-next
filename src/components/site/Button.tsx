@@ -91,7 +91,7 @@ function Label({ children, className }: ButtonLabelProps) {
         <span
             className={clsx(
                 className,
-                "block text-nowrap p-[0.17em] pb-0 font-counter leading-[1em] tracking-tighter",
+                "block whitespace-nowrap text-nowrap p-[0.17em] pb-0 font-counter leading-[1em] tracking-tighter",
             )}
             ref={ctx.ref}
         >
