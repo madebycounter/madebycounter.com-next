@@ -25,9 +25,14 @@ export default function Page({
     function onSubmit(values: FormData) {
         setSubmitting(true);
 
-        fetch("/api/newsletter", {
+        fetch("/api/contact", {
             method: "POST",
-            body: JSON.stringify(values),
+            body: JSON.stringify({
+                fname: values.fname,
+                lname: values.lname,
+                email: values.email,
+                message: "SIGN ME UP FOR THE NEWSLETTER!!!!"
+            }),
         })
             .then((res) => res.json())
             .then((data) => {
