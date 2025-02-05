@@ -127,6 +127,13 @@ export const serviceSchema = defineType({
             },
             group: "settings",
         },
+        {
+            name: "hidden",
+            title: "Hidden",
+            type: "boolean",
+            initialValue: false,
+            group: "settings",
+        },
     ],
     preview: {
         select: {
@@ -169,6 +176,7 @@ export interface Service {
     callToAction?: string;
     seoData: PageSeoData;
     slug?: { current: string };
+    hidden?: boolean;
 }
 
 export const serviceFragment = `
@@ -211,4 +219,5 @@ export const serviceFragment = `
         ${pageSeoDataFragment}
     },
     slug,
+    hidden
 `;

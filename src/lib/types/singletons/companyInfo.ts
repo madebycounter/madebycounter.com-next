@@ -71,7 +71,8 @@ export const companyInfoFragment = `
     },
     "services": *[_type=="service"] {
         title,
-        slug
+        slug,
+        hidden
     },
     "recent": *[_type=="portfolioItem"] | order(date desc) {
         title,
