@@ -46,10 +46,19 @@ export default function Page({
                 )}
             >
                 <div className="absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center">
-                    <h1 className="text-nowrap text-center font-counter text-[15vw] leading-[1em] tracking-tighter text-white drop-shadow-hero lg:text-[8vw]">
+                    {/* <h1 className="text-nowrap text-center font-counter text-[15vw] leading-[1em] tracking-tighter text-white drop-shadow-hero lg:text-[8vw]">
                         We make cool&nbsp;
                         <br className="block lg:hidden" />
-                        stuff, <Highlight>see?</Highlight>
+                        stuff, 
+                    </h1> */}
+                    <h1 className="hidden text-nowrap text-center font-counter text-[8vw] leading-[1em] tracking-tighter text-white drop-shadow-hero lg:block">
+                        Loud music, <Highlight>louder</Highlight> media.
+                    </h1>
+
+                    <h1 className="block text-nowrap text-left font-counter text-[15vw] leading-[1em] tracking-tighter text-white drop-shadow-hero lg:hidden">
+                        Loud music,
+                        <br />
+                        <Highlight>louder</Highlight> media.
                     </h1>
                 </div>
 
