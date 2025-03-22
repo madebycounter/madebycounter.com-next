@@ -7,6 +7,7 @@ export async function GET(request: Request) {
 
     var resp = await fetch(
         `${baseUrl}?part=snippet&channelId=${channelId}&eventType=live&type=video&key=${apiKey}`,
+        { next: { revalidate: 30 } },
     );
 
     var dat = await resp.json();
