@@ -20,7 +20,7 @@ function PortfolioCard({ portfolioItem }: { portfolioItem: PortfolioItem }) {
             </div>
 
             <div className="flex justify-between gap-1 pt-2 text-white">
-                <h2 className="font-counter text-3xl font-normal leading-[1em]">
+                <h2 className="font-counter text-2xl font-normal leading-[1em]">
                     {portfolioItem.title}
                 </h2>
 
