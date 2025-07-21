@@ -174,13 +174,13 @@ export default function Nav({
                             Portfolio
                         </NavItem>
 
-                        <NavItem
+                        {/* <NavItem
                             href="/blog"
                             active={active === "blog"}
                             inverted={inverted}
                         >
                             Blog
-                        </NavItem>
+                        </NavItem> */}
                     </BaseNav.Items>
 
                     <BaseNav.Items className="!flex gap-8 md:!hidden">
@@ -256,12 +256,12 @@ export default function Nav({
                     >
                         Portfolio
                     </Action>
-                    <Action
+                    {/* <Action
                         className="mb-2 block font-counter text-4xl uppercase tracking-tight text-white hover:brightness-75"
                         href="/blog"
                     >
                         Blog
-                    </Action>
+                    </Action> */}
                 </div>
             </div>
         </>
