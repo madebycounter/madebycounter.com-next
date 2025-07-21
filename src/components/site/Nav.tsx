@@ -174,13 +174,13 @@ export default function Nav({
                             Portfolio
                         </NavItem>
 
-                        {/* <NavItem
-                            href="/blog"
+                        <NavItem
+                            href="https://www.youtube.com/@madebycounter"
                             active={active === "blog"}
                             inverted={inverted}
                         >
-                            Blog
-                        </NavItem> */}
+                            Watch
+                        </NavItem>
                     </BaseNav.Items>
 
                     <BaseNav.Items className="!flex gap-8 md:!hidden">
@@ -256,12 +256,12 @@ export default function Nav({
                     >
                         Portfolio
                     </Action>
-                    {/* <Action
+                    <Action
                         className="mb-2 block font-counter text-4xl uppercase tracking-tight text-white hover:brightness-75"
-                        href="/blog"
+                        href="https://www.youtube.com/@madebycounter"
                     >
-                        Blog
-                    </Action> */}
+                        Watch
+                    </Action>
                 </div>
             </div>
         </>
