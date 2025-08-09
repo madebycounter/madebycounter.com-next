@@ -25,10 +25,15 @@ export default function Page({
     function onSubmit(values: FormData) {
         setSubmitting(true);
 
-        setTimeout(() => {
+        fetch("/api/notify", {
+            method: "POST",
+            body: JSON.stringify({
+                phone: values.phone,
+            }),
+        }).then(() => {
             setSubmitting(false);
             setModalOpen(true);
-        }, 1000);
+        });
     }
 
     return (
