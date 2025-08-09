@@ -49,7 +49,7 @@ export default function Page({
                     </p>
 
                     <Button
-                        href="https://youtube.com/@madebycounter"
+                        href="https://youtube.com/@madebycounter?sub_confirmation=1"
                         direction="right"
                         className="mt-8"
                     >

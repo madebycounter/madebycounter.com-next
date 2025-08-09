@@ -175,7 +175,7 @@ export default function Nav({
                         </NavItem>
 
                         <NavItem
-                            href="https://www.youtube.com/@madebycounter"
+                            href="https://www.youtube.com/@madebycounter?sub_confirmation=1"
                             active={active === "blog"}
                             inverted={inverted}
                         >
@@ -258,7 +258,7 @@ export default function Nav({
                     </Action>
                     <Action
                         className="mb-2 block font-counter text-4xl uppercase tracking-tight text-white hover:brightness-75"
-                        href="https://www.youtube.com/@madebycounter"
+                        href="https://www.youtube.com/@madebycounter?sub_confirmation=1"
                     >
                         Watch
                     </Action>
