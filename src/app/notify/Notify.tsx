@@ -44,8 +44,8 @@ export default function Page({
                     </p>
 
                     <p className="text-xl font-light">
-                        You're signed up! Why not check out some of our cool
-                        stuff while you&apos;re here?
+                        You&apos;re signed up! Why not check out some of our
+                        cool stuff while you&apos;re here?
                     </p>
 
                     <Button
