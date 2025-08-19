@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request: NextRequest) {
     const data = await request.json();
 
-    if (!process.env.RETOOL_WEBHOOK || !process.env.RETOOL_WEBHOOK_SECRET)
+    if (!process.env.COUNTER_SMS_API_KEY || !process.env.COUNTER_SMS_URL)
         return NextResponse.json(
             {
                 status: "error",
@@ -13,27 +13,37 @@ export async function POST(request: NextRequest) {
             },
         );
 
-    const resp = await fetch(process.env.RETOOL_WEBHOOK, {
+    const resp = await fetch(process.env.COUNTER_SMS_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "X-Workflow-Api-Key": process.env.RETOOL_WEBHOOK_SECRET,
+            Authorization: `Bearer ${process.env.COUNTER_SMS_API_KEY}`,
         },
         body: JSON.stringify({
             phone: data.phone,
-            timestamp: new Date().toISOString(),
-            source: "madebycounter.com",
         }),
     });
 
-    console.log(await resp.json());
+    const respData = await resp.json();
 
-    return NextResponse.json(
-        {
-            status: "ok",
-        },
-        {
-            status: 200,
-        },
-    );
+    if (respData.status == "ok") {
+        return NextResponse.json(
+            {
+                status: "ok",
+            },
+            {
+                status: 200,
+            },
+        );
+    } else {
+        return NextResponse.json(
+            {
+                status: "error",
+                message: respData.message,
+            },
+            {
+                status: 400,
+            },
+        );
+    }
 }
